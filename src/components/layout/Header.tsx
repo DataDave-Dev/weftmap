@@ -9,7 +9,7 @@ const linkClass =
 
 export default function Header({ lang }: { lang: Locale }) {
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-black/80 backdrop-blur-xl border-b border-white/[0.08]">
+    <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-black/55 backdrop-blur-xl border-b border-white/[0.08]">
       <Link
         href={`/${lang}`}
         className="metallic text-xl font-bold tracking-[0.02em]"
