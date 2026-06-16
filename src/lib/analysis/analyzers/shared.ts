@@ -120,9 +120,13 @@ async function parseFile(
     if (!name) continue;
     defs.add(name);
     const cls = enclosingClassName(node, classNodeTypes);
-    if (!cls) continue;
-    // Same method name in two classes (e.g. __init__) -> ambiguous, mark null.
-    methodClass.set(name, methodClass.has(name) && methodClass.get(name) !== cls ? null : cls);
+    // Same name in different contexts (two classes, or module-level vs class)
+    // -> ambiguous, mark null so we don't attribute it to the wrong class.
+    if (methodClass.has(name)) {
+      if (methodClass.get(name) !== cls) methodClass.set(name, null);
+    } else {
+      methodClass.set(name, cls);
+    }
   }
 
   const classes = new Set<string>();
