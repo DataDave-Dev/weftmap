@@ -1,0 +1,521 @@
+# Instincts generated from https://github.com/DataDave-Dev/codeviz
+# Generated: 2026-06-16T20:20:23.957Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: codeviz-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: feat
+
+## Evidence
+
+- 3 commits analyzed
+- Detected conventional commit pattern
+- Examples: feat(analysis): análisis a nivel proyecto (multi-archivo, imports, cross-file), feat(analysis): clases, métodos y herencia (Fase 2)
+
+---
+id: codeviz-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Commit Length
+
+## Action
+
+Write moderate-length commit messages (~68 characters)
+
+## Evidence
+
+- Average commit message length: 68 chars
+- Based on 3 commits
+
+---
+id: codeviz-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: codeviz-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: codeviz-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: codeviz-arch-type-based
+trigger: "when adding new code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Arch Type Based
+
+## Action
+
+Place code in the appropriate type folder (components/, services/, utils/, etc.)
+
+## Evidence
+
+- Type-based module organization detected
+- Folders: app, components, i18n, lib
+
+---
+id: codeviz-test-colocate
+trigger: "when writing tests"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Test Colocate
+
+## Action
+
+Place test file next to the source file (e.g., Button.test.tsx next to Button.tsx)
+
+## Evidence
+
+- Colocated test pattern detected
+- Tests live alongside source files
+
+---
+id: codeviz-workflow-extend-language-support
+trigger: "when doing extend language support"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Workflow Extend Language Support
+
+## Action
+
+Follow the extend-language-support workflow:
+1. Implement or update analyzer for the new or enhanced language in src/lib/analysis/analyzers/{language}.ts
+2. Update shared analyzer logic in src/lib/analysis/analyzers/shared.ts or src/lib/analysis/analyzers/jslike.ts
+3. Register the new analyzer in src/lib/analysis/registry.ts (if applicable)
+4. Add or update tests in src/lib/analysis/analyzers/analyzers.test.ts
+5. Update API route if necessary (src/app/api/analyze/route.ts)
+6. Update UI components (src/components/ui/CodeWorkspace.tsx, src/components/ui/Diagram.tsx) to reflect new language options, diagrams, or filtering
+7. Add WASM grammar files in public/wasm/ (if needed)
+8. Update language selector and samples in UI
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: src/lib/analysis/analyzers/{language}.ts, src/lib/analysis/analyzers/shared.ts, src/lib/analysis/analyzers/jslike.ts
+
+---
+id: codeviz-workflow-feature-development-with-cross-file-analysis
+trigger: "when doing feature development with cross file analysis"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Workflow Feature Development With Cross File Analysis
+
+## Action
+
+Follow the feature-development-with-cross-file-analysis workflow:
+1. Update or extend analysis model/types in src/lib/analysis/types.ts
+2. Implement feature logic in relevant analyzers (src/lib/analysis/analyzers/{language}.ts, shared.ts)
+3. Update API to expose new analysis (src/app/api/analyze/route.ts)
+4. Update UI components to visualize new feature (src/components/ui/Diagram.tsx, src/components/ui/CodeWorkspace.tsx, src/components/ui/CodeTool.tsx)
+5. Update i18n dictionaries if UI text changes (src/i18n/dictionaries/*.json)
+6. Add or update tests in src/lib/analysis/analyzers/analyzers.test.ts
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: src/lib/analysis/types.ts, src/lib/analysis/analyzers/{language}.ts, src/lib/analysis/analyzers/shared.ts
+
+---
+id: codeviz-workflow-diagram-ui-enhancement
+trigger: "when doing diagram ui enhancement"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/DataDave-Dev/codeviz
+---
+
+# Codeviz Workflow Diagram Ui Enhancement
+
+## Action
+
+Follow the diagram-ui-enhancement workflow:
+1. Update diagram rendering logic in src/components/ui/Diagram.tsx
+2. Update or add legend and filtering features in the same file
+3. Update analysis output or types if new edge/node types are visualized (src/lib/analysis/types.ts, analyzers)
+4. Update tests if diagram output is tested (src/lib/analysis/analyzers/analyzers.test.ts)
+5. Update i18n dictionaries if UI text changes (src/i18n/dictionaries/*.json)
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: src/components/ui/Diagram.tsx, src/lib/analysis/types.ts, src/lib/analysis/analyzers/{language}.ts
+
+---
+id: codeviz-instinct-file-naming-camelCase
+trigger: "When creating or renaming a file in the codebase"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct File Naming CamelCase
+
+## Action
+
+Name the file using camelCase (e.g., myFile.ts)
+
+## Evidence
+
+- Pattern in namingConventions.files: camelCase
+
+---
+id: codeviz-instinct-function-naming-camelCase
+trigger: "When defining a function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Function Naming CamelCase
+
+## Action
+
+Name the function using camelCase (e.g., analyzeFile)
+
+## Evidence
+
+- Pattern in namingConventions.functions: camelCase
+
+---
+id: codeviz-instinct-class-naming-PascalCase
+trigger: "When defining a class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Class Naming PascalCase
+
+## Action
+
+Name the class using PascalCase (e.g., CodeAnalyzer)
+
+## Evidence
+
+- Pattern in namingConventions.classes: PascalCase
+
+---
+id: codeviz-instinct-constant-naming-SCREAMING_SNAKE_CASE
+trigger: "When defining a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Constant Naming SCREAMING_SNAKE_CASE
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE (e.g., MAX_DEPTH)
+
+## Evidence
+
+- Pattern in namingConventions.constants: SCREAMING_SNAKE_CASE
+
+---
+id: codeviz-instinct-import-style-relative
+trigger: "When importing modules within the codebase"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Import Style Relative
+
+## Action
+
+Use relative import paths (e.g., import { X } from './utils')
+
+## Evidence
+
+- Pattern in importStyle: relative
+
+---
+id: codeviz-instinct-export-style-named
+trigger: "When exporting functions, classes, or constants"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Export Style Named
+
+## Action
+
+Use named exports (e.g., export { analyzeFile })
+
+## Evidence
+
+- Pattern in exportStyle: named
+
+---
+id: codeviz-instinct-testing-colocated
+trigger: "When adding or updating tests"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Testing Colocated
+
+## Action
+
+Place test files next to the code they test (colocated testing)
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation: colocated
+
+---
+id: codeviz-instinct-testing-analyzers-pattern
+trigger: "When writing tests for analyzers"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Testing Analyzers Pattern
+
+## Action
+
+Add or update tests in src/lib/analysis/analyzers/analyzers.test.ts
+
+## Evidence
+
+- Files involved in all workflows: src/lib/analysis/analyzers/analyzers.test.ts
+- Commit sequences in workflows reference updating this file
+
+---
+id: codeviz-instinct-testing-update-tests-on-feature
+trigger: "When implementing or updating a feature in analyzers or UI"
+confidence: 0.85
+domain: testing
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Testing Update Tests On Feature
+
+## Action
+
+Add or update corresponding tests to cover new or changed behavior
+
+## Evidence
+
+- All workflow commit sequences include test updates
+- Pattern in workflows: 'Add or update tests'
+
+---
+id: codeviz-instinct-git-conventional-commits-feat
+trigger: "When committing a new feature"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Git Conventional Commits Feat
+
+## Action
+
+Use the conventional commit format with 'feat' prefix (e.g., feat(analysis): add cross-file support)
+
+## Evidence
+
+- commits.type: conventional
+- commits.prefixes: ["feat"]
+- Examples: 'feat(analysis): análisis a nivel proyecto...'
+
+---
+id: codeviz-instinct-git-commit-length
+trigger: "When writing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Git Commit Length
+
+## Action
+
+Keep the commit message concise, around 68 characters on average
+
+## Evidence
+
+- commits.averageLength: 68
+
+---
+id: codeviz-instinct-workflow-extend-language-support
+trigger: "When someone wants to add or improve support for a programming language (e.g., TypeScript, Go, cross-file analysis, class/method detection)"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Workflow Extend Language Support
+
+## Action
+
+Follow the steps: implement/update analyzer in src/lib/analysis/analyzers/{language}.ts, update shared logic, register in registry, update/add tests, update API route, update UI components, add WASM grammar if needed, update language selector and samples
+
+## Evidence
+
+- Workflow: extend-language-support
+- Commit sequences and files involved in workflow definition
+
+---
+id: codeviz-instinct-workflow-feature-development-cross-file
+trigger: "When someone wants to add a new analysis capability (e.g., project-level graph, class/method detection, inheritance, cross-file calls)"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Workflow Feature Development Cross File
+
+## Action
+
+Follow the steps: update/extend analysis types, implement feature logic in analyzers, update API, update UI components, update i18n dictionaries if needed, add/update tests
+
+## Evidence
+
+- Workflow: feature-development-with-cross-file-analysis
+- Commit sequences and files involved in workflow definition
+
+---
+id: codeviz-instinct-workflow-diagram-ui-enhancement
+trigger: "When someone wants to enhance the diagram's layout, add new edge types, or improve interactivity/filtering in the UI"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Workflow Diagram Ui Enhancement
+
+## Action
+
+Follow the steps: update diagram rendering logic, update/add legend and filtering, update analysis output/types if new edge/node types are visualized, update tests, update i18n dictionaries if UI text changes
+
+## Evidence
+
+- Workflow: diagram-ui-enhancement
+- Commit sequences and files involved in workflow definition
+
+---
+id: codeviz-instinct-error-handling-try-catch
+trigger: "When handling errors in code"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: DataDave-Dev/codeviz
+---
+
+# Codeviz Instinct Error Handling Try Catch
+
+## Action
+
+Use try-catch blocks for error handling
+
+## Evidence
+
+- errorHandling.style: try-catch
+
