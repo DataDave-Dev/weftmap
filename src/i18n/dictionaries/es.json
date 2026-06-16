@@ -59,5 +59,9 @@
   "inputPlaceholder": "Pega tu código aquí…",
   "diagramPlaceholder": "El diagrama aparecerá aquí.",
   "noFunctions": "No se encontraron funciones en el código.",
-  "comingSoon": "Nueva interfaz próximamente."
+  "comingSoon": "Nueva interfaz próximamente.",
+  "snippetTab": "Fragmento",
+  "projectTab": "Proyecto",
+  "uploadFolder": "Subir una carpeta",
+  "projectHint": "Elige una carpeta — sus archivos se mapean como un solo grafo."
 }
