@@ -63,5 +63,9 @@
   "snippetTab": "Fragmento",
   "projectTab": "Proyecto",
   "uploadFolder": "Subir una carpeta",
-  "projectHint": "Elige una carpeta — sus archivos se mapean como un solo grafo."
+  "projectHint": "Elige una carpeta — sus archivos se mapean como un solo grafo.",
+  "notFoundTitle": "Esta página se perdió en el grafo",
+  "notFoundDesc": "El enlace puede estar roto o la página se movió. Volvamos al camino.",
+  "notFoundHome": "Volver al inicio",
+  "notFoundApp": "Abrir la app"
 }

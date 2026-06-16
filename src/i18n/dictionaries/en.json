@@ -63,5 +63,9 @@
   "snippetTab": "Snippet",
   "projectTab": "Project",
   "uploadFolder": "Upload a folder",
-  "projectHint": "Pick a folder — its files are mapped as one project graph."
+  "projectHint": "Pick a folder — its files are mapped as one project graph.",
+  "notFoundTitle": "This page got lost in the graph",
+  "notFoundDesc": "The link may be broken or the page may have moved. Let's get you back on track.",
+  "notFoundHome": "Back home",
+  "notFoundApp": "Open the app"
 }
