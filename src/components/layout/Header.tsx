@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { locales, type Locale } from "@/i18n/config";
+import Logo from "./Logo";
 
 const REPO = "https://github.com/DataDave-Dev/weftmap";
 
@@ -33,9 +34,10 @@ export default function Header({ lang }: { lang: Locale }) {
     >
       <Link
         href={`/${lang}`}
-        className="metallic text-xl font-bold tracking-[0.02em]"
+        className="flex items-center gap-2 text-xl font-bold tracking-[0.02em]"
       >
-        Weftmap
+        <Logo className="h-6 w-6 text-fg" />
+        <span className="metallic">Weftmap</span>
       </Link>
 
       <div className="flex items-center gap-2 sm:gap-3">

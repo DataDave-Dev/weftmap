@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
+import Logo from "./Logo";
 
 const REPO = "https://github.com/DataDave-Dev/weftmap";
 
@@ -37,9 +38,10 @@ export default function Footer({
         <div className="max-w-sm">
           <Link
             href={`/${lang}`}
-            className="metallic text-xl font-bold tracking-[0.02em]"
+            className="flex w-fit items-center gap-2 text-xl font-bold tracking-[0.02em]"
           >
-            Weftmap
+            <Logo className="h-6 w-6 text-fg" />
+            <span className="metallic">Weftmap</span>
           </Link>
           <p className="mt-3 text-sm leading-relaxed text-muted">{tagline}</p>
           <p className="mt-4 text-[13px] text-muted/70">{footerNote}</p>
