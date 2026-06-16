@@ -4,6 +4,9 @@ import type { Graph, GraphNode, GraphEdge, SourceFile } from "../types";
 
 type Node = Parser.SyntaxNode;
 
+// Cap parsing of a single file so a pathological input can't block the event loop.
+const MAX_PARSE_MICROS = 5_000_000; // 5s
+
 export type LangSpec = {
   language: string;
   wasm: string;
@@ -77,7 +80,9 @@ function stripQuotes(text: string): string {
 type FileFacts = {
   file: string;
   defs: Set<string>;
-  methodClass: Map<string, string>; // function name -> owning class name
+  // function name -> owning class, or null when the name is owned by more than
+  // one class in the file (ambiguous: don't attribute it to the wrong class).
+  methodClass: Map<string, string | null>;
   classes: Set<string>;
   extendsRel: { cls: string; base: string }[];
   calls: { caller: string | null; callee: string }[];
@@ -90,19 +95,34 @@ async function parseFile(
   paths: Set<string>,
 ): Promise<FileFacts> {
   const { parser, language } = await getParser(spec.wasm);
+  parser.setTimeoutMicros(MAX_PARSE_MICROS);
   const tree = parser.parse(source.content);
+  // parse() returns null when the timeout is hit; skip the file instead of crashing.
+  if (!tree) {
+    return {
+      file: source.path,
+      defs: new Set<string>(),
+      methodClass: new Map<string, string | null>(),
+      classes: new Set<string>(),
+      extendsRel: [],
+      calls: [],
+      imports: new Set<string>(),
+    };
+  }
   const root = tree.rootNode;
 
   const classNodeTypes = spec.classNodeTypes ?? new Set<string>();
   const defs = new Set<string>();
-  const methodClass = new Map<string, string>();
+  const methodClass = new Map<string, string | null>();
   const defQuery = language.query(spec.funcDefQuery);
   for (const { node } of defQuery.captures(root)) {
     const name = resolveName(node);
     if (!name) continue;
     defs.add(name);
     const cls = enclosingClassName(node, classNodeTypes);
-    if (cls) methodClass.set(name, cls);
+    if (!cls) continue;
+    // Same method name in two classes (e.g. __init__) -> ambiguous, mark null.
+    methodClass.set(name, methodClass.has(name) && methodClass.get(name) !== cls ? null : cls);
   }
 
   const classes = new Set<string>();
