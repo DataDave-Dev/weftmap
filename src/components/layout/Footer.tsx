@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 
-const REPO = "https://github.com/DataDave-Dev/codeviz";
+const REPO = "https://github.com/DataDave-Dev/weftmap";
 
 type Props = {
   lang: Locale;

@@ -1,11 +1,11 @@
 ```markdown
-# codeviz Development Patterns
+# weftmap Development Patterns
 
 > Auto-generated skill from repository analysis
 
 ## Overview
 
-This skill teaches you how to contribute to the `codeviz` codebase, a TypeScript project focused on code analysis and visualization. You'll learn the project's coding conventions, how to extend language support, develop new analysis features (including cross-file/project-level analysis), and enhance the diagram UI. The guide covers commit patterns, file organization, and practical workflows with step-by-step instructions and code examples.
+This skill teaches you how to contribute to the `weftmap` codebase, a TypeScript project focused on code analysis and visualization. You'll learn the project's coding conventions, how to extend language support, develop new analysis features (including cross-file/project-level analysis), and enhance the diagram UI. The guide covers commit patterns, file organization, and practical workflows with step-by-step instructions and code examples.
 
 ## Coding Conventions
 
