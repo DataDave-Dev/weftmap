@@ -36,7 +36,7 @@ export default function Header({ lang }: { lang: Locale }) {
         href={`/${lang}`}
         className="metallic text-xl font-bold tracking-[0.02em]"
       >
-        CodeViz
+        Weftmap
       </Link>
 
       <div className="flex items-center gap-2 sm:gap-3">

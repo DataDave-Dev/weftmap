@@ -6,7 +6,7 @@ import "@fontsource-variable/lexend";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "CodeViz",
+  title: "Weftmap",
   description: "Paste code and get an interactive call graph.",
 };
 

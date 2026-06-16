@@ -1,5 +1,5 @@
 {
-  "title": "CodeViz",
+  "title": "Weftmap",
   "badge": "Open source · Multi-lenguaje",
   "hero": "Entiende cualquier código de un vistazo.",
   "tagline": "Pega código y obtén un call graph interactivo. Multi-lenguaje vía Tree-sitter.",

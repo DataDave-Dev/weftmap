@@ -1,5 +1,5 @@
 {
-  "name": "codeviz",
+  "name": "weftmap",
   "version": "0.1.0",
   "private": true,
   "description": "Pega código y obtén un call graph interactivo. Multi-lenguaje vía Tree-sitter.",

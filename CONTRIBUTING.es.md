@@ -1,4 +1,4 @@
-# Contribuir a CodeViz
+# Contribuir a Weftmap
 
 **🌐 Idioma:** [English](CONTRIBUTING.md) · **Español**
 

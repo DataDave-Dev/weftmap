@@ -1,4 +1,4 @@
-# CodeViz
+# Weftmap
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black.svg)](https://nextjs.org/)
@@ -10,7 +10,7 @@
 > Pega código y obtén un **call graph** interactivo para entender qué hace —
 > en varios lenguajes, gracias a [Tree-sitter](https://tree-sitter.github.io/).
 
-CodeViz convierte código fuente en un diagrama navegable de qué función llama a
+Weftmap convierte código fuente en un diagrama navegable de qué función llama a
 cuál. El diferencial es una **arquitectura pluggable y multi-lenguaje**: el
 backend adapta el análisis según el lenguaje, y agregar uno nuevo toma unas pocas
 líneas. No existe una herramienta libre que haga esto bien para varios lenguajes

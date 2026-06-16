@@ -6,7 +6,7 @@ import Header from "@/components/layout/Header";
 import CodeWorkspace from "@/components/ui/CodeWorkspace";
 
 export const metadata: Metadata = {
-  title: "CodeViz — Editor",
+  title: "Weftmap — Editor",
 };
 
 export default async function AppPage({

@@ -39,7 +39,7 @@ export default function Footer({
             href={`/${lang}`}
             className="metallic text-xl font-bold tracking-[0.02em]"
           >
-            CodeViz
+            Weftmap
           </Link>
           <p className="mt-3 text-sm leading-relaxed text-muted">{tagline}</p>
           <p className="mt-4 text-[13px] text-muted/70">{footerNote}</p>

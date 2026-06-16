@@ -1,4 +1,4 @@
-# CodeViz
+# Weftmap
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black.svg)](https://nextjs.org/)
@@ -10,7 +10,7 @@
 > Paste code, get an interactive **call graph** to understand what it does —
 > across multiple languages, powered by [Tree-sitter](https://tree-sitter.github.io/).
 
-CodeViz turns source code into a navigable diagram of which functions call
+Weftmap turns source code into a navigable diagram of which functions call
 which. The differentiator is a **pluggable, multi-language architecture**: the
 backend adapts the analysis per language, and adding a new one takes only a few
 lines. No existing free tool does this well across several languages at once.
