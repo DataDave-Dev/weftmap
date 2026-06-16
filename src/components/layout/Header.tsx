@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { locales, type Locale } from "@/i18n/config";
 
@@ -8,8 +11,27 @@ const linkClass =
   "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] text-muted hover:text-fg hover:bg-white/[0.06] transition-colors";
 
 export default function Header({ lang }: { lang: Locale }) {
+  // Transparent over the hero at the top; solid + blurred once scrolled, so the
+  // bar never reads as a near-black block against the dark hero.
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const id = requestAnimationFrame(onScroll); // initial state without a sync setState
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(id);
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-black/55 backdrop-blur-xl border-b border-white/[0.08]">
+    <header
+      className={`sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b transition-colors duration-300 ${
+        scrolled
+          ? "bg-black/55 backdrop-blur-xl border-white/[0.08]"
+          : "bg-transparent border-transparent"
+      }`}
+    >
       <Link
         href={`/${lang}`}
         className="metallic text-xl font-bold tracking-[0.02em]"
