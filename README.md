@@ -15,8 +15,8 @@ which. The differentiator is a **pluggable, multi-language architecture**: the
 backend adapts the analysis per language, and adding a new one takes only a few
 lines. No existing free tool does this well across several languages at once.
 
-> **Status:** MVP. Supports **Python** and **JavaScript/TypeScript**. Diagram
-> type: call graph (functions as nodes, calls as arrows).
+> **Status:** MVP. Supports **Python**, **JavaScript/TypeScript** and **Go**.
+> Diagram type: call graph (functions as nodes, calls as arrows).
 
 ---
 
@@ -147,11 +147,31 @@ public/wasm/                  # Tree-sitter runtime + grammar .wasm files
 
 ## Roadmap
 
-- [ ] More languages: Go, Java, C/C++.
-- [ ] First-class TypeScript via `tree-sitter-typescript` (types, generics).
-- [ ] More diagram types: control-flow and module-dependency graphs.
-- [ ] Node interaction: click to highlight callers/callees, function detail panel.
-- [ ] More input methods: file/ZIP upload and GitHub repo URL.
+Got an idea? [Open an issue](https://github.com/DataDave-Dev/weftmap/issues/new/choose).
+Newcomer-friendly tasks are tagged [`good first issue`](https://github.com/DataDave-Dev/weftmap/issues?q=is%3Aopen+label%3A%22good+first+issue%22).
+
+**Shipped**
+
+- [x] Call graph for Python, JavaScript, TypeScript and Go
+- [x] Pluggable per-language architecture (add a language in a few lines)
+- [x] Bilingual UI (en/es) with in-app docs
+
+**Next** — help wanted
+
+- [ ] More languages: Rust ([#12](https://github.com/DataDave-Dev/weftmap/issues/12)), Ruby ([#13](https://github.com/DataDave-Dev/weftmap/issues/13)), Java ([#14](https://github.com/DataDave-Dev/weftmap/issues/14))
+- [ ] Drive the Hero language chips from the registry ([#15](https://github.com/DataDave-Dev/weftmap/issues/15))
+- [ ] Broaden analyzer test coverage ([#16](https://github.com/DataDave-Dev/weftmap/issues/16))
+- [ ] Richer empty state when no functions are found ([#17](https://github.com/DataDave-Dev/weftmap/issues/17))
+
+**Later**
+
+- [ ] Project mode: analyze a whole folder as a single graph
+- [ ] Node interaction: click to highlight callers/callees, function detail panel
+- [ ] More diagram types: control-flow and module-dependency graphs
+- [ ] **SQL support**: ER / UML schema diagrams (tables, columns, relationships) from SQL DDL ([#19](https://github.com/DataDave-Dev/weftmap/issues/19))
+- [ ] Export the graph (PNG/SVG) and shareable permalinks
+- [ ] More input methods: ZIP upload and GitHub repo URL
+- [ ] Performance for large codebases
 
 ## Contributing
 

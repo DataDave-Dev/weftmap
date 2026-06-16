@@ -16,8 +16,8 @@ backend adapta el análisis según el lenguaje, y agregar uno nuevo toma unas po
 líneas. No existe una herramienta libre que haga esto bien para varios lenguajes
 a la vez.
 
-> **Estado:** MVP. Soporta **Python** y **JavaScript/TypeScript**. Tipo de
-> diagrama: call graph (funciones como nodos, llamadas como flechas).
+> **Estado:** MVP. Soporta **Python**, **JavaScript/TypeScript** y **Go**. Tipo
+> de diagrama: call graph (funciones como nodos, llamadas como flechas).
 
 ---
 
@@ -149,12 +149,31 @@ public/wasm/                  # runtime de Tree-sitter + archivos .wasm de gramm
 
 ## Roadmap
 
-- [ ] Más lenguajes: Go, Java, C/C++.
-- [ ] TypeScript de primera clase vía `tree-sitter-typescript` (tipos, genéricos).
-- [ ] Más tipos de diagrama: control-flow y dependencias entre módulos.
-- [ ] Interacción en nodos: click para resaltar llamadores/llamados, panel de
-      detalle de función.
-- [ ] Más métodos de entrada: subir archivo/ZIP y URL de repo de GitHub.
+¿Tienes una idea? [Abre un issue](https://github.com/DataDave-Dev/weftmap/issues/new/choose).
+Las tareas para empezar están etiquetadas como [`good first issue`](https://github.com/DataDave-Dev/weftmap/issues?q=is%3Aopen+label%3A%22good+first+issue%22).
+
+**Hecho**
+
+- [x] Call graph para Python, JavaScript, TypeScript y Go
+- [x] Arquitectura pluggable por lenguaje (añadir uno son pocas líneas)
+- [x] UI bilingüe (en/es) con docs in-app
+
+**Siguiente** — se busca ayuda
+
+- [ ] Más lenguajes: Rust ([#12](https://github.com/DataDave-Dev/weftmap/issues/12)), Ruby ([#13](https://github.com/DataDave-Dev/weftmap/issues/13)), Java ([#14](https://github.com/DataDave-Dev/weftmap/issues/14))
+- [ ] Derivar los chips de lenguajes del Hero desde el registro ([#15](https://github.com/DataDave-Dev/weftmap/issues/15))
+- [ ] Ampliar la cobertura de tests de los analyzers ([#16](https://github.com/DataDave-Dev/weftmap/issues/16))
+- [ ] Mejor estado vacío cuando no se encuentran funciones ([#17](https://github.com/DataDave-Dev/weftmap/issues/17))
+
+**Más adelante**
+
+- [ ] Modo proyecto: analizar una carpeta entera como un solo grafo
+- [ ] Interacción en nodos: click para resaltar llamadores/llamados, panel de detalle
+- [ ] Más tipos de diagrama: control-flow y dependencias entre módulos
+- [ ] **Soporte SQL**: diagramas ER / UML de esquema (tablas, columnas, relaciones) a partir de DDL SQL ([#19](https://github.com/DataDave-Dev/weftmap/issues/19))
+- [ ] Exportar el grafo (PNG/SVG) y permalinks para compartir
+- [ ] Más métodos de entrada: subir ZIP y URL de repo de GitHub
+- [ ] Rendimiento para bases de código grandes
 
 ## Contribuir
 
