@@ -41,6 +41,8 @@ export default async function Home({
         tagline={t.tagline}
         license={t.license}
         contribute={t.contribute}
+        product={t.footerProduct}
+        resources={t.footerResources}
         footerNote={t.footerNote}
       />
     </>

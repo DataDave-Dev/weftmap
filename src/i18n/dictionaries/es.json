@@ -51,6 +51,8 @@
   ],
   "license": "Licencia",
   "contribute": "Contribuir",
+  "footerProduct": "Producto",
+  "footerResources": "Recursos",
   "footerNote": "Open source, hecho para extenderse.",
   "appTitle": "Pruébalo ahora",
   "languageLabel": "Lenguaje",
