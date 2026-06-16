@@ -182,6 +182,38 @@ class Dog(Animal):
     const render = graph.nodes.find((n) => n.id === "widget.js::render");
     expect(render?.parent).toBe("class::widget.js::Widget");
   });
+
+  test("python: un metodo compartido por dos clases no se atribuye a la clase equivocada", async () => {
+    const graph = await run(pythonAnalyzer, [
+      [
+        "dup.py",
+        `class A:
+    def __init__(self):
+        pass
+    def a_only(self):
+        pass
+
+class B:
+    def __init__(self):
+        pass
+    def b_only(self):
+        pass
+`,
+      ],
+    ]);
+
+    // Unique methods attach to their own class.
+    expect(graph.nodes.find((n) => n.id === "dup.py::a_only")?.parent).toBe(
+      "class::dup.py::A",
+    );
+    expect(graph.nodes.find((n) => n.id === "dup.py::b_only")?.parent).toBe(
+      "class::dup.py::B",
+    );
+    // The shared __init__ is ambiguous: parented to the module, never the wrong class.
+    expect(graph.nodes.find((n) => n.id === "dup.py::__init__")?.parent).toBe(
+      "mod::dup.py",
+    );
+  });
 });
 
 describe("typescript", () => {
