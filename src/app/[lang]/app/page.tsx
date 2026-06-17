@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale } from "@/i18n/config";
-import Header from "@/components/layout/Header";
 import CodeWorkspace from "@/components/ui/CodeWorkspace";
 
 export const metadata: Metadata = {
@@ -20,7 +19,6 @@ export default async function AppPage({
 
   return (
     <>
-      <Header lang={lang} variant="light" />
       <CodeWorkspace
         languageLabel={t.languageLabel}
         analyzeLabel={t.analyze}

@@ -1,7 +1,6 @@
 import { getDictionary } from "@/i18n/dictionaries";
 import { isLocale } from "@/i18n/config";
 import { notFound } from "next/navigation";
-import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Features from "@/components/sections/Features";
@@ -10,7 +9,6 @@ import SupportedLanguages from "@/components/sections/SupportedLanguages";
 import UseCases from "@/components/sections/UseCases";
 import Faq from "@/components/sections/Faq";
 import CallToAction from "@/components/sections/CallToAction";
-import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default async function Home({
@@ -25,9 +23,7 @@ export default async function Home({
   return (
     <>
       <ScrollReveal />
-      <div className="relative isolate bg-[#f6f7f9] text-[#0f172a]">
-        <Header lang={lang} variant="light" />
-        <Hero
+      <Hero
         badge={t.badge}
         phrase={t.hero}
         sub={t.tagline}
@@ -66,16 +62,6 @@ export default async function Home({
         star={t.ctaStar}
         contribute={t.ctaContribute}
       />
-      <Footer
-        lang={lang}
-        tagline={t.tagline}
-        license={t.license}
-        contribute={t.contribute}
-        product={t.footerProduct}
-        resources={t.footerResources}
-        footerNote={t.footerNote}
-      />
-      </div>
     </>
   );
 }
