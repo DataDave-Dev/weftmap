@@ -1,9 +1,16 @@
 import { NextResponse } from "next/server";
 import { getAnalyzer, SUPPORTED_LANGUAGES } from "@/lib/analysis/registry";
+import { rateLimit } from "@/lib/rate-limit";
 import type { SourceFile } from "@/lib/analysis/types";
 
 // Needs the Node runtime (reads .wasm from the filesystem), not Edge.
 export const runtime = "nodejs";
+
+function clientIp(request: Request): string {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0].trim();
+  return request.headers.get("x-real-ip") ?? "unknown";
+}
 
 const MAX_TOTAL_BYTES = 2_000_000;
 const MAX_FILES = 400;
@@ -22,6 +29,16 @@ function normalizePath(p: string): string {
 }
 
 export async function POST(request: Request) {
+  // Cheap guard first: this endpoint runs synchronous WASM parsing, so unbounded
+  // parallel requests can saturate the process. Limit before doing any work.
+  const limit = rateLimit(clientIp(request));
+  if (!limit.ok) {
+    return NextResponse.json(
+      { error: "Demasiadas solicitudes. Intenta de nuevo en un momento." },
+      { status: 429, headers: { "Retry-After": String(limit.retryAfter) } },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();
