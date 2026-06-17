@@ -26,7 +26,7 @@ const TABLE_W = 232;
 const TABLE_HEADER = 34;
 const TABLE_ROW = 24;
 
-const CALL_COLOR = "#94a3b8";
+const CALL_COLOR = "#64748b";
 const IMPORT_COLOR = "#0d9488";
 const EXTENDS_COLOR = "#7c3aed";
 const REF_COLOR = "#ea580c";
@@ -40,7 +40,7 @@ function ContainerNode({ data }: NodeProps<{ label: string; kind: "module" | "cl
   return (
     <div
       className={`w-full h-full rounded-xl border ${
-        isClass ? "border-violet-300 bg-violet-50" : "border-[#e2e8f0] bg-[#f8fafc]"
+        isClass ? "border-violet-300 bg-violet-500/[0.05]" : "border-[#e2e8f0] bg-black/[0.02]"
       }`}
     >
       <div
@@ -289,6 +289,7 @@ function layout(graph: Graph): Layout {
     markerEnd: { type: MarkerType.ArrowClosed, color: edgeColor(e.kind) },
     style: {
       stroke: edgeColor(e.kind),
+      strokeWidth: 1.75,
       strokeDasharray: e.kind === "calls" ? undefined : "5 4",
     },
   }));
