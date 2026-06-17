@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { locales, isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -28,6 +29,7 @@ export default async function RootLayout({
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const t = getDictionary(lang as Locale);
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
     <html
@@ -37,6 +39,7 @@ export default async function RootLayout({
     >
       <head>
         <script
+          nonce={nonce}
           type={
             typeof window === "undefined" ? "text/javascript" : "text/plain"
           }
