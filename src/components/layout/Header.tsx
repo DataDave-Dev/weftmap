@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { locales, type Locale } from "@/i18n/config";
@@ -9,6 +9,18 @@ import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 
 const REPO = "https://github.com/DataDave-Dev/weftmap";
+
+const SCROLL_THRESHOLD = 8;
+
+function subscribeScroll(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true });
+  return () => window.removeEventListener("scroll", onChange);
+}
+
+const getScrolled = () => window.scrollY > SCROLL_THRESHOLD;
+// Server (and first client paint) assume top-of-page: no flash when the real
+// scroll position matches, and useSyncExternalStore reconciles if it doesn't.
+const getScrolledServer = () => false;
 
 const LANGUAGE_NAMES: Record<string, string> = {
   en: "English",
@@ -21,19 +33,13 @@ const LANGUAGE_NAMES: Record<string, string> = {
 
 export default function Header({ lang }: { lang: Locale }) {
   const t = getDictionary(lang);
-  const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    const id = requestAnimationFrame(onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(id);
-    };
-  }, []);
+  const scrolled = useSyncExternalStore(
+    subscribeScroll,
+    getScrolled,
+    getScrolledServer,
+  );
 
   const getRedirectPath = (targetLocale: string) => {
     if (!pathname) return `/${targetLocale}`;
