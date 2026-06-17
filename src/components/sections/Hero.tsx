@@ -74,10 +74,15 @@ export default function Hero({
 
       <div className="relative z-10 w-full max-w-[1200px] grid grid-cols-[1.1fr_0.9fr] items-center gap-16 max-[860px]:grid-cols-1 max-[860px]:gap-9 max-[860px]:justify-items-center">
         <div className="flex flex-col items-start max-[860px]:items-center max-[860px]:text-center">
-          <span className="js-badge inline-flex items-center gap-2 mb-[22px] px-3.5 py-1.5 rounded-full border border-white/[0.14] bg-white/[0.04] text-[12.5px] font-medium text-[#cbd5e1]">
-            <span className="w-[7px] h-[7px] rounded-full bg-[#e6e9ef] shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-            {badge}
-          </span>
+          <div className="js-badge mb-7 flex w-full items-center gap-3 border-t border-white/10 pt-5 max-[860px]:justify-center">
+            <span className="font-mono text-[12px] tracking-[0.28em] text-muted/60">
+              01
+            </span>
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#cbd5e1]">
+              <span className="h-[6px] w-[6px] rounded-full bg-[#e6e9ef] shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+              {badge}
+            </span>
+          </div>
 
           <h1 className="js-phrase metallic max-w-[18ch] text-[clamp(2.2rem,4.2vw,4rem)] font-extrabold leading-[1.1] pb-[0.12em] tracking-[-0.02em]">
             {phrase}
@@ -106,7 +111,7 @@ export default function Hero({
             {LANGUAGES.map((language) => (
               <span
                 key={language}
-                className="px-3 py-1 rounded-full border border-white/[0.12] bg-white/[0.03] font-mono text-xs text-[#cbd5e1]"
+                className="px-2.5 py-1 rounded-md border border-white/[0.12] bg-white/[0.03] font-mono text-xs text-[#cbd5e1]"
               >
                 {language}
               </span>
