@@ -63,15 +63,7 @@ export default function Footer({
   footerNote,
 }: Props) {
   return (
-    <footer className="relative isolate overflow-hidden bg-black">
-      {/* Metallic hairline accent at the top edge */}
-      <div className="metallic-fill h-px w-full opacity-50" aria-hidden="true" />
-
-      {/* Atmospheric glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-80 w-[70%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(198,206,219,0.12),transparent)] blur-3xl"
-      />
+    <footer className="relative isolate overflow-hidden bg-transparent">
 
       <div className="mx-auto grid max-w-[1200px] grid-cols-2 gap-x-8 gap-y-12 px-6 pb-44 pt-20 md:grid-cols-[1.7fr_1fr_1fr]">
         {/* Brand */}

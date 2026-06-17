@@ -67,7 +67,6 @@ export default async function Home({
         star={t.ctaStar}
         contribute={t.ctaContribute}
       />
-      </div>
       <Footer
         lang={lang}
         tagline={t.tagline}
@@ -77,6 +76,7 @@ export default async function Home({
         resources={t.footerResources}
         footerNote={t.footerNote}
       />
+      </div>
     </>
   );
 }
