@@ -24,7 +24,7 @@ export default function SupportedLanguages({ title, subtitle, rows }: Props) {
             className="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-white/10 py-5 transition-colors hover:bg-white/[0.02] sm:grid-cols-[200px_140px_1fr]"
           >
             <span className="font-mono text-base text-fg transition-colors group-hover:text-accent">{row.name}</span>
-            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted/70">
+            <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted/80">
               {row.kind}
             </span>
             <span className="col-span-2 text-[14px] text-muted sm:col-span-1">{row.detail}</span>

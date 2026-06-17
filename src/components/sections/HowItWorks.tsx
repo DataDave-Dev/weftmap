@@ -43,12 +43,12 @@ export default function HowItWorks({
   return (
     <section
       id="how"
-      className="relative isolate flex min-h-screen items-center overflow-hidden border-y border-white/[0.07] bg-[#0c0e14]"
+      className="relative isolate flex min-h-screen items-center overflow-hidden"
     >
       {/* Soft glow keeps the band from reading as a flat fill. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-80 w-[72%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(198,206,219,0.20),transparent)] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[75%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(198,206,219,0.10),transparent)] blur-[120px]"
       />
 
       <div className="relative mx-auto w-full max-w-[1100px] px-6 py-28 max-[620px]:py-16">
@@ -62,7 +62,7 @@ export default function HowItWorks({
               className="js-reveal group flex flex-col bg-[#0c0e14] p-8 transition-colors duration-300 hover:bg-[#12151c]"
             >
               <div className="flex items-center justify-between">
-                <span className="font-mono text-2xl tracking-tight text-muted/45 transition-colors group-hover:text-accent">
+                <span className="font-mono text-2xl tracking-tight text-muted/60 transition-colors group-hover:text-accent">
                   {`0${i + 1}`}
                 </span>
                 <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/12 bg-white/[0.03] text-[#e6e9ef] transition-colors group-hover:border-white/30">

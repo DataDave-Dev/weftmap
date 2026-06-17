@@ -25,8 +25,10 @@ export default async function Home({
   return (
     <>
       <ScrollReveal />
-      <Header lang={lang} />
-      <Hero
+      <div className="relative isolate bg-[#0c0e14]">
+        <div className="grain" aria-hidden="true" />
+        <Header lang={lang} />
+        <Hero
         badge={t.badge}
         phrase={t.hero}
         sub={t.tagline}
@@ -65,6 +67,7 @@ export default async function Home({
         star={t.ctaStar}
         contribute={t.ctaContribute}
       />
+      </div>
       <Footer
         lang={lang}
         tagline={t.tagline}

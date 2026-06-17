@@ -75,7 +75,7 @@ export default function Hero({
       <div className="relative z-10 w-full max-w-[1200px] grid grid-cols-[1.1fr_0.9fr] items-center gap-16 max-[860px]:grid-cols-1 max-[860px]:gap-9 max-[860px]:justify-items-center">
         <div className="flex flex-col items-start max-[860px]:items-center max-[860px]:text-center">
           <div className="js-badge mb-7 flex w-full items-center gap-3 border-t border-white/10 pt-5 max-[860px]:justify-center">
-            <span className="font-mono text-[12px] tracking-[0.28em] text-muted/60">
+            <span className="font-mono text-[12px] tracking-[0.28em] text-muted/80">
               01
             </span>
             <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#cbd5e1]">

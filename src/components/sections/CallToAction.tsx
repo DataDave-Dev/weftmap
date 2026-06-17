@@ -28,11 +28,11 @@ export default function CallToAction({
   return (
     <section
       id="cta"
-      className="relative isolate overflow-hidden border-t border-white/10 bg-[#0c0e14]"
+      className="relative isolate overflow-hidden"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-96 w-[80%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(198,206,219,0.18),transparent)] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[90%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(198,206,219,0.12),transparent)] blur-[120px]"
       />
       <div className="mx-auto grid max-w-[1100px] grid-cols-[1.4fr_1fr] gap-x-12 gap-y-12 px-6 py-28 max-[860px]:grid-cols-1 max-[620px]:py-20">
         <div>
@@ -49,7 +49,7 @@ export default function CallToAction({
         </div>
 
         <div className="flex flex-col justify-center border-l border-white/10 pl-12 max-[860px]:border-l-0 max-[860px]:border-t max-[860px]:pl-0 max-[860px]:pt-10">
-          <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-muted/70">
+          <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-muted/80">
             {ossTitle}
           </span>
           <p className="mt-3 max-w-[36ch] text-[15px] leading-[1.6] text-muted">{ossDesc}</p>

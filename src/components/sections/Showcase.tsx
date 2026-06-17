@@ -68,25 +68,25 @@ export default function Showcase({ title, callTitle, callDesc, schemaTitle, sche
   return (
     <section
       id="showcase"
-      className="relative isolate flex min-h-screen items-center overflow-hidden border-y border-white/[0.07] bg-[#0c0e14]"
+      className="relative isolate flex min-h-screen items-center overflow-hidden"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-80 w-[72%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(198,206,219,0.16),transparent)] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[75%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(198,206,219,0.10),transparent)] blur-[120px]"
       />
       <div className="relative mx-auto w-full max-w-[1100px] px-6 py-28 max-[620px]:py-16">
         <SectionHeading index="04" title={title} />
 
         <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 max-[860px]:grid-cols-1">
-          <div className="flex flex-col bg-[#0c0e14] p-8">
-            <div className="flex flex-1 items-center justify-center py-4">
+          <div className="group flex flex-col bg-[#0c0e14] p-8 transition-colors duration-300 hover:bg-[#101319]">
+            <div className="flex flex-1 items-center justify-center py-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
               <CallGraphMini />
             </div>
             <h3 className="mt-6 text-lg font-semibold">{callTitle}</h3>
             <p className="mt-2 text-[15px] leading-[1.65] text-muted">{callDesc}</p>
           </div>
-          <div className="flex flex-col bg-[#0c0e14] p-8">
-            <div className="flex flex-1 items-center justify-center py-4">
+          <div className="group flex flex-col bg-[#0c0e14] p-8 transition-colors duration-300 hover:bg-[#101319]">
+            <div className="flex flex-1 items-center justify-center py-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
               <SchemaMini />
             </div>
             <h3 className="mt-6 text-lg font-semibold">{schemaTitle}</h3>
