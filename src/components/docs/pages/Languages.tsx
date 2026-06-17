@@ -8,6 +8,7 @@ const ROWS: Row[] = [
   { lang: "JavaScript", fns: true, classes: true, imports: true, extends: true },
   { lang: "TypeScript", fns: true, classes: true, imports: true, extends: true },
   { lang: "Go", fns: true, classes: false, imports: false, extends: false },
+  { lang: "Rust", fns: true, classes: false, imports: false, extends: false },
 ];
 
 function Cell({ on }: { on: boolean }) {
@@ -57,7 +58,7 @@ export default function Languages({ lang }: { lang: Locale }) {
       <>
         <H1>Lenguajes</H1>
         <Lead>
-          Weftmap soporta cuatro lenguajes hoy. La arquitectura es ampliable: cada
+          Weftmap soporta cinco lenguajes hoy. La arquitectura es ampliable: cada
           lenguaje es una gramática de tree-sitter más un conjunto de consultas.
         </Lead>
 
@@ -69,10 +70,11 @@ export default function Languages({ lang }: { lang: Locale }) {
           <LI><strong>JavaScript</strong> — funciones (incluidas arrow asignadas), clases y métodos; imports ES relativos (<Code>./x</Code>) y <Code>extends</Code>.</LI>
           <LI><strong>TypeScript</strong> — igual que JavaScript pero con la gramática dedicada, así las anotaciones de tipos se parsean sin problemas.</LI>
           <LI><strong>Go</strong> — funciones y métodos. Go no tiene clases, así que no hay nodos de clase ni herencia.</LI>
+          <LI><strong>Rust</strong> — funciones y llamadas. La resolución entre archivos usa definiciones únicas.</LI>
         </UL>
 
         <Callout kind="warn">
-          En Go los imports son por paquete (no por archivo), así que no se dibujan
+          En Go y Rust los imports son por paquete o módulo (no por archivo), así que no se dibujan
           aristas de import. Las llamadas entre archivos del mismo paquete sí se
           resuelven por nombre.
         </Callout>
@@ -84,7 +86,7 @@ export default function Languages({ lang }: { lang: Locale }) {
     <>
       <H1>Languages</H1>
       <Lead>
-        Weftmap supports four languages today. The architecture is extensible: each
+        Weftmap supports five languages today. The architecture is extensible: each
         language is a tree-sitter grammar plus a set of queries.
       </Lead>
 
@@ -96,10 +98,11 @@ export default function Languages({ lang }: { lang: Locale }) {
         <LI><strong>JavaScript</strong> — functions (including assigned arrow functions), classes and methods; relative ES imports (<Code>./x</Code>) and <Code>extends</Code>.</LI>
         <LI><strong>TypeScript</strong> — same as JavaScript but with the dedicated grammar, so type annotations parse cleanly.</LI>
         <LI><strong>Go</strong> — functions and methods. Go has no classes, so there are no class nodes or inheritance.</LI>
+        <LI><strong>Rust</strong> — functions and calls. Cross-file resolution uses unique definitions.</LI>
       </UL>
 
       <Callout kind="warn">
-        In Go, imports are package-based (not file-based), so import edges are not
+        In Go and Rust, imports are package- or module-based (not file-based), so import edges are not
         drawn. Calls between files in the same package are still resolved by name.
       </Callout>
     </>

@@ -13,6 +13,7 @@ const EXT: Record<string, string> = {
   javascript: "js",
   typescript: "ts",
   go: "go",
+  rust: "rs",
 };
 
 function normalizePath(p: string): string {

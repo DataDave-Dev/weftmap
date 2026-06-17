@@ -3,6 +3,7 @@ import { pythonAnalyzer } from "./python";
 import { javascriptAnalyzer } from "./javascript";
 import { typescriptAnalyzer } from "./typescript";
 import { goAnalyzer } from "./go";
+import { rustAnalyzer } from "./rust";
 import type { Graph, LanguageAnalyzer, SourceFile } from "../types";
 
 function run(analyzer: LanguageAnalyzer, files: [string, string][]): Promise<Graph> {
@@ -273,6 +274,8 @@ describe("archivos sin funciones", () => {
     [typescriptAnalyzer, "values.ts", "const answer: number = 42;\n"],
     [goAnalyzer, "empty.go", "package main\n"],
     [goAnalyzer, "values.go", "package main\n\nvar answer = 42\n"],
+    [rustAnalyzer, "empty.rs", ""],
+    [rustAnalyzer, "values.rs", "const ANSWER: i32 = 42;\n"],
   ] satisfies [LanguageAnalyzer, string, string][])(
     "devuelve grafo vacio para %s",
     async (analyzer, path, content) => {
@@ -293,5 +296,16 @@ describe("go", () => {
 
     // No import statements between files, resolved via unique-definition fallback.
     expect(hasEdge(graph, "a.go::run", "b.go::help", "calls")).toBe(true);
+  });
+});
+
+describe("rust", () => {
+  test("call graph entre archivos", async () => {
+    const graph = await run(rustAnalyzer, [
+      ["main.rs", "fn run() {\n    help();\n}\n"],
+      ["helpers.rs", "fn help() {}\n"],
+    ]);
+
+    expect(hasEdge(graph, "main.rs::run", "helpers.rs::help", "calls")).toBe(true);
   });
 });
