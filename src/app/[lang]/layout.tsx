@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { locales, isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import { Analytics } from "@vercel/analytics/next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "@fontsource-variable/lexend";
@@ -43,6 +44,7 @@ export default async function RootLayout({
           resources={t.footerResources}
           footerNote={t.footerNote}
         />
+        <Analytics />
       </body>
     </html>
   );
