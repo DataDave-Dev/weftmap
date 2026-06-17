@@ -20,7 +20,7 @@ export default async function DocsLayout({
 
   return (
     <>
-      <Header lang={lang as Locale} />
+      <Header lang={lang as Locale} variant="light" />
       <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-10 lg:grid-cols-[220px_1fr] lg:gap-14 lg:py-16">
         <aside className="hidden lg:block">
           <div className="sticky top-[92px]">

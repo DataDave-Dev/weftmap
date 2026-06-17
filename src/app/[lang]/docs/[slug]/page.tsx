@@ -40,11 +40,11 @@ export default async function DocPage({
     <article>
       <Content lang={lang} />
 
-      <nav className="mt-16 flex items-center justify-between gap-4 border-t border-white/[0.08] pt-6 text-sm">
+      <nav className="mt-16 flex items-center justify-between gap-4 border-t border-[#e2e8f0] pt-6 text-sm">
         {prev ? (
           <Link
             href={`/${lang}/docs/${prev.slug}`}
-            className="text-muted transition-colors hover:text-fg"
+            className="text-[#475569] transition-colors hover:text-[#0f172a]"
           >
             ← {prev.title[lang]}
           </Link>
@@ -54,7 +54,7 @@ export default async function DocPage({
         {next ? (
           <Link
             href={`/${lang}/docs/${next.slug}`}
-            className="text-right font-medium text-[#e6e9ef] transition-colors hover:text-white"
+            className="text-right font-medium text-[#0f172a] transition-colors hover:text-[#4f46e5]"
           >
             {next.title[lang]} →
           </Link>

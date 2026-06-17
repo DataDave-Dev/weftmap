@@ -321,8 +321,8 @@ export default function CodeWorkspace({
       onClick={() => setMode(value)}
       className={`px-3 py-1 rounded-md text-[12px] font-medium transition-colors ${
         mode === value
-          ? "bg-white/10 text-[#e6e9ef]"
-          : "text-muted hover:text-[#e6e9ef]"
+          ? "bg-[#eef2ff] text-[#0f172a]"
+          : "text-[#475569] hover:text-[#0f172a]"
       }`}
     >
       {label}
@@ -343,15 +343,15 @@ export default function CodeWorkspace({
       {/* ── Editor pane ── */}
       <section
         style={{ ["--editor-w" as string]: `${editorWidth}%` }}
-        className="flex flex-col min-h-[46vh] lg:min-h-0 w-full lg:w-[var(--editor-w)] border-b lg:border-b-0 border-white/[0.08] bg-[#0c0d12]"
+        className="flex flex-col min-h-[46vh] lg:min-h-0 w-full lg:w-[var(--editor-w)] border-b lg:border-b-0 border-[#e2e8f0] bg-white"
       >
         {/* Tab bar: mode toggle + context info */}
-        <div className="flex items-center justify-between h-11 px-3 border-b border-white/[0.08] bg-surface/60">
+        <div className="flex items-center justify-between h-11 px-3 border-b border-[#e2e8f0] bg-[#f8fafc]">
           <div className="flex items-center gap-1">
             {tab("snippet", snippetTab)}
             {tab("project", projectTab)}
           </div>
-          <span className="font-mono text-[11px] text-muted/70 pr-1">
+          <span className="font-mono text-[11px] text-[#64748b] pr-1">
             {mode === "snippet"
               ? `main.${EXT[language] ?? "txt"} · ${lineCount} ${lineCount === 1 ? "line" : "lines"}`
               : files
@@ -366,7 +366,7 @@ export default function CodeWorkspace({
             <div
               ref={gutterRef}
               aria-hidden="true"
-              className="shrink-0 overflow-hidden select-none py-3.5 pl-4 pr-3 text-right text-muted/40 border-r border-white/[0.05] bg-black/20"
+              className="shrink-0 overflow-hidden select-none py-3.5 pl-4 pr-3 text-right text-[#cbd5e1] border-r border-[#eef1f5] bg-[#f1f5f9]"
             >
               {Array.from({ length: lineCount }, (_, i) => (
                 <div key={i}>{i + 1}</div>
@@ -379,7 +379,7 @@ export default function CodeWorkspace({
               onScroll={syncScroll}
               spellCheck={false}
               placeholder={inputPlaceholder}
-              className="flex-1 resize-none bg-transparent py-3.5 px-4 text-[#cbd5e1] outline-none"
+              className="flex-1 resize-none bg-transparent py-3.5 px-4 text-[#0f172a] outline-none"
             />
           </div>
         ) : (
@@ -387,32 +387,32 @@ export default function CodeWorkspace({
             {!files ? (
               <button
                 onClick={() => folderRef.current?.click()}
-                className="group grid place-items-center w-full h-full min-h-[260px] rounded-xl border border-dashed border-white/15 hover:border-white/30 hover:bg-white/[0.02] transition-colors"
+                className="group grid place-items-center w-full h-full min-h-[260px] rounded-xl border border-dashed border-[#e2e8f0] hover:border-[#4f46e5] hover:bg-[#f8fafc] transition-colors"
               >
                 <div className="text-center px-6">
-                  <div className="mx-auto mb-4 grid place-items-center w-12 h-12 rounded-xl border border-white/15 text-muted group-hover:text-[#e6e9ef] transition-colors">
+                  <div className="mx-auto mb-4 grid place-items-center w-12 h-12 rounded-xl border border-[#e2e8f0] text-[#475569] group-hover:text-[#0f172a] transition-colors">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                       <path d="M12 11v5M9.5 13.5 12 11l2.5 2.5" />
                     </svg>
                   </div>
-                  <p className="font-medium text-[#e6e9ef]">{uploadFolder}</p>
-                  <p className="mt-1.5 text-[13px] text-muted max-w-[34ch]">{projectHint}</p>
+                  <p className="font-medium text-[#0f172a]">{uploadFolder}</p>
+                  <p className="mt-1.5 text-[13px] text-[#475569] max-w-[34ch]">{projectHint}</p>
                 </div>
               </button>
             ) : (
               <div className="flex flex-col gap-3">
                 <button
                   onClick={() => folderRef.current?.click()}
-                  className="self-start rounded-lg border border-white/15 px-3 py-1.5 text-[12px] text-muted hover:text-[#e6e9ef] hover:border-white/30 transition-colors"
+                  className="self-start rounded-lg border border-[#e2e8f0] px-3 py-1.5 text-[12px] text-[#475569] hover:text-[#0f172a] hover:border-[#4f46e5] transition-colors"
                 >
                   {uploadFolder}
                 </button>
-                <ul className="rounded-lg border border-white/[0.08] divide-y divide-white/[0.05] overflow-hidden">
+                <ul className="rounded-lg border border-[#e2e8f0] divide-y divide-[#eef1f5] overflow-hidden">
                   {files.map((f) => (
                     <li
                       key={f.path}
-                      className="px-3 py-2 font-mono text-[12px] text-muted truncate"
+                      className="px-3 py-2 font-mono text-[12px] text-[#475569] truncate"
                       title={f.path}
                     >
                       {f.path}
@@ -425,13 +425,13 @@ export default function CodeWorkspace({
         )}
 
         {/* Action bar */}
-        <div className="flex items-center justify-between gap-3 px-4 pt-3 pb-5 border-t border-white/[0.08] bg-surface/60">
-          <label className="flex items-center gap-2 text-sm text-muted">
+        <div className="flex items-center justify-between gap-3 px-4 pt-3 pb-5 border-t border-[#e2e8f0] bg-[#f8fafc]">
+          <label className="flex items-center gap-2 text-sm text-[#475569]">
             {languageLabel}
             <select
               value={language}
               onChange={onLanguageChange}
-              className="rounded-lg border border-white/10 bg-[#0c0d12] px-2.5 py-1.5 text-sm text-[#e6e9ef] outline-none focus-visible:border-white/30"
+              className="rounded-lg border border-[#e2e8f0] bg-white px-2.5 py-1.5 text-sm text-[#0f172a] outline-none focus-visible:border-[#4f46e5]"
             >
               {LANGUAGES.map((lang) => (
                 <option key={lang} value={lang}>
@@ -443,14 +443,14 @@ export default function CodeWorkspace({
 
           <div className="flex items-center gap-3">
             {mode === "snippet" && (
-              <kbd className="hidden sm:inline font-mono text-[11px] text-muted/60">
+              <kbd className="hidden sm:inline font-mono text-[11px] text-[#94a3b8]">
                 ⌘/Ctrl + ↵
               </kbd>
             )}
             <button
               onClick={analyze}
               disabled={!canAnalyze}
-              className="metallic-fill rounded-full px-6 py-2 text-sm font-semibold cursor-pointer transition hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:translate-y-0"
+              className="bg-[#4f46e5] text-white rounded-full px-6 py-2 text-sm font-semibold cursor-pointer transition hover:-translate-y-px disabled:opacity-50 disabled:cursor-default disabled:translate-y-0"
             >
               {isLoading ? analyzingLabel : analyzeLabel}
             </button>
@@ -466,23 +466,23 @@ export default function CodeWorkspace({
         onPointerDown={onSplitDown}
         onPointerMove={onSplitMove}
         onPointerUp={onSplitUp}
-        className="hidden lg:block shrink-0 w-1.5 cursor-col-resize touch-none bg-white/[0.05] hover:bg-white/20 active:bg-white/25 transition-colors"
+        className="hidden lg:block shrink-0 w-1.5 cursor-col-resize touch-none bg-[#e2e8f0] hover:bg-[#cbd5e1] active:bg-[#94a3b8] transition-colors"
       />
 
       {/* ── Diagram pane ── */}
-      <section className="relative flex flex-1 flex-col bg-black min-w-0">
+      <section className="relative flex flex-1 flex-col bg-[#f6f7f9] min-w-0">
         {/* Canvas chrome */}
-        <div className="flex items-center justify-between h-11 px-4 border-b border-white/[0.08] bg-surface/40">
+        <div className="flex items-center justify-between h-11 px-4 border-b border-[#e2e8f0] bg-[#f8fafc]">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-white/15" />
-            <span className="w-3 h-3 rounded-full bg-white/15" />
-            <span className="w-3 h-3 rounded-full bg-white/15" />
-            <span className="ml-3 font-mono text-[11px] uppercase tracking-wide text-muted/70">
+            <span className="w-3 h-3 rounded-full bg-[#cbd5e1]" />
+            <span className="w-3 h-3 rounded-full bg-[#cbd5e1]" />
+            <span className="w-3 h-3 rounded-full bg-[#cbd5e1]" />
+            <span className="ml-3 font-mono text-[11px] uppercase tracking-wide text-[#64748b]">
               {language === "sql" ? "schema diagram" : "call graph"}
             </span>
           </div>
           {graph && (
-            <span className="font-mono text-[11px] text-muted/70">
+            <span className="font-mono text-[11px] text-[#64748b]">
               {graph.nodes.length} nodes · {graph.edges.length} edges
             </span>
           )}
@@ -492,7 +492,7 @@ export default function CodeWorkspace({
         <div className="relative flex-1">
           <div className="absolute inset-0">
             {isLoading ? (
-              <div className="grid place-items-center h-full text-sm text-muted">
+              <div className="grid place-items-center h-full text-sm text-[#475569]">
                 {analyzingLabel}
               </div>
             ) : error ? (
@@ -502,7 +502,7 @@ export default function CodeWorkspace({
             ) : graph ? (
               <Diagram graph={graph} emptyLabel={language === "sql" ? noTables : noFunctions} />
             ) : (
-              <div className="grid place-items-center h-full px-6 text-center text-sm text-muted">
+              <div className="grid place-items-center h-full px-6 text-center text-sm text-[#475569]">
                 {diagramPlaceholder}
               </div>
             )}

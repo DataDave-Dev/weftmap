@@ -19,8 +19,8 @@
 @layer base {
   body {
     min-height: 100vh;
-    background: #000000;
-    color: var(--color-fg);
+    background: #f6f7f9;
+    color: var(--color-ink);
     font-family: "Lexend Variable", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -81,8 +81,8 @@
   z-index: -1;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
@@ -178,22 +178,22 @@
   }
 }
 
-/* ---- React Flow dark theme overrides ---- */
+/* ---- React Flow light theme overrides ---- */
 .react-flow__controls-button {
-  background: #13151b;
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #e6e9ef;
+  background: #ffffff;
+  border-color: #e2e8f0;
+  color: #475569;
 }
 
 .react-flow__controls-button:hover {
-  background: #1e212a;
+  background: #f1f5f9;
 }
 
 .react-flow__controls-button svg {
-  fill: #e6e9ef;
+  fill: #475569;
 }
 
 .react-flow__attribution {
   background: transparent;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(15, 23, 42, 0.3);
 }
