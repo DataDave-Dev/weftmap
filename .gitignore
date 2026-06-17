@@ -41,6 +41,3 @@ next-env.d.ts
 # claude code
 .claude/
 CLAUDE.local.md
-
-# implementation md file
-proposal_issue_74.md

@@ -11,10 +11,14 @@ import ReactFlow, {
   MarkerType,
   useNodesState,
   useEdgesState,
+  ReactFlowProvider,
+  useReactFlow,
+  getNodesBounds,
   type Edge,
   type Node,
   type NodeProps,
 } from "reactflow";
+import { toPng, toJpeg, toSvg } from "html-to-image";
 import dagre from "@dagrejs/dagre";
 import "reactflow/dist/style.css";
 import type { Graph, GraphNode, TableColumn } from "@/lib/analysis/types";
@@ -341,7 +345,7 @@ const LEGEND: { color: string; label: string; dashed: boolean }[] = [
 const DIM_NODE = 0.15;
 const DIM_EDGE = 0.06;
 
-export default function Diagram({
+function DiagramFlow({
   graph,
   emptyLabel,
 }: {
@@ -349,11 +353,13 @@ export default function Diagram({
   emptyLabel: string;
 }) {
   const dark = useIsDark();
+  const { getNodes } = useReactFlow();
   const initial = useMemo(() => layout(graph, dark), [graph, dark]);
   const [nodes, setNodes, onNodesChange] = useNodesState(initial.nodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initial.edges);
   const [hidden, setHidden] = useState<Set<string>>(new Set());
   const [selected, setSelected] = useState<string | null>(null);
+  const [exportOpen, setExportOpen] = useState(false);
 
   // Re-seed positions/edges when the graph or theme produces a new layout.
   // Render-time reset (React's "adjust state when a prop changes" pattern) so
@@ -435,6 +441,75 @@ export default function Diagram({
       return next;
     });
 
+  const handleExport = async (
+    type: "png-opaque" | "png-transparent" | "jpeg" | "svg" | "pdf",
+  ) => {
+    setExportOpen(false);
+
+    const activeNodes = getNodes();
+    if (activeNodes.length === 0) return;
+
+    // 1. Calculate boundary rectangle around all nodes
+    const bounds = getNodesBounds(activeNodes);
+    const padding = 50;
+    const width = bounds.width + padding * 2;
+    const height = bounds.height + padding * 2;
+
+    // 2. Locate the viewport element inside React Flow DOM
+    const viewport = document.querySelector(".react-flow__viewport") as HTMLElement | null;
+    if (!viewport) return;
+
+    // 3. Set background color relative to format and theme
+    let bgColor: string | undefined = undefined;
+    if (type === "png-opaque" || type === "jpeg" || type === "pdf") {
+      bgColor = dark ? "#0b0d12" : "#ffffff";
+    }
+
+    const options = {
+      backgroundColor: bgColor,
+      width: width,
+      height: height,
+      style: {
+        width: `${width}px`,
+        height: `${height}px`,
+        transform: `translate(${-bounds.x + padding}px, ${-bounds.y + padding}px) scale(1)`,
+      },
+    };
+
+    try {
+      const downloadFile = (dataUrl: string, filename: string) => {
+        const a = document.createElement("a");
+        a.setAttribute("download", filename);
+        a.setAttribute("href", dataUrl);
+        a.click();
+      };
+
+      if (type === "svg") {
+        const dataUrl = await toSvg(viewport, options);
+        downloadFile(dataUrl, "diagram.svg");
+      } else if (type === "jpeg") {
+        const dataUrl = await toJpeg(viewport, options);
+        downloadFile(dataUrl, "diagram.jpg");
+      } else if (type === "pdf") {
+        const pngUrl = await toPng(viewport, options);
+        const { jsPDF } = await import("jspdf");
+        const doc = new jsPDF({
+          orientation: width > height ? "landscape" : "portrait",
+          unit: "px",
+          format: [width, height],
+        });
+        doc.addImage(pngUrl, "PNG", 0, 0, width, height);
+        doc.save("diagram.pdf");
+      } else {
+        // png-opaque or png-transparent
+        const dataUrl = await toPng(viewport, options);
+        downloadFile(dataUrl, "diagram.png");
+      }
+    } catch (err) {
+      console.error("Failed to export diagram:", err);
+    }
+  };
+
   if (graph.nodes.length === 0) {
     return (
       <div className="grid place-items-center h-full text-sm text-[#64748b] dark:text-[#7c8696]">
@@ -463,7 +538,7 @@ export default function Diagram({
       <Controls showInteractive={false} />
       <Panel
         position="top-left"
-        className="flex gap-2 rounded-lg border border-[#e2e8f0] bg-white/90 px-2 py-1.5 text-[11px] text-[#475569] shadow-sm backdrop-blur dark:border-[#232a36] dark:bg-[#12151c]/90 dark:text-[#9aa6b8]"
+        className="flex gap-2 items-center rounded-lg border border-[#e2e8f0] bg-white/90 px-2 py-1.5 text-[11px] text-[#475569] shadow-sm backdrop-blur dark:border-[#232a36] dark:bg-[#12151c]/90 dark:text-[#9aa6b8]"
       >
         {legend.map((l) => {
           const off = hidden.has(l.label);
@@ -486,7 +561,92 @@ export default function Diagram({
             </button>
           );
         })}
+
+        {/* Separator */}
+        {legend.length > 0 && (
+          <div className="w-[1px] h-3.5 bg-[#e2e8f0] dark:bg-[#232a36] mx-0.5" aria-hidden="true" />
+        )}
+
+        {/* Export Dropdown Selector */}
+        <div className="relative">
+          <button
+            onClick={() => setExportOpen(!exportOpen)}
+            aria-expanded={exportOpen}
+            aria-haspopup="true"
+            className="flex items-center gap-1.5 rounded-md px-2 py-1 transition-colors hover:bg-[#f1f5f9] dark:hover:bg-[#1a1f29] text-[#475569] dark:text-[#9aa6b8] font-semibold cursor-pointer"
+          >
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            Export
+            <span className="text-[6px] opacity-60">▼</span>
+          </button>
+
+          {exportOpen && (
+            <>
+              <div
+                className="fixed inset-0 z-30"
+                onClick={() => setExportOpen(false)}
+              />
+              <div className="absolute left-0 mt-1 w-40 rounded-lg border border-[#e2e8f0] bg-white p-1 shadow-md z-40 dark:border-[#232a36] dark:bg-[#12151c]">
+                <button
+                  onClick={() => handleExport("png-opaque")}
+                  className="flex w-full items-center px-2 py-1.5 rounded-md text-left text-[11px] text-[#475569] hover:bg-[#f1f5f9] dark:text-[#9aa6b8] dark:hover:bg-[#1a1f29] transition-colors cursor-pointer"
+                >
+                  PNG Image (Opaque)
+                </button>
+                <button
+                  onClick={() => handleExport("png-transparent")}
+                  className="flex w-full items-center px-2 py-1.5 rounded-md text-left text-[11px] text-[#475569] hover:bg-[#f1f5f9] dark:text-[#9aa6b8] dark:hover:bg-[#1a1f29] transition-colors cursor-pointer"
+                >
+                  PNG Image (Transparent)
+                </button>
+                <button
+                  onClick={() => handleExport("jpeg")}
+                  className="flex w-full items-center px-2 py-1.5 rounded-md text-left text-[11px] text-[#475569] hover:bg-[#f1f5f9] dark:text-[#9aa6b8] dark:hover:bg-[#1a1f29] transition-colors cursor-pointer"
+                >
+                  JPEG Image
+                </button>
+                <button
+                  onClick={() => handleExport("svg")}
+                  className="flex w-full items-center px-2 py-1.5 rounded-md text-left text-[11px] text-[#475569] hover:bg-[#f1f5f9] dark:text-[#9aa6b8] dark:hover:bg-[#1a1f29] transition-colors cursor-pointer"
+                >
+                  SVG Vector File
+                </button>
+                <button
+                  onClick={() => handleExport("pdf")}
+                  className="flex w-full items-center px-2 py-1.5 rounded-md text-left text-[11px] text-[#475569] hover:bg-[#f1f5f9] dark:text-[#9aa6b8] dark:hover:bg-[#1a1f29] transition-colors cursor-pointer"
+                >
+                  PDF Document
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </Panel>
     </ReactFlow>
+  );
+}
+
+export default function Diagram(props: {
+  graph: Graph;
+  emptyLabel: string;
+}) {
+  return (
+    <ReactFlowProvider>
+      <DiagramFlow {...props} />
+    </ReactFlowProvider>
   );
 }
