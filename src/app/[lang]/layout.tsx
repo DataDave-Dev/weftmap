@@ -30,10 +30,17 @@ export default async function RootLayout({
   const t = getDictionary(lang);
 
   return (
-    <html lang={lang as Locale}>
+    <html lang={lang as Locale} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>
         <div className="grid-bg" aria-hidden="true" />
-        <Header lang={lang} variant="light" />
+        <Header lang={lang} />
         {children}
         <Footer
           lang={lang}

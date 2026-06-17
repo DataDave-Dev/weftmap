@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useIsDark } from "@/lib/use-theme";
 import ReactFlow, {
   Background,
   Controls,
@@ -40,14 +41,16 @@ function ContainerNode({ data }: NodeProps<{ label: string; kind: "module" | "cl
   return (
     <div
       className={`w-full h-full rounded-xl border ${
-        isClass ? "border-violet-300 bg-violet-500/[0.05]" : "border-[#e2e8f0] bg-black/[0.02]"
+        isClass
+          ? "border-violet-300 bg-violet-500/[0.05] dark:border-violet-500/40"
+          : "border-[#e2e8f0] bg-black/[0.02] dark:border-[#232a36] dark:bg-white/[0.02]"
       }`}
     >
       <div
         className={`px-3 py-1.5 font-mono text-[11px] border-b truncate ${
           isClass
-            ? "text-violet-700 border-violet-200"
-            : "text-[#475569] border-[#e2e8f0]"
+            ? "text-violet-700 border-violet-200 dark:text-violet-300 dark:border-violet-500/30"
+            : "text-[#475569] border-[#e2e8f0] dark:text-[#9aa6b8] dark:border-[#232a36]"
         }`}
       >
         {isClass ? `class ${data.label}` : data.label}
@@ -61,22 +64,22 @@ function ContainerNode({ data }: NodeProps<{ label: string; kind: "module" | "cl
 // Table node for ER / schema diagrams: header + a row per column with PK/FK badges.
 function TableNode({ data }: NodeProps<{ label: string; columns: TableColumn[] }>) {
   return (
-    <div className="overflow-hidden rounded-xl border border-[#e2e8f0] bg-white shadow-sm" style={{ width: TABLE_W }}>
-      <div className="border-b border-[#e2e8f0] bg-[#f1f5f9] px-3 py-2 font-mono text-[12px] font-semibold text-[#0f172a]">
+    <div className="overflow-hidden rounded-xl border border-[#e2e8f0] bg-white shadow-sm dark:border-[#232a36] dark:bg-[#12151c]" style={{ width: TABLE_W }}>
+      <div className="border-b border-[#e2e8f0] bg-[#f1f5f9] px-3 py-2 font-mono text-[12px] font-semibold text-[#0f172a] dark:border-[#232a36] dark:bg-[#1a1f29] dark:text-[#e6e9ef]">
         {data.label}
       </div>
       <div>
         {data.columns.map((c) => (
           <div
             key={c.name}
-            className="flex items-center gap-2 border-b border-[#eef1f5] px-3 text-[11px] last:border-0"
+            className="flex items-center gap-2 border-b border-[#eef1f5] px-3 text-[11px] last:border-0 dark:border-[#1f2430]"
             style={{ height: TABLE_ROW }}
           >
             <span className="flex w-9 shrink-0 gap-1 font-mono text-[9px] font-semibold">
               {c.pk && <span className="text-amber-600" title="Primary key">PK</span>}
               {c.fk && <span className="text-orange-500" title="Foreign key">FK</span>}
             </span>
-            <span className="flex-1 truncate font-mono text-[#0f172a]">{c.name}</span>
+            <span className="flex-1 truncate font-mono text-[#0f172a] dark:text-[#e6e9ef]">{c.name}</span>
             <span className="shrink-0 truncate font-mono text-[10px] text-[#94a3b8]">{c.type}</span>
           </div>
         ))}
@@ -100,11 +103,19 @@ const fnStyle = {
   boxShadow: "0 1px 2px rgba(15,23,42,0.06)",
 } as const;
 
+const fnStyleDark = {
+  ...fnStyle,
+  border: "1px solid #2a3140",
+  background: "#12151c",
+  color: "#e6e9ef",
+  boxShadow: "0 1px 2px rgba(0,0,0,0.4)",
+} as const;
+
 const isContainer = (n: GraphNode) => n.type === "module" || n.type === "class";
 
 type Layout = { nodes: Node[]; edges: Edge[] };
 
-function layout(graph: Graph): Layout {
+function layout(graph: Graph, dark: boolean): Layout {
   const byId = new Map(graph.nodes.map((n) => [n.id, n]));
   const childrenOf = new Map<string, GraphNode[]>();
   const roots: GraphNode[] = [];
@@ -264,7 +275,7 @@ function layout(graph: Graph): Layout {
       parentNode: n.parent,
       extent: n.parent ? ("parent" as const) : undefined,
       draggable: false,
-      style: fnStyle,
+      style: dark ? fnStyleDark : fnStyle,
     };
   });
 
@@ -311,7 +322,8 @@ export default function Diagram({
   graph: Graph;
   emptyLabel: string;
 }) {
-  const { nodes, edges } = useMemo(() => layout(graph), [graph]);
+  const dark = useIsDark();
+  const { nodes, edges } = useMemo(() => layout(graph, dark), [graph, dark]);
   const [hidden, setHidden] = useState<Set<string>>(new Set());
 
   const legend = useMemo(() => {
@@ -334,7 +346,7 @@ export default function Diagram({
 
   if (graph.nodes.length === 0) {
     return (
-      <div className="grid place-items-center h-full text-sm text-[#64748b]">
+      <div className="grid place-items-center h-full text-sm text-[#64748b] dark:text-[#7c8696]">
         {emptyLabel}
       </div>
     );
@@ -349,11 +361,11 @@ export default function Diagram({
       minZoom={0.1}
       proOptions={{ hideAttribution: true }}
     >
-      <Background color="rgba(15,23,42,0.07)" gap={20} />
+      <Background color={dark ? "rgba(255,255,255,0.06)" : "rgba(15,23,42,0.07)"} gap={20} />
       <Controls showInteractive={false} />
       <Panel
         position="top-left"
-        className="flex gap-2 rounded-lg border border-[#e2e8f0] bg-white/90 px-2 py-1.5 text-[11px] text-[#475569] shadow-sm backdrop-blur"
+        className="flex gap-2 rounded-lg border border-[#e2e8f0] bg-white/90 px-2 py-1.5 text-[11px] text-[#475569] shadow-sm backdrop-blur dark:border-[#232a36] dark:bg-[#12151c]/90 dark:text-[#9aa6b8]"
       >
         {legend.map((l) => {
           const off = hidden.has(l.label);
@@ -362,8 +374,8 @@ export default function Diagram({
               key={l.label}
               onClick={() => toggle(l.label)}
               aria-pressed={!off}
-              className={`flex items-center gap-1.5 rounded-md px-2 py-1 transition-colors hover:bg-[#f1f5f9] ${
-                off ? "opacity-35 line-through" : "text-[#475569]"
+              className={`flex items-center gap-1.5 rounded-md px-2 py-1 transition-colors hover:bg-[#f1f5f9] dark:hover:bg-[#1a1f29] ${
+                off ? "opacity-35 line-through" : "text-[#475569] dark:text-[#9aa6b8]"
               }`}
             >
               <span

@@ -25,10 +25,10 @@ function Cell({ on }: { on: boolean }) {
 
 function Matrix({ headers }: { headers: string[] }) {
   return (
-    <div className="mt-6 overflow-x-auto rounded-xl border border-[#e2e8f0]">
+    <div className="mt-6 overflow-x-auto rounded-xl border border-[#e2e8f0] dark:border-[#232a36]">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-[#e2e8f0] text-left text-[12px] uppercase tracking-wide text-[#64748b]">
+          <tr className="border-b border-[#e2e8f0] dark:border-[#232a36] text-left text-[12px] uppercase tracking-wide text-[#64748b] dark:text-[#7c8696]">
             <th className="px-3 py-2.5 font-medium">{headers[0]}</th>
             <th className="px-3 py-2.5 text-center font-medium">{headers[1]}</th>
             <th className="px-3 py-2.5 text-center font-medium">{headers[2]}</th>
@@ -39,7 +39,7 @@ function Matrix({ headers }: { headers: string[] }) {
         <tbody>
           {ROWS.map((r) => (
             <tr key={r.lang} className="border-b border-[#eef1f5] last:border-0">
-              <td className="px-3 py-2.5 font-mono text-[13px] text-[#0f172a]">{r.lang}</td>
+              <td className="px-3 py-2.5 font-mono text-[13px] text-[#0f172a] dark:text-[#e6e9ef]">{r.lang}</td>
               <Cell on={r.fns} />
               <Cell on={r.classes} />
               <Cell on={r.imports} />

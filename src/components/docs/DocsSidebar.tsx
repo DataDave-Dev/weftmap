@@ -21,7 +21,7 @@ export default function DocsSidebar({
           {lang === "es" ? "Documentación" : "Documentation"}
         </p>
       )}
-      <div className="flex flex-col border-l border-[#e2e8f0]">
+      <div className="flex flex-col border-l border-[#e2e8f0] dark:border-[#232a36]">
         {DOC_NAV.map((d) => {
           const href = `/${lang}/docs/${d.slug}`;
           const active = pathname === href;
@@ -32,8 +32,8 @@ export default function DocsSidebar({
               aria-current={active ? "page" : undefined}
               className={`-ml-px border-l-2 px-4 py-2 text-sm transition-colors ${
                 active
-                  ? "border-[#4f46e5] font-medium text-[#4f46e5]"
-                  : "border-transparent text-[#475569] hover:border-[#cbd5e1] hover:text-[#0f172a]"
+                  ? "border-[#4f46e5] font-medium text-[#4f46e5] dark:text-[#a5b4fc]"
+                  : "border-transparent text-[#475569] dark:text-[#9aa6b8] hover:border-[#cbd5e1] hover:text-[#0f172a]"
               }`}
             >
               {d.title[lang]}

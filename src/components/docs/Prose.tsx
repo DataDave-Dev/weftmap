@@ -5,19 +5,19 @@ import type { ReactNode } from "react";
 
 export function H1({ children }: { children: ReactNode }) {
   return (
-    <h1 className="text-[2.5rem] font-bold leading-[1.1] tracking-[-0.025em] text-[#0f172a]">
+    <h1 className="text-[2.5rem] font-bold leading-[1.1] tracking-[-0.025em] text-[#0f172a] dark:text-[#e6e9ef]">
       {children}
     </h1>
   );
 }
 
 export function Lead({ children }: { children: ReactNode }) {
-  return <p className="mt-4 text-lg leading-8 text-[#475569]">{children}</p>;
+  return <p className="mt-4 text-lg leading-8 text-[#475569] dark:text-[#9aa6b8]">{children}</p>;
 }
 
 export function H2({ children }: { children: ReactNode }) {
   return (
-    <h2 className="mt-14 mb-4 border-b border-[#e2e8f0] pb-2 text-xl font-semibold tracking-[-0.01em] text-[#0f172a]">
+    <h2 className="mt-14 mb-4 border-b border-[#e2e8f0] dark:border-[#232a36] pb-2 text-xl font-semibold tracking-[-0.01em] text-[#0f172a] dark:text-[#e6e9ef]">
       {children}
     </h2>
   );
@@ -25,19 +25,19 @@ export function H2({ children }: { children: ReactNode }) {
 
 export function H3({ children }: { children: ReactNode }) {
   return (
-    <h3 className="mt-8 mb-2 text-[15px] font-semibold text-[#0f172a]">
+    <h3 className="mt-8 mb-2 text-[15px] font-semibold text-[#0f172a] dark:text-[#e6e9ef]">
       {children}
     </h3>
   );
 }
 
 export function P({ children }: { children: ReactNode }) {
-  return <p className="mt-4 text-[15px] leading-7 text-[#475569]">{children}</p>;
+  return <p className="mt-4 text-[15px] leading-7 text-[#475569] dark:text-[#9aa6b8]">{children}</p>;
 }
 
 export function UL({ children }: { children: ReactNode }) {
   return (
-    <ul className="mt-4 flex flex-col gap-2.5 text-[15px] leading-7 text-[#475569]">
+    <ul className="mt-4 flex flex-col gap-2.5 text-[15px] leading-7 text-[#475569] dark:text-[#9aa6b8]">
       {children}
     </ul>
   );
@@ -54,7 +54,7 @@ export function LI({ children }: { children: ReactNode }) {
 
 export function Code({ children }: { children: ReactNode }) {
   return (
-    <code className="rounded-md bg-[#eef1f5] px-1.5 py-0.5 font-mono text-[0.85em] text-[#0f172a]">
+    <code className="rounded-md bg-[#eef1f5] dark:bg-[#1a1f29] px-1.5 py-0.5 font-mono text-[0.85em] text-[#0f172a] dark:text-[#e6e9ef]">
       {children}
     </code>
   );
@@ -62,13 +62,13 @@ export function Code({ children }: { children: ReactNode }) {
 
 export function CodeBlock({ children, label }: { children: ReactNode; label?: string }) {
   return (
-    <div className="mt-5 overflow-hidden rounded-xl border border-[#e2e8f0] bg-[#f8fafc]">
+    <div className="mt-5 overflow-hidden rounded-xl border border-[#e2e8f0] dark:border-[#232a36] bg-[#f8fafc] dark:bg-[#12151c]">
       {label && (
-        <div className="border-b border-[#e2e8f0] px-4 py-2 font-mono text-[11px] text-[#64748b]">
+        <div className="border-b border-[#e2e8f0] dark:border-[#232a36] px-4 py-2 font-mono text-[11px] text-[#64748b] dark:text-[#7c8696]">
           {label}
         </div>
       )}
-      <pre className="overflow-auto px-4 py-3.5 font-mono text-[13px] leading-[1.7] text-[#0f172a]">
+      <pre className="overflow-auto px-4 py-3.5 font-mono text-[13px] leading-[1.7] text-[#0f172a] dark:text-[#e6e9ef]">
         {children}
       </pre>
     </div>
@@ -104,7 +104,7 @@ export function Callout({
 }) {
   return (
     <div
-      className={`mt-5 rounded-xl border px-4 py-3.5 text-[14px] leading-7 text-[#475569] ${CALLOUT_STYLES[kind]}`}
+      className={`mt-5 rounded-xl border px-4 py-3.5 text-[14px] leading-7 text-[#475569] dark:text-[#9aa6b8] ${CALLOUT_STYLES[kind]}`}
     >
       {children}
     </div>

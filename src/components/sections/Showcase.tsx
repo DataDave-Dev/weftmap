@@ -36,14 +36,14 @@ function CallGraphMini() {
 
 function MiniTable({ name, rows }: { name: string; rows: [string, string, string][] }) {
   return (
-    <div className="w-[150px] overflow-hidden rounded-lg border border-[#e2e8f0] bg-white shadow-sm">
-      <div className="border-b border-[#e2e8f0] bg-[#f1f5f9] px-2.5 py-1.5 font-mono text-[11px] font-semibold text-[#0f172a]">
+    <div className="w-[150px] overflow-hidden rounded-lg border border-[#e2e8f0] dark:border-[#232a36] bg-white dark:bg-[#12151c] shadow-sm">
+      <div className="border-b border-[#e2e8f0] dark:border-[#232a36] bg-[#f1f5f9] dark:bg-[#1a1f29] px-2.5 py-1.5 font-mono text-[11px] font-semibold text-[#0f172a] dark:text-[#e6e9ef]">
         {name}
       </div>
       {rows.map(([badge, col, type]) => (
         <div key={col} className="flex items-center gap-1.5 border-b border-[#eef1f5] px-2.5 py-1 text-[10px] last:border-0">
           <span className="w-5 shrink-0 font-mono text-[8px] font-semibold text-orange-500">{badge}</span>
-          <span className="flex-1 truncate font-mono text-[#0f172a]">{col}</span>
+          <span className="flex-1 truncate font-mono text-[#0f172a] dark:text-[#e6e9ef]">{col}</span>
           <span className="shrink-0 font-mono text-[9px] text-[#94a3b8]">{type}</span>
         </div>
       ))}
@@ -69,20 +69,20 @@ export default function Showcase({ title, callTitle, callDesc, schemaTitle, sche
     <section id="showcase" className="mx-auto w-full max-w-[1100px] px-6 py-24 max-[620px]:py-16">
       <SectionHeading index="04" title={title} />
 
-      <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[#e2e8f0] bg-[#e2e8f0] shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[860px]:grid-cols-1">
-        <div className="group flex flex-col bg-white p-8 transition-colors duration-300 hover:bg-[#f8fafc]">
+      <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[#e2e8f0] dark:border-[#232a36] bg-[#e2e8f0] shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[860px]:grid-cols-1">
+        <div className="group flex flex-col bg-white dark:bg-[#12151c] p-8 transition-colors duration-300 hover:bg-[#f8fafc]">
           <div className="flex flex-1 items-center justify-center py-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
             <CallGraphMini />
           </div>
-          <h3 className="mt-6 text-lg font-semibold text-[#0f172a]">{callTitle}</h3>
-          <p className="mt-2 text-[15px] leading-[1.65] text-[#475569]">{callDesc}</p>
+          <h3 className="mt-6 text-lg font-semibold text-[#0f172a] dark:text-[#e6e9ef]">{callTitle}</h3>
+          <p className="mt-2 text-[15px] leading-[1.65] text-[#475569] dark:text-[#9aa6b8]">{callDesc}</p>
         </div>
-        <div className="group flex flex-col bg-white p-8 transition-colors duration-300 hover:bg-[#f8fafc]">
+        <div className="group flex flex-col bg-white dark:bg-[#12151c] p-8 transition-colors duration-300 hover:bg-[#f8fafc]">
           <div className="flex flex-1 items-center justify-center py-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
             <SchemaMini />
           </div>
-          <h3 className="mt-6 text-lg font-semibold text-[#0f172a]">{schemaTitle}</h3>
-          <p className="mt-2 text-[15px] leading-[1.65] text-[#475569]">{schemaDesc}</p>
+          <h3 className="mt-6 text-lg font-semibold text-[#0f172a] dark:text-[#e6e9ef]">{schemaTitle}</h3>
+          <p className="mt-2 text-[15px] leading-[1.65] text-[#475569] dark:text-[#9aa6b8]">{schemaDesc}</p>
         </div>
       </div>
     </section>

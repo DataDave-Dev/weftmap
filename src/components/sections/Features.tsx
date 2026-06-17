@@ -89,21 +89,21 @@ export default function Features({
             <article
               key={feature.title}
               onMouseMove={trackPointer}
-              className={`js-reveal rounded-2xl border border-[#e2e8f0] bg-white px-[30px] py-[34px] shadow-[0_1px_3px_rgba(15,23,42,0.06)] transition-all hover:-translate-y-[3px] hover:shadow-[0_12px_30px_-12px_rgba(15,23,42,0.18)] ${big ? "flex flex-col" : ""
+              className={`js-reveal rounded-2xl border border-[#e2e8f0] dark:border-[#232a36] bg-white dark:bg-[#12151c] px-[30px] py-[34px] shadow-[0_1px_3px_rgba(15,23,42,0.06)] transition-all hover:-translate-y-[3px] hover:shadow-[0_12px_30px_-12px_rgba(15,23,42,0.18)] ${big ? "flex flex-col" : ""
                 } ${wide ? tile.span : ""}`}
             >
               <span
-                className={`inline-flex items-center justify-center rounded-xl border border-[#e2e8f0] bg-[#f1f5f9] text-[#4f46e5] mb-[18px] ${big ? "w-[52px] h-[52px]" : "w-11 h-11"
+                className={`inline-flex items-center justify-center rounded-xl border border-[#e2e8f0] dark:border-[#232a36] bg-[#f1f5f9] dark:bg-[#1a1f29] text-[#4f46e5] dark:text-[#a5b4fc] mb-[18px] ${big ? "w-[52px] h-[52px]" : "w-11 h-11"
                   }`}
               >
                 {ICONS[i]}
               </span>
               <h3
-                className={`font-semibold mb-2.5 text-[#0f172a] ${big ? "text-2xl" : "text-[19px]"}`}
+                className={`font-semibold mb-2.5 text-[#0f172a] dark:text-[#e6e9ef] ${big ? "text-2xl" : "text-[19px]"}`}
               >
                 {feature.title}
               </h3>
-              <p className="text-[15px] leading-[1.65] text-[#475569]">
+              <p className="text-[15px] leading-[1.65] text-[#475569] dark:text-[#9aa6b8]">
                 {feature.desc}
               </p>
 
@@ -113,13 +113,13 @@ export default function Features({
                     {["Python", "JavaScript", "TypeScript", "Go", "Rust", "SQL"].map((l) => (
                       <span
                         key={l}
-                        className="px-2.5 py-1 rounded-md border border-[#e2e8f0] bg-[#f8fafc] font-mono text-xs text-[#475569]"
+                        className="px-2.5 py-1 rounded-md border border-[#e2e8f0] dark:border-[#232a36] bg-[#f8fafc] dark:bg-[#12151c] font-mono text-xs text-[#475569] dark:text-[#9aa6b8]"
                       >
                         {l}
                       </span>
                     ))}
                   </div>
-                  <p className="mt-3 flex items-center gap-1.5 text-[13px] text-[#64748b]">
+                  <p className="mt-3 flex items-center gap-1.5 text-[13px] text-[#64748b] dark:text-[#7c8696]">
                     <span className="text-base leading-none">+</span>
                     {moreLanguagesSoon}
                   </p>

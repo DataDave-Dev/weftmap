@@ -69,41 +69,41 @@ export default function Hero({
 
       <div className="relative z-10 w-full max-w-[1200px] grid grid-cols-[1.1fr_0.9fr] items-center gap-16 max-[860px]:grid-cols-1 max-[860px]:gap-9 max-[860px]:justify-items-center">
         <div className="flex flex-col items-start max-[860px]:items-center max-[860px]:text-center">
-          <div className="js-badge mb-6 inline-flex items-center gap-2 rounded-full border border-[#e2e8f0] bg-white px-3.5 py-1.5 shadow-sm max-[860px]:mx-auto">
+          <div className="js-badge mb-6 inline-flex items-center gap-2 rounded-full border border-[#e2e8f0] dark:border-[#232a36] bg-white dark:bg-[#12151c] px-3.5 py-1.5 shadow-sm max-[860px]:mx-auto">
             <span className="h-[7px] w-[7px] rounded-full bg-accent shadow-[0_0_10px_rgba(52,211,153,0.5)]" />
-            <span className="text-[12.5px] font-medium text-[#475569]">
+            <span className="text-[12.5px] font-medium text-[#475569] dark:text-[#9aa6b8]">
               {badge}
             </span>
           </div>
 
-          <h1 className="js-phrase max-w-[16ch] text-[clamp(2.4rem,4.6vw,4.25rem)] font-extrabold leading-[1.05] tracking-[-0.025em] text-[#0f172a]">
+          <h1 className="js-phrase max-w-[16ch] text-[clamp(2.4rem,4.6vw,4.25rem)] font-extrabold leading-[1.05] tracking-[-0.025em] text-[#0f172a] dark:text-[#e6e9ef]">
             {phrase}
           </h1>
-          <p className="js-sub mt-5 max-w-[46ch] text-[clamp(1.05rem,1.3vw,1.25rem)] leading-relaxed text-[#475569]">
+          <p className="js-sub mt-5 max-w-[46ch] text-[clamp(1.05rem,1.3vw,1.25rem)] leading-relaxed text-[#475569] dark:text-[#9aa6b8]">
             {sub}
           </p>
 
           <div className="js-actions flex flex-wrap gap-3 mt-8">
             <Link
               href={appHref}
-              className="rounded-full bg-[#4f46e5] px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_24px_-8px_rgba(79,70,229,0.6)] transition hover:-translate-y-px hover:bg-[#4338ca]"
+              className="rounded-full bg-[#4f46e5] dark:bg-[#6366f1] px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_24px_-8px_rgba(79,70,229,0.6)] transition hover:-translate-y-px hover:bg-[#4338ca]"
             >
               {getStarted}
             </Link>
             <Link
               href="#about"
-              className="rounded-full border border-[#e2e8f0] bg-white px-7 py-3.5 text-base font-semibold text-[#0f172a] transition hover:-translate-y-px hover:border-slate-300 hover:bg-slate-50"
+              className="rounded-full border border-[#e2e8f0] dark:border-[#232a36] bg-white dark:bg-[#12151c] px-7 py-3.5 text-base font-semibold text-[#0f172a] dark:text-[#e6e9ef] transition hover:-translate-y-px hover:border-slate-300 hover:bg-slate-50"
             >
               {learnMore}
             </Link>
           </div>
 
           <div className="js-chips flex items-center flex-wrap gap-2 mt-8">
-            <span className="text-[12.5px] text-[#64748b] mr-0.5">{supports}:</span>
+            <span className="text-[12.5px] text-[#64748b] dark:text-[#7c8696] mr-0.5">{supports}:</span>
             {LANGUAGES.map((language) => (
               <span
                 key={language}
-                className="rounded-md border border-[#e2e8f0] bg-white px-2.5 py-1 font-mono text-xs text-[#475569]"
+                className="rounded-md border border-[#e2e8f0] dark:border-[#232a36] bg-white dark:bg-[#12151c] px-2.5 py-1 font-mono text-xs text-[#475569] dark:text-[#9aa6b8]"
               >
                 {language}
               </span>

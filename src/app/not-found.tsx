@@ -168,28 +168,28 @@ export default function NotFound() {
               </g>
             </svg>
 
-            <p className="js-num text-[#0f172a] font-extrabold leading-[0.9] tracking-[-0.04em] text-[clamp(5rem,17vw,11rem)]">
+            <p className="js-num text-[#0f172a] dark:text-[#e6e9ef] font-extrabold leading-[0.9] tracking-[-0.04em] text-[clamp(5rem,17vw,11rem)]">
               404
             </p>
 
-            <h1 className="js-title mt-3 text-[#0f172a] font-bold leading-tight tracking-[-0.02em] text-[clamp(1.5rem,3.2vw,2.25rem)]">
+            <h1 className="js-title mt-3 text-[#0f172a] dark:text-[#e6e9ef] font-bold leading-tight tracking-[-0.02em] text-[clamp(1.5rem,3.2vw,2.25rem)]">
               {t.notFoundTitle}
             </h1>
 
-            <p className="js-desc mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] leading-relaxed text-[#475569]">
+            <p className="js-desc mt-3 text-[clamp(0.95rem,1.2vw,1.1rem)] leading-relaxed text-[#475569] dark:text-[#9aa6b8]">
               {t.notFoundDesc}
             </p>
 
             <div className="js-actions flex flex-wrap justify-center gap-4 mt-9">
               <Link
                 href={`/${lang}`}
-                className="bg-[#4f46e5] text-white rounded-full px-8 py-3.5 text-base font-semibold cursor-pointer transition hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-[3px]"
+                className="bg-[#4f46e5] dark:bg-[#6366f1] text-white rounded-full px-8 py-3.5 text-base font-semibold cursor-pointer transition hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-[3px]"
               >
                 {t.notFoundHome}
               </Link>
               <Link
                 href={`/${lang}/app`}
-                className="rounded-full px-8 py-3.5 text-base font-semibold cursor-pointer transition border border-[#e2e8f0] bg-white text-[#0f172a] hover:-translate-y-px hover:bg-slate-50 hover:border-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-[3px]"
+                className="rounded-full px-8 py-3.5 text-base font-semibold cursor-pointer transition border border-[#e2e8f0] dark:border-[#232a36] bg-white dark:bg-[#12151c] text-[#0f172a] dark:text-[#e6e9ef] hover:-translate-y-px hover:bg-slate-50 hover:border-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-[3px]"
               >
                 {t.notFoundApp}
               </Link>

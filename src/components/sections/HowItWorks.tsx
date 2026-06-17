@@ -45,22 +45,22 @@ export default function HowItWorks({
       <SectionHeading index="02" title={heading} />
 
       {/* Hairline grid: gap-px over a bordered container draws crisp rules between cells. */}
-      <ol className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-[#e2e8f0] bg-[#e2e8f0] shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[760px]:grid-cols-1">
+      <ol className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-[#e2e8f0] dark:border-[#232a36] bg-[#e2e8f0] shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[760px]:grid-cols-1">
         {steps.map((step, i) => (
           <li
             key={step.title}
-            className="js-reveal group flex flex-col bg-white p-8 transition-colors duration-300 hover:bg-[#f8fafc]"
+            className="js-reveal group flex flex-col bg-white dark:bg-[#12151c] p-8 transition-colors duration-300 hover:bg-[#f8fafc]"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-2xl tracking-tight text-[#cbd5e1] transition-colors group-hover:text-[#4f46e5]">
                 {`0${i + 1}`}
               </span>
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e2e8f0] bg-[#f1f5f9] text-[#4f46e5] transition-colors group-hover:border-[#c7d2fe]">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e2e8f0] dark:border-[#232a36] bg-[#f1f5f9] dark:bg-[#1a1f29] text-[#4f46e5] dark:text-[#a5b4fc] transition-colors group-hover:border-[#c7d2fe]">
                 {ICONS[i]}
               </span>
             </div>
-            <h3 className="mt-7 text-lg font-semibold text-[#0f172a]">{step.title}</h3>
-            <p className="mt-2 text-[15px] leading-[1.65] text-[#475569]">
+            <h3 className="mt-7 text-lg font-semibold text-[#0f172a] dark:text-[#e6e9ef]">{step.title}</h3>
+            <p className="mt-2 text-[15px] leading-[1.65] text-[#475569] dark:text-[#9aa6b8]">
               {step.desc}
             </p>
           </li>

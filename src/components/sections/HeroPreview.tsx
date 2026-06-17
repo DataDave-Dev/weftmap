@@ -1,7 +1,7 @@
 export default function HeroPreview() {
   return (
     <div
-      className="js-card w-full max-w-[420px] mx-auto rounded-2xl border border-[color:var(--color-line)] bg-white p-4 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.35)]"
+      className="js-card w-full max-w-[420px] mx-auto rounded-2xl border border-[color:var(--color-line)] bg-white dark:bg-[#12151c] p-4 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.35)]"
       aria-hidden="true"
     >
       <div className="w-full rounded-xl border border-white/10 bg-[#13151b] overflow-hidden">
