@@ -41,42 +41,31 @@ export default function HowItWorks({
   steps: Step[];
 }) {
   return (
-    <section
-      id="how"
-      className="relative isolate flex min-h-screen items-center overflow-hidden"
-    >
-      {/* Soft glow keeps the band from reading as a flat fill. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[75%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(198,206,219,0.10),transparent)] blur-[120px]"
-      />
+    <section id="how" className="mx-auto w-full max-w-[1100px] px-6 py-24 max-[620px]:py-16">
+      <SectionHeading index="02" title={heading} />
 
-      <div className="relative mx-auto w-full max-w-[1100px] px-6 py-28 max-[620px]:py-16">
-        <SectionHeading index="02" title={heading} />
-
-        {/* Hairline grid: gap-px over a bordered container draws crisp rules between cells. */}
-        <ol className="mt-14 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 max-[760px]:grid-cols-1">
-          {steps.map((step, i) => (
-            <li
-              key={step.title}
-              className="js-reveal group flex flex-col bg-[#0c0e14] p-8 transition-colors duration-300 hover:bg-[#12151c]"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-2xl tracking-tight text-muted/60 transition-colors group-hover:text-accent">
-                  {`0${i + 1}`}
-                </span>
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/12 bg-white/[0.03] text-[#e6e9ef] transition-colors group-hover:border-white/30">
-                  {ICONS[i]}
-                </span>
-              </div>
-              <h3 className="mt-7 text-lg font-semibold">{step.title}</h3>
-              <p className="mt-2 text-[15px] leading-[1.65] text-muted">
-                {step.desc}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </div>
+      {/* Hairline grid: gap-px over a bordered container draws crisp rules between cells. */}
+      <ol className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-[#e2e8f0] bg-[#e2e8f0] shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[760px]:grid-cols-1">
+        {steps.map((step, i) => (
+          <li
+            key={step.title}
+            className="js-reveal group flex flex-col bg-white p-8 transition-colors duration-300 hover:bg-[#f8fafc]"
+          >
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-2xl tracking-tight text-[#cbd5e1] transition-colors group-hover:text-[#4f46e5]">
+                {`0${i + 1}`}
+              </span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e2e8f0] bg-[#f1f5f9] text-[#4f46e5] transition-colors group-hover:border-[#c7d2fe]">
+                {ICONS[i]}
+              </span>
+            </div>
+            <h3 className="mt-7 text-lg font-semibold text-[#0f172a]">{step.title}</h3>
+            <p className="mt-2 text-[15px] leading-[1.65] text-[#475569]">
+              {step.desc}
+            </p>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

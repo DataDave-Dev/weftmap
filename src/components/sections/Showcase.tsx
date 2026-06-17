@@ -68,29 +68,29 @@ export default function Showcase({ title, callTitle, callDesc, schemaTitle, sche
   return (
     <section
       id="showcase"
-      className="relative isolate flex min-h-screen items-center overflow-hidden"
+      className="relative isolate overflow-hidden bg-[#0b0d12]"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[75%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(198,206,219,0.10),transparent)] blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(79,70,229,0.18),transparent)] blur-[120px]"
       />
-      <div className="relative mx-auto w-full max-w-[1100px] px-6 py-28 max-[620px]:py-16">
-        <SectionHeading index="04" title={title} />
+      <div className="relative mx-auto w-full max-w-[1100px] px-6 py-24 max-[620px]:py-16">
+        <SectionHeading index="04" title={title} tone="dark" />
 
-        <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 max-[860px]:grid-cols-1">
+        <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 max-[860px]:grid-cols-1">
           <div className="group flex flex-col bg-[#0c0e14] p-8 transition-colors duration-300 hover:bg-[#101319]">
             <div className="flex flex-1 items-center justify-center py-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
               <CallGraphMini />
             </div>
-            <h3 className="mt-6 text-lg font-semibold">{callTitle}</h3>
-            <p className="mt-2 text-[15px] leading-[1.65] text-muted">{callDesc}</p>
+            <h3 className="mt-6 text-lg font-semibold text-white">{callTitle}</h3>
+            <p className="mt-2 text-[15px] leading-[1.65] text-slate-400">{callDesc}</p>
           </div>
           <div className="group flex flex-col bg-[#0c0e14] p-8 transition-colors duration-300 hover:bg-[#101319]">
             <div className="flex flex-1 items-center justify-center py-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
               <SchemaMini />
             </div>
-            <h3 className="mt-6 text-lg font-semibold">{schemaTitle}</h3>
-            <p className="mt-2 text-[15px] leading-[1.65] text-muted">{schemaDesc}</p>
+            <h3 className="mt-6 text-lg font-semibold text-white">{schemaTitle}</h3>
+            <p className="mt-2 text-[15px] leading-[1.65] text-slate-400">{schemaDesc}</p>
           </div>
         </div>
       </div>

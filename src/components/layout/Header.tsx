@@ -8,38 +8,48 @@ import Logo from "./Logo";
 
 const REPO = "https://github.com/DataDave-Dev/weftmap";
 
-const linkClass =
-  "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] text-muted hover:text-fg hover:bg-white/[0.06] transition-colors";
+type Variant = "dark" | "light";
 
-export default function Header({ lang }: { lang: Locale }) {
+export default function Header({
+  lang,
+  variant = "dark",
+}: {
+  lang: Locale;
+  variant?: Variant;
+}) {
   const t = getDictionary(lang);
-  // Transparent over the hero at the top; solid + blurred once scrolled, so the
-  // bar never reads as a near-black block against the dark hero.
+  const light = variant === "light";
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll, { passive: true });
-    const id = requestAnimationFrame(onScroll); // initial state without a sync setState
+    const id = requestAnimationFrame(onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(id);
     };
   }, []);
 
+  const linkClass = light
+    ? "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] text-[#475569] hover:text-[#0f172a] hover:bg-black/[0.04] transition-colors"
+    : "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] text-muted hover:text-fg hover:bg-white/[0.06] transition-colors";
+
+  const scrolledBar = light
+    ? "bg-white/80 backdrop-blur-xl border-[#e2e8f0]"
+    : "bg-black/55 backdrop-blur-xl border-white/[0.08]";
+
   return (
     <header
       className={`sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b transition-colors duration-300 ${
-        scrolled
-          ? "bg-black/55 backdrop-blur-xl border-white/[0.08]"
-          : "bg-transparent border-transparent"
+        scrolled ? scrolledBar : "bg-transparent border-transparent"
       }`}
     >
       <Link
         href={`/${lang}`}
         className="flex items-center gap-2 text-xl font-bold tracking-[0.02em]"
       >
-        <Logo className="h-6 w-6 text-fg" />
-        <span className="metallic">Weftmap</span>
+        <Logo className={light ? "h-6 w-6 text-[#0f172a]" : "h-6 w-6 text-fg"} />
+        <span className={light ? "text-[#0f172a]" : "metallic"}>Weftmap</span>
       </Link>
 
       <div className="flex items-center gap-2 sm:gap-3">
@@ -71,14 +81,22 @@ export default function Header({ lang }: { lang: Locale }) {
 
         <Link
           href={`/${lang}/app`}
-          className="metallic-fill rounded-full px-4 py-1.5 text-[13px] font-semibold transition hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-[3px]"
+          className={
+            light
+              ? "rounded-full bg-[#4f46e5] px-4 py-1.5 text-[13px] font-semibold text-white transition hover:-translate-y-px hover:bg-[#4338ca]"
+              : "metallic-fill rounded-full px-4 py-1.5 text-[13px] font-semibold transition hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-[3px]"
+          }
         >
           {t.getStarted}
         </Link>
 
         <nav
           aria-label="Language"
-          className="inline-flex gap-0.5 p-[3px] rounded-full bg-white/[0.08] border border-white/[0.14]"
+          className={`inline-flex gap-0.5 p-[3px] rounded-full border ${
+            light
+              ? "bg-black/[0.04] border-[#e2e8f0]"
+              : "bg-white/[0.08] border-white/[0.14]"
+          }`}
         >
           {locales.map((locale) => {
             const active = locale === lang;
@@ -88,13 +106,21 @@ export default function Header({ lang }: { lang: Locale }) {
                 href={`/${locale}`}
                 aria-current={active ? "page" : undefined}
                 className={`group px-3.5 py-[5px] rounded-full transition-colors ${
-                  active ? "bg-white/[0.16]" : ""
+                  active ? (light ? "bg-black/[0.06]" : "bg-white/[0.16]") : ""
                 }`}
               >
                 <span
-                  className={`metallic text-[13px] font-semibold transition-opacity ${
-                    active ? "opacity-100" : "opacity-60 group-hover:opacity-100"
-                  }`}
+                  className={
+                    light
+                      ? `text-[13px] font-semibold transition-colors ${
+                          active
+                            ? "text-[#0f172a]"
+                            : "text-[#64748b] group-hover:text-[#0f172a]"
+                        }`
+                      : `metallic text-[13px] font-semibold transition-opacity ${
+                          active ? "opacity-100" : "opacity-60 group-hover:opacity-100"
+                        }`
+                  }
                 >
                   {locale.toUpperCase()}
                 </span>

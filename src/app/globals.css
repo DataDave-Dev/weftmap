@@ -7,6 +7,13 @@
   /* Single semantic accent: "run / live" — used only for interactive and
      execution-related cues, never for body text or headings. */
   --color-accent: #34d399;
+  /* Light-theme landing tokens (scoped to the landing; app/docs stay dark). */
+  --color-brand: #4f46e5;
+  --color-ink: #0f172a;
+  --color-ink-soft: #475569;
+  --color-ink-faint: #64748b;
+  --color-paper: #f6f7f9;
+  --color-line: #e2e8f0;
 }
 
 @layer base {

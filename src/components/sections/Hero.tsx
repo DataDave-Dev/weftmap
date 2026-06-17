@@ -61,57 +61,49 @@ export default function Hero({
       ref={root}
       className="relative grid place-items-center min-h-[calc(100vh-65px)] p-6 overflow-hidden"
     >
-      {/* Soft overhead light spilling down onto the hero. */}
+      {/* Soft brand-tinted light from the top. */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-[72%] pointer-events-none z-0 bg-[radial-gradient(62%_78%_at_50%_-8%,rgba(255,255,255,0.19),rgba(255,255,255,0.07)_44%,transparent_74%)]"
-      />
-
-      <div
-        aria-hidden="true"
-        className="absolute top-[38%] left-1/2 w-[min(900px,90vw)] h-[600px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1),rgba(255,255,255,0.03)_38%,transparent_68%)]"
+        className="absolute inset-x-0 top-0 h-[70%] pointer-events-none z-0 bg-[radial-gradient(60%_60%_at_50%_-10%,rgba(79,70,229,0.12),transparent_72%)]"
       />
 
       <div className="relative z-10 w-full max-w-[1200px] grid grid-cols-[1.1fr_0.9fr] items-center gap-16 max-[860px]:grid-cols-1 max-[860px]:gap-9 max-[860px]:justify-items-center">
         <div className="flex flex-col items-start max-[860px]:items-center max-[860px]:text-center">
-          <div className="js-badge mb-7 flex w-full items-center gap-3 border-t border-white/10 pt-5 max-[860px]:justify-center">
-            <span className="font-mono text-[12px] tracking-[0.28em] text-muted/80">
-              01
-            </span>
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#cbd5e1]">
-              <span className="h-[6px] w-[6px] rounded-full bg-accent shadow-[0_0_12px_rgba(52,211,153,0.7)]" />
+          <div className="js-badge mb-6 inline-flex items-center gap-2 rounded-full border border-[#e2e8f0] bg-white px-3.5 py-1.5 shadow-sm max-[860px]:mx-auto">
+            <span className="h-[7px] w-[7px] rounded-full bg-accent shadow-[0_0_10px_rgba(52,211,153,0.5)]" />
+            <span className="text-[12.5px] font-medium text-[#475569]">
               {badge}
             </span>
           </div>
 
-          <h1 className="js-phrase metallic max-w-[18ch] text-[clamp(2.2rem,4.2vw,4rem)] font-extrabold leading-[1.1] pb-[0.12em] tracking-[-0.02em]">
+          <h1 className="js-phrase max-w-[16ch] text-[clamp(2.4rem,4.6vw,4.25rem)] font-extrabold leading-[1.05] tracking-[-0.025em] text-[#0f172a]">
             {phrase}
           </h1>
-          <p className="js-sub mt-4 max-w-[44ch] text-[clamp(1.05rem,1.3vw,1.25rem)] leading-relaxed text-muted">
+          <p className="js-sub mt-5 max-w-[46ch] text-[clamp(1.05rem,1.3vw,1.25rem)] leading-relaxed text-[#475569]">
             {sub}
           </p>
 
-          <div className="js-actions flex flex-wrap gap-4 mt-8">
+          <div className="js-actions flex flex-wrap gap-3 mt-8">
             <Link
               href={appHref}
-              className="metallic-fill rounded-full px-8 py-3.5 text-base font-semibold cursor-pointer transition hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-[3px]"
+              className="rounded-full bg-[#4f46e5] px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_24px_-8px_rgba(79,70,229,0.6)] transition hover:-translate-y-px hover:bg-[#4338ca]"
             >
               {getStarted}
             </Link>
             <Link
               href="#about"
-              className="rounded-full px-8 py-3.5 text-base font-semibold cursor-pointer transition border border-white/25 text-[#e6e9ef] hover:-translate-y-px hover:bg-white/[0.08] hover:border-white/45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-[3px]"
+              className="rounded-full border border-[#e2e8f0] bg-white px-7 py-3.5 text-base font-semibold text-[#0f172a] transition hover:-translate-y-px hover:border-slate-300 hover:bg-slate-50"
             >
               {learnMore}
             </Link>
           </div>
 
-          <div className="js-chips flex items-center flex-wrap gap-2 mt-7">
-            <span className="text-[12.5px] text-muted mr-0.5">{supports}:</span>
+          <div className="js-chips flex items-center flex-wrap gap-2 mt-8">
+            <span className="text-[12.5px] text-[#64748b] mr-0.5">{supports}:</span>
             {LANGUAGES.map((language) => (
               <span
                 key={language}
-                className="px-2.5 py-1 rounded-md border border-white/[0.12] bg-white/[0.03] font-mono text-xs text-[#cbd5e1]"
+                className="rounded-md border border-[#e2e8f0] bg-white px-2.5 py-1 font-mono text-xs text-[#475569]"
               >
                 {language}
               </span>

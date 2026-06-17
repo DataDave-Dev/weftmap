@@ -25,9 +25,8 @@ export default async function Home({
   return (
     <>
       <ScrollReveal />
-      <div className="relative isolate bg-[#0c0e14]">
-        <div className="grain" aria-hidden="true" />
-        <Header lang={lang} />
+      <div className="relative isolate bg-[#f6f7f9] text-[#0f172a]">
+        <Header lang={lang} variant="light" />
         <Hero
         badge={t.badge}
         phrase={t.hero}

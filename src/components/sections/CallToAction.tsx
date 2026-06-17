@@ -28,13 +28,13 @@ export default function CallToAction({
   return (
     <section
       id="cta"
-      className="relative isolate overflow-hidden"
+      className="relative isolate overflow-hidden bg-[#0b0d12]"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[90%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(198,206,219,0.12),transparent)] blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[90%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(79,70,229,0.22),transparent)] blur-[120px]"
       />
-      <div className="mx-auto grid max-w-[1100px] grid-cols-[1.4fr_1fr] gap-x-12 gap-y-12 px-6 py-28 max-[860px]:grid-cols-1 max-[620px]:py-20">
+      <div className="mx-auto grid max-w-[1100px] grid-cols-[1.4fr_1fr] gap-x-12 gap-y-12 px-6 py-24 max-[860px]:grid-cols-1 max-[620px]:py-20">
         <div>
           <h2 className="max-w-[16ch] text-[clamp(2.2rem,4vw,3.4rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-fg">
             {title}
