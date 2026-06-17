@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode, MouseEvent } from "react";
+import SectionHeading from "./SectionHeading";
 
 function trackPointer(e: MouseEvent<HTMLElement>) {
   const card = e.currentTarget;
@@ -77,11 +78,9 @@ export default function Features({
       id="about"
       className="mx-auto flex min-h-screen max-w-[1200px] flex-col justify-center px-6 pt-28 pb-[136px] max-[620px]:pt-16 max-[620px]:pb-[88px]"
     >
-      <h2 className="text-[clamp(1.9rem,3.2vw,2.75rem)] font-bold tracking-[-0.01em] text-center mb-14">
-        {heading}
-      </h2>
+      <SectionHeading index="03" title={heading} />
 
-      <div className="grid grid-cols-4 auto-rows-[minmax(190px,auto)] gap-5 max-lg:grid-cols-2 max-[620px]:grid-cols-1">
+      <div className="mt-14 grid grid-cols-4 auto-rows-[minmax(190px,auto)] gap-5 max-lg:grid-cols-2 max-[620px]:grid-cols-1">
         {features.map((feature, i) => {
           const tile = TILES[i] ?? {};
           const big = "big" in tile && tile.big;

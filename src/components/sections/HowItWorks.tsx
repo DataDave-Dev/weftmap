@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import SectionHeading from "./SectionHeading";
 
 const svgProps = {
   width: 24,
@@ -50,30 +51,26 @@ export default function HowItWorks({
         className="pointer-events-none absolute left-1/2 top-0 -z-10 h-80 w-[72%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(198,206,219,0.20),transparent)] blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-[1100px] px-6 py-28 max-[620px]:py-16">
-        <h2 className="text-[clamp(1.9rem,3.2vw,2.75rem)] font-bold tracking-[-0.01em] text-center mb-16">
-          {heading}
-        </h2>
+      <div className="relative mx-auto w-full max-w-[1100px] px-6 py-28 max-[620px]:py-16">
+        <SectionHeading index="02" title={heading} />
 
-        <ol className="relative grid grid-cols-3 gap-10 max-[760px]:grid-cols-1 max-[760px]:gap-12">
-          <div
-            aria-hidden="true"
-            className="js-draw hidden md:block absolute top-7 left-[16.6%] right-[16.6%] border-t border-dashed border-white/20"
-          />
-
+        {/* Hairline grid: gap-px over a bordered container draws crisp rules between cells. */}
+        <ol className="mt-14 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 max-[760px]:grid-cols-1">
           {steps.map((step, i) => (
             <li
               key={step.title}
-              className="js-reveal group relative flex flex-col items-center text-center"
+              className="js-reveal group flex flex-col bg-[#0c0e14] p-8 transition-colors duration-300 hover:bg-[#12151c]"
             >
-              <span className="flex items-center justify-center w-14 h-14 rounded-2xl border border-white/15 bg-[#0c0d12] text-[#e6e9ef] transition-all duration-300 group-hover:-translate-y-1 group-hover:border-white/40 group-hover:bg-[#14161d] group-hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.7)]">
-                {ICONS[i]}
-              </span>
-              <span className="metallic mt-5 font-mono text-sm">
-                {`0${i + 1}`}
-              </span>
-              <h3 className="mt-2 text-lg font-semibold">{step.title}</h3>
-              <p className="mt-2 max-w-[32ch] text-[15px] leading-[1.65] text-muted">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-2xl tracking-tight text-muted/45 transition-colors group-hover:text-muted/80">
+                  {`0${i + 1}`}
+                </span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/12 bg-white/[0.03] text-[#e6e9ef] transition-colors group-hover:border-white/30">
+                  {ICONS[i]}
+                </span>
+              </div>
+              <h3 className="mt-7 text-lg font-semibold">{step.title}</h3>
+              <p className="mt-2 text-[15px] leading-[1.65] text-muted">
                 {step.desc}
               </p>
             </li>
