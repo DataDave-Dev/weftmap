@@ -15,9 +15,9 @@ function Cell({ on }: { on: boolean }) {
   return (
     <td className="px-3 py-2.5 text-center">
       {on ? (
-        <span className="text-teal-300">✓</span>
+        <span className="text-teal-600">✓</span>
       ) : (
-        <span className="text-muted/40">—</span>
+        <span className="text-[#cbd5e1]">—</span>
       )}
     </td>
   );
@@ -25,10 +25,10 @@ function Cell({ on }: { on: boolean }) {
 
 function Matrix({ headers }: { headers: string[] }) {
   return (
-    <div className="mt-6 overflow-x-auto rounded-xl border border-white/[0.08]">
+    <div className="mt-6 overflow-x-auto rounded-xl border border-[#e2e8f0]">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-white/[0.08] text-left text-[12px] uppercase tracking-wide text-muted/70">
+          <tr className="border-b border-[#e2e8f0] text-left text-[12px] uppercase tracking-wide text-[#64748b]">
             <th className="px-3 py-2.5 font-medium">{headers[0]}</th>
             <th className="px-3 py-2.5 text-center font-medium">{headers[1]}</th>
             <th className="px-3 py-2.5 text-center font-medium">{headers[2]}</th>
@@ -38,8 +38,8 @@ function Matrix({ headers }: { headers: string[] }) {
         </thead>
         <tbody>
           {ROWS.map((r) => (
-            <tr key={r.lang} className="border-b border-white/[0.05] last:border-0">
-              <td className="px-3 py-2.5 font-mono text-[13px] text-[#e6e9ef]">{r.lang}</td>
+            <tr key={r.lang} className="border-b border-[#eef1f5] last:border-0">
+              <td className="px-3 py-2.5 font-mono text-[13px] text-[#0f172a]">{r.lang}</td>
               <Cell on={r.fns} />
               <Cell on={r.classes} />
               <Cell on={r.imports} />

@@ -20,7 +20,7 @@ export default async function AppPage({
 
   return (
     <>
-      <Header lang={lang} />
+      <Header lang={lang} variant="light" />
       <CodeWorkspace
         languageLabel={t.languageLabel}
         analyzeLabel={t.analyze}

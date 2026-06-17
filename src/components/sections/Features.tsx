@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode, MouseEvent } from "react";
+import SectionHeading from "./SectionHeading";
 
 function trackPointer(e: MouseEvent<HTMLElement>) {
   const card = e.currentTarget;
@@ -75,13 +76,11 @@ export default function Features({
   return (
     <section
       id="about"
-      className="max-w-[1200px] mx-auto px-6 pt-28 pb-[136px] max-[620px]:pt-16 max-[620px]:pb-[88px]"
+      className="mx-auto w-full max-w-[1200px] px-6 py-24 max-[620px]:py-16"
     >
-      <h2 className="text-[clamp(1.9rem,3.2vw,2.75rem)] font-bold tracking-[-0.01em] text-center mb-14">
-        {heading}
-      </h2>
+      <SectionHeading index="03" title={heading} />
 
-      <div className="grid grid-cols-4 auto-rows-[minmax(190px,auto)] gap-5 max-lg:grid-cols-2 max-[620px]:grid-cols-1">
+      <div className="mt-12 grid grid-cols-4 auto-rows-[minmax(190px,auto)] gap-5 max-lg:grid-cols-2 max-[620px]:grid-cols-1">
         {features.map((feature, i) => {
           const tile = TILES[i] ?? {};
           const big = "big" in tile && tile.big;
@@ -90,23 +89,23 @@ export default function Features({
             <article
               key={feature.title}
               onMouseMove={trackPointer}
-              className={`js-reveal spotlight rounded-2xl border border-white/[0.08] bg-[#13151b] px-[30px] py-[34px] transition-transform hover:-translate-y-[3px] ${
+              className={`js-reveal rounded-2xl border border-[#e2e8f0] bg-white px-[30px] py-[34px] shadow-[0_1px_3px_rgba(15,23,42,0.06)] transition-all hover:-translate-y-[3px] hover:shadow-[0_12px_30px_-12px_rgba(15,23,42,0.18)] ${
                 big ? "flex flex-col" : ""
               } ${wide ? tile.span : ""}`}
             >
               <span
-                className={`inline-flex items-center justify-center rounded-xl border border-white/[0.12] bg-white/[0.04] text-[#e6e9ef] mb-[18px] ${
+                className={`inline-flex items-center justify-center rounded-xl border border-[#e2e8f0] bg-[#f1f5f9] text-[#4f46e5] mb-[18px] ${
                   big ? "w-[52px] h-[52px]" : "w-11 h-11"
                 }`}
               >
                 {ICONS[i]}
               </span>
               <h3
-                className={`font-semibold mb-2.5 ${big ? "text-2xl" : "text-[19px]"}`}
+                className={`font-semibold mb-2.5 text-[#0f172a] ${big ? "text-2xl" : "text-[19px]"}`}
               >
                 {feature.title}
               </h3>
-              <p className="text-[15px] leading-[1.65] text-muted">
+              <p className="text-[15px] leading-[1.65] text-[#475569]">
                 {feature.desc}
               </p>
 
@@ -116,13 +115,13 @@ export default function Features({
                     {["Python", "JavaScript", "TypeScript", "Go", "Rust", "SQL"].map((l) => (
                       <span
                         key={l}
-                        className="px-2.5 py-1 rounded-md border border-white/15 bg-white/[0.05] font-mono text-xs text-[#cbd5e1]"
+                        className="px-2.5 py-1 rounded-md border border-[#e2e8f0] bg-[#f8fafc] font-mono text-xs text-[#475569]"
                       >
                         {l}
                       </span>
                     ))}
                   </div>
-                  <p className="mt-3 flex items-center gap-1.5 text-[13px] text-muted">
+                  <p className="mt-3 flex items-center gap-1.5 text-[13px] text-[#64748b]">
                     <span className="text-base leading-none">+</span>
                     {moreLanguagesSoon}
                   </p>

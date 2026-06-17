@@ -40,13 +40,18 @@ export default async function DocPage({
     <article>
       <Content lang={lang} />
 
-      <nav className="mt-16 flex items-center justify-between gap-4 border-t border-white/[0.08] pt-6 text-sm">
+      <nav className="mt-16 grid grid-cols-2 gap-4 border-t border-[#e2e8f0] pt-8">
         {prev ? (
           <Link
             href={`/${lang}/docs/${prev.slug}`}
-            className="text-muted transition-colors hover:text-fg"
+            className="group rounded-xl border border-[#e2e8f0] bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-[#c7d2fe] hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.18)]"
           >
-            ← {prev.title[lang]}
+            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#94a3b8]">
+              {lang === "es" ? "Anterior" : "Previous"}
+            </span>
+            <span className="mt-1 block font-medium text-[#0f172a] transition-colors group-hover:text-[#4f46e5]">
+              ← {prev.title[lang]}
+            </span>
           </Link>
         ) : (
           <span />
@@ -54,9 +59,14 @@ export default async function DocPage({
         {next ? (
           <Link
             href={`/${lang}/docs/${next.slug}`}
-            className="text-right font-medium text-[#e6e9ef] transition-colors hover:text-white"
+            className="group rounded-xl border border-[#e2e8f0] bg-white p-4 text-right transition-all hover:-translate-y-0.5 hover:border-[#c7d2fe] hover:shadow-[0_8px_24px_-12px_rgba(15,23,42,0.18)]"
           >
-            {next.title[lang]} →
+            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#94a3b8]">
+              {lang === "es" ? "Siguiente" : "Next"}
+            </span>
+            <span className="mt-1 block font-medium text-[#0f172a] transition-colors group-hover:text-[#4f46e5]">
+              {next.title[lang]} →
+            </span>
           </Link>
         ) : (
           <span />

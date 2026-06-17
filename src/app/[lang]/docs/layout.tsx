@@ -20,14 +20,14 @@ export default async function DocsLayout({
 
   return (
     <>
-      <Header lang={lang as Locale} />
-      <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-10 lg:grid-cols-[220px_1fr] lg:gap-14 lg:py-16">
+      <Header lang={lang as Locale} variant="light" />
+      <div className="mx-auto grid max-w-[1180px] gap-10 px-6 py-12 lg:grid-cols-[240px_1fr] lg:gap-16 lg:py-20">
         <aside className="hidden lg:block">
-          <div className="sticky top-[92px]">
+          <div className="sticky top-[96px]">
             <DocsSidebar lang={lang as Locale} />
           </div>
         </aside>
-        <main className="min-w-0 max-w-[760px]">{children}</main>
+        <main className="min-w-0 max-w-[740px]">{children}</main>
       </div>
     </>
   );

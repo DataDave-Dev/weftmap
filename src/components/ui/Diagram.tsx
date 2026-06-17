@@ -26,10 +26,10 @@ const TABLE_W = 232;
 const TABLE_HEADER = 34;
 const TABLE_ROW = 24;
 
-const CALL_COLOR = "rgba(255,255,255,0.32)";
-const IMPORT_COLOR = "#5eead4";
-const EXTENDS_COLOR = "#c4b5fd";
-const REF_COLOR = "#fdba74";
+const CALL_COLOR = "#94a3b8";
+const IMPORT_COLOR = "#0d9488";
+const EXTENDS_COLOR = "#7c3aed";
+const REF_COLOR = "#ea580c";
 
 const tableHeight = (cols: number) => TABLE_HEADER + cols * TABLE_ROW + 4;
 
@@ -40,14 +40,14 @@ function ContainerNode({ data }: NodeProps<{ label: string; kind: "module" | "cl
   return (
     <div
       className={`w-full h-full rounded-xl border ${
-        isClass ? "border-violet-300/30 bg-violet-300/[0.04]" : "border-white/15 bg-white/[0.025]"
+        isClass ? "border-violet-300 bg-violet-50" : "border-[#e2e8f0] bg-[#f8fafc]"
       }`}
     >
       <div
         className={`px-3 py-1.5 font-mono text-[11px] border-b truncate ${
           isClass
-            ? "text-violet-200/90 border-violet-300/20"
-            : "text-muted/90 border-white/10"
+            ? "text-violet-700 border-violet-200"
+            : "text-[#475569] border-[#e2e8f0]"
         }`}
       >
         {isClass ? `class ${data.label}` : data.label}
@@ -61,23 +61,23 @@ function ContainerNode({ data }: NodeProps<{ label: string; kind: "module" | "cl
 // Table node for ER / schema diagrams: header + a row per column with PK/FK badges.
 function TableNode({ data }: NodeProps<{ label: string; columns: TableColumn[] }>) {
   return (
-    <div className="overflow-hidden rounded-xl border border-white/15 bg-[#13151b]" style={{ width: TABLE_W }}>
-      <div className="border-b border-white/10 bg-white/[0.05] px-3 py-2 font-mono text-[12px] font-semibold text-fg">
+    <div className="overflow-hidden rounded-xl border border-[#e2e8f0] bg-white shadow-sm" style={{ width: TABLE_W }}>
+      <div className="border-b border-[#e2e8f0] bg-[#f1f5f9] px-3 py-2 font-mono text-[12px] font-semibold text-[#0f172a]">
         {data.label}
       </div>
       <div>
         {data.columns.map((c) => (
           <div
             key={c.name}
-            className="flex items-center gap-2 border-b border-white/[0.05] px-3 text-[11px] last:border-0"
+            className="flex items-center gap-2 border-b border-[#eef1f5] px-3 text-[11px] last:border-0"
             style={{ height: TABLE_ROW }}
           >
             <span className="flex w-9 shrink-0 gap-1 font-mono text-[9px] font-semibold">
-              {c.pk && <span className="text-amber-300" title="Primary key">PK</span>}
-              {c.fk && <span className="text-orange-300" title="Foreign key">FK</span>}
+              {c.pk && <span className="text-amber-600" title="Primary key">PK</span>}
+              {c.fk && <span className="text-orange-500" title="Foreign key">FK</span>}
             </span>
-            <span className="flex-1 truncate font-mono text-fg">{c.name}</span>
-            <span className="shrink-0 truncate font-mono text-[10px] text-muted/70">{c.type}</span>
+            <span className="flex-1 truncate font-mono text-[#0f172a]">{c.name}</span>
+            <span className="shrink-0 truncate font-mono text-[10px] text-[#94a3b8]">{c.type}</span>
           </div>
         ))}
       </div>
@@ -92,11 +92,12 @@ const nodeTypes = { container: ContainerNode, table: TableNode };
 const fnStyle = {
   width: NODE_W,
   borderRadius: 10,
-  border: "1px solid rgba(255,255,255,0.22)",
-  background: "#13151b",
-  color: "#e6e9ef",
+  border: "1px solid #cbd5e1",
+  background: "#ffffff",
+  color: "#0f172a",
   fontFamily: "ui-monospace, monospace",
   fontSize: 13,
+  boxShadow: "0 1px 2px rgba(15,23,42,0.06)",
 } as const;
 
 const isContainer = (n: GraphNode) => n.type === "module" || n.type === "class";
@@ -284,7 +285,7 @@ function layout(graph: Graph): Layout {
     animated: e.kind === "calls",
     label: e.kind === "references" ? e.cardinality : undefined,
     labelStyle: { fill: REF_COLOR, fontSize: 10, fontFamily: "ui-monospace, monospace" },
-    labelBgStyle: { fill: "#13151b" },
+    labelBgStyle: { fill: "#ffffff" },
     markerEnd: { type: MarkerType.ArrowClosed, color: edgeColor(e.kind) },
     style: {
       stroke: edgeColor(e.kind),
@@ -332,7 +333,7 @@ export default function Diagram({
 
   if (graph.nodes.length === 0) {
     return (
-      <div className="grid place-items-center h-full text-sm text-muted">
+      <div className="grid place-items-center h-full text-sm text-[#64748b]">
         {emptyLabel}
       </div>
     );
@@ -347,11 +348,11 @@ export default function Diagram({
       minZoom={0.1}
       proOptions={{ hideAttribution: true }}
     >
-      <Background color="rgba(255,255,255,0.06)" gap={20} />
+      <Background color="rgba(15,23,42,0.07)" gap={20} />
       <Controls showInteractive={false} />
       <Panel
         position="top-left"
-        className="flex gap-2 rounded-lg border border-white/10 bg-black/70 px-2 py-1.5 text-[11px] backdrop-blur"
+        className="flex gap-2 rounded-lg border border-[#e2e8f0] bg-white/90 px-2 py-1.5 text-[11px] text-[#475569] shadow-sm backdrop-blur"
       >
         {legend.map((l) => {
           const off = hidden.has(l.label);
@@ -360,8 +361,8 @@ export default function Diagram({
               key={l.label}
               onClick={() => toggle(l.label)}
               aria-pressed={!off}
-              className={`flex items-center gap-1.5 rounded-md px-2 py-1 transition-colors hover:bg-white/5 ${
-                off ? "opacity-35 line-through" : "text-muted"
+              className={`flex items-center gap-1.5 rounded-md px-2 py-1 transition-colors hover:bg-[#f1f5f9] ${
+                off ? "opacity-35 line-through" : "text-[#475569]"
               }`}
             >
               <span

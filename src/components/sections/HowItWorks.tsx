@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import SectionHeading from "./SectionHeading";
 
 const svgProps = {
   width: 24,
@@ -40,33 +41,26 @@ export default function HowItWorks({
   steps: Step[];
 }) {
   return (
-    <section
-      id="how"
-      className="max-w-[1100px] mx-auto px-6 py-28 max-[620px]:py-16"
-    >
-      <h2 className="text-[clamp(1.9rem,3.2vw,2.75rem)] font-bold tracking-[-0.01em] text-center mb-16">
-        {heading}
-      </h2>
+    <section id="how" className="mx-auto w-full max-w-[1100px] px-6 py-24 max-[620px]:py-16">
+      <SectionHeading index="02" title={heading} />
 
-      <ol className="relative grid grid-cols-3 gap-10 max-[760px]:grid-cols-1 max-[760px]:gap-12">
-        <div
-          aria-hidden="true"
-          className="hidden md:block absolute top-7 left-[16.6%] right-[16.6%] border-t border-dashed border-white/15"
-        />
-
+      {/* Hairline grid: gap-px over a bordered container draws crisp rules between cells. */}
+      <ol className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-[#e2e8f0] bg-[#e2e8f0] shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[760px]:grid-cols-1">
         {steps.map((step, i) => (
           <li
             key={step.title}
-            className="js-reveal relative flex flex-col items-center text-center"
+            className="js-reveal group flex flex-col bg-white p-8 transition-colors duration-300 hover:bg-[#f8fafc]"
           >
-            <span className="flex items-center justify-center w-14 h-14 rounded-2xl border border-white/15 bg-[#0c0d12] text-[#e6e9ef]">
-              {ICONS[i]}
-            </span>
-            <span className="metallic mt-5 font-mono text-sm">
-              {`0${i + 1}`}
-            </span>
-            <h3 className="mt-2 text-lg font-semibold">{step.title}</h3>
-            <p className="mt-2 max-w-[32ch] text-[15px] leading-[1.65] text-muted">
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-2xl tracking-tight text-[#cbd5e1] transition-colors group-hover:text-[#4f46e5]">
+                {`0${i + 1}`}
+              </span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e2e8f0] bg-[#f1f5f9] text-[#4f46e5] transition-colors group-hover:border-[#c7d2fe]">
+                {ICONS[i]}
+              </span>
+            </div>
+            <h3 className="mt-7 text-lg font-semibold text-[#0f172a]">{step.title}</h3>
+            <p className="mt-2 text-[15px] leading-[1.65] text-[#475569]">
               {step.desc}
             </p>
           </li>
