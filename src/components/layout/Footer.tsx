@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 import Logo from "./Logo";
 
 const REPO = "https://github.com/DataDave-Dev/weftmap";
@@ -62,6 +63,7 @@ export default function Footer({
   resources,
   footerNote,
 }: Props) {
+  const t = getDictionary(lang);
   return (
     <footer className="relative isolate overflow-hidden bg-black">
       {/* Metallic hairline accent at the top edge */}
@@ -100,7 +102,7 @@ export default function Footer({
         {/* Product */}
         <div className="flex flex-col gap-4">
           <ColHeading>{product}</ColHeading>
-          <FooterLink href={`/${lang}/app`}>App</FooterLink>
+          <FooterLink href={`/${lang}/app`}>{t.getStarted}</FooterLink>
           <FooterLink href={`/${lang}/docs`}>Docs</FooterLink>
         </div>
 
