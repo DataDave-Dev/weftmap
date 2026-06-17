@@ -93,13 +93,22 @@ type FileFacts = {
   imports: Set<string>;
 };
 
-async function parseFile(
+// Queries compiled once per analyzeProjectWith run and reused across files. They
+// hold WASM allocations, so the caller must delete() them (and the parser) after.
+type CompiledQueries = {
+  defQuery: Parser.Query;
+  callQuery: Parser.Query;
+  importQuery: Parser.Query;
+  classQuery: Parser.Query | null;
+};
+
+function parseFile(
   spec: LangSpec,
+  parser: Parser,
+  queries: CompiledQueries,
   source: SourceFile,
   paths: Set<string>,
-): Promise<FileFacts> {
-  const { parser, language } = await getParser(spec.wasm);
-  parser.setTimeoutMicros(MAX_PARSE_MICROS);
+): FileFacts {
   const tree = parser.parse(source.content);
   // parse() returns null when the timeout is hit; skip the file instead of crashing.
   if (!tree) {
@@ -118,8 +127,7 @@ async function parseFile(
   const classNodeTypes = spec.classNodeTypes ?? new Set<string>();
   const defs = new Set<string>();
   const methodClass = new Map<string, string | null>();
-  const defQuery = language.query(spec.funcDefQuery);
-  for (const { node } of defQuery.captures(root)) {
+  for (const { node } of queries.defQuery.captures(root)) {
     const name = resolveName(node);
     if (!name) continue;
     defs.add(name);
@@ -135,9 +143,8 @@ async function parseFile(
 
   const classes = new Set<string>();
   const extendsRel: { cls: string; base: string }[] = [];
-  if (spec.classQuery) {
-    const classQuery = language.query(spec.classQuery);
-    for (const { node } of classQuery.captures(root)) {
+  if (queries.classQuery) {
+    for (const { node } of queries.classQuery.captures(root)) {
       const name = resolveName(node);
       if (!name) continue;
       classes.add(name);
@@ -147,8 +154,7 @@ async function parseFile(
   }
 
   const calls: { caller: string | null; callee: string }[] = [];
-  const callQuery = language.query(spec.callQuery);
-  for (const { node } of callQuery.captures(root)) {
+  for (const { node } of queries.callQuery.captures(root)) {
     calls.push({
       caller: enclosingFunctionName(node, spec.funcDefTypes),
       callee: node.text,
@@ -156,8 +162,7 @@ async function parseFile(
   }
 
   const imports = new Set<string>();
-  const importQuery = language.query(spec.importQuery);
-  for (const { node } of importQuery.captures(root)) {
+  for (const { node } of queries.importQuery.captures(root)) {
     const target = spec.resolveModule(
       source.path,
       stripQuotes(node.text),
@@ -199,7 +204,30 @@ export async function analyzeProjectWith(
   files: SourceFile[],
 ): Promise<Graph> {
   const paths = new Set(files.map((f) => f.path));
-  const facts = await Promise.all(files.map((f) => parseFile(spec, f, paths)));
+
+  // One parser + one set of compiled queries per run, reused across files and
+  // freed afterwards. parse() and the query loops are synchronous, so a single
+  // parser is safe; this replaces the per-file new Parser()/query() that leaked
+  // WASM memory (Parser/Query handles were never delete()d).
+  const { parser, language } = await getParser(spec.wasm);
+  parser.setTimeoutMicros(MAX_PARSE_MICROS);
+  const queries: CompiledQueries = {
+    defQuery: language.query(spec.funcDefQuery),
+    callQuery: language.query(spec.callQuery),
+    importQuery: language.query(spec.importQuery),
+    classQuery: spec.classQuery ? language.query(spec.classQuery) : null,
+  };
+
+  let facts: FileFacts[];
+  try {
+    facts = files.map((f) => parseFile(spec, parser, queries, f, paths));
+  } finally {
+    queries.defQuery.delete();
+    queries.callQuery.delete();
+    queries.importQuery.delete();
+    queries.classQuery?.delete();
+    parser.delete();
+  }
 
   // Global symbol tables.
   const defToFiles = new Map<string, string[]>();
