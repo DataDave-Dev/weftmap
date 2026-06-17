@@ -28,6 +28,7 @@ export default async function AppPage({
         inputPlaceholder={t.inputPlaceholder}
         diagramPlaceholder={t.diagramPlaceholder}
         noFunctions={t.noFunctions}
+        noTables={t.noTables}
         snippetTab={t.snippetTab}
         projectTab={t.projectTab}
         uploadFolder={t.uploadFolder}

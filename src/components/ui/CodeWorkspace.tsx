@@ -175,6 +175,7 @@ type Props = {
   inputPlaceholder: string;
   diagramPlaceholder: string;
   noFunctions: string;
+  noTables: string;
   snippetTab: string;
   projectTab: string;
   uploadFolder: string;
@@ -188,6 +189,7 @@ export default function CodeWorkspace({
   inputPlaceholder,
   diagramPlaceholder,
   noFunctions,
+  noTables,
   snippetTab,
   projectTab,
   uploadFolder,
@@ -498,7 +500,7 @@ export default function CodeWorkspace({
                 {error}
               </div>
             ) : graph ? (
-              <Diagram graph={graph} emptyLabel={noFunctions} />
+              <Diagram graph={graph} emptyLabel={language === "sql" ? noTables : noFunctions} />
             ) : (
               <div className="grid place-items-center h-full px-6 text-center text-sm text-muted">
                 {diagramPlaceholder}

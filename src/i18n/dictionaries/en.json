@@ -61,6 +61,7 @@
   "inputPlaceholder": "Paste your code here…",
   "diagramPlaceholder": "The diagram will appear here.",
   "noFunctions": "No functions found in the code.",
+  "noTables": "No tables found in the SQL.",
   "comingSoon": "New interface coming soon.",
   "snippetTab": "Snippet",
   "projectTab": "Project",

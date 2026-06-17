@@ -172,7 +172,6 @@ Las tareas para empezar están etiquetadas como [`good first issue`](https://git
 - [ ] Modo proyecto: analizar una carpeta entera como un solo grafo
 - [ ] Interacción en nodos: click para resaltar llamadores/llamados, panel de detalle
 - [ ] Más tipos de diagrama: control-flow y dependencias entre módulos
-- [ ] **Soporte SQL**: diagramas ER / UML de esquema (tablas, columnas, relaciones) a partir de DDL SQL ([#19](https://github.com/DataDave-Dev/weftmap/issues/19))
 - [ ] Exportar el grafo (PNG/SVG) y permalinks para compartir
 - [ ] Más métodos de entrada: subir ZIP y URL de repo de GitHub
 - [ ] Rendimiento para bases de código grandes

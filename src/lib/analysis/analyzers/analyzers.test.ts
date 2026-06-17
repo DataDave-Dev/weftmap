@@ -364,6 +364,32 @@ CREATE TABLE posts (
     expect(hasEdge(graph, "table::posts", "table::users", "references")).toBe(true);
   });
 
+  test("PRIMARY KEY a nivel de tabla marca la columna", async () => {
+    const graph = await run(sqlAnalyzer, [
+      ["schema.sql", "CREATE TABLE users (id INTEGER, email TEXT, PRIMARY KEY (id));"],
+    ]);
+
+    const id = graph.nodes
+      .find((n) => n.id === "table::users")
+      ?.columns?.find((c) => c.name === "id");
+    expect(id?.pk).toBe(true);
+    expect(id?.nullable).toBe(false);
+  });
+
+  test("FK por ALTER resuelve aunque el ALTER se procese antes del CREATE", async () => {
+    const graph = await run(sqlAnalyzer, [
+      ["c.sql", "ALTER TABLE posts ADD CONSTRAINT fk FOREIGN KEY (author_id) REFERENCES users (id);"],
+      ["b.sql", "CREATE TABLE posts ( id INTEGER PRIMARY KEY, author_id INTEGER );"],
+      ["a.sql", "CREATE TABLE users ( id INTEGER PRIMARY KEY );"],
+    ]);
+
+    expect(hasEdge(graph, "table::posts", "table::users", "references")).toBe(true);
+    const fk = graph.nodes
+      .find((n) => n.id === "table::posts")
+      ?.columns?.find((c) => c.name === "author_id");
+    expect(fk?.fk).toBe(true);
+  });
+
   test("tabla puente infiere relacion N:M", async () => {
     const graph = await run(sqlAnalyzer, [
       [

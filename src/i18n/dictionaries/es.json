@@ -61,6 +61,7 @@
   "inputPlaceholder": "Pega tu código aquí…",
   "diagramPlaceholder": "El diagrama aparecerá aquí.",
   "noFunctions": "No se encontraron funciones en el código.",
+  "noTables": "No se encontraron tablas en el SQL.",
   "comingSoon": "Nueva interfaz próximamente.",
   "snippetTab": "Fragmento",
   "projectTab": "Proyecto",

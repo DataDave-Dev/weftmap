@@ -170,7 +170,6 @@ Newcomer-friendly tasks are tagged [`good first issue`](https://github.com/DataD
 - [ ] Project mode: analyze a whole folder as a single graph
 - [ ] Node interaction: click to highlight callers/callees, function detail panel
 - [ ] More diagram types: control-flow and module-dependency graphs
-- [ ] **SQL support**: ER / UML schema diagrams (tables, columns, relationships) from SQL DDL ([#19](https://github.com/DataDave-Dev/weftmap/issues/19))
 - [ ] Export the graph (PNG/SVG) and shareable permalinks
 - [ ] More input methods: ZIP upload and GitHub repo URL
 - [ ] Performance for large codebases
