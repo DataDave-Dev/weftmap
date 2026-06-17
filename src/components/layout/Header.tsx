@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { locales, type Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
 import Logo from "./Logo";
 
 const REPO = "https://github.com/DataDave-Dev/weftmap";
@@ -11,6 +12,7 @@ const linkClass =
   "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] text-muted hover:text-fg hover:bg-white/[0.06] transition-colors";
 
 export default function Header({ lang }: { lang: Locale }) {
+  const t = getDictionary(lang);
   // Transparent over the hero at the top; solid + blurred once scrolled, so the
   // bar never reads as a near-black block against the dark hero.
   const [scrolled, setScrolled] = useState(false);
@@ -71,7 +73,7 @@ export default function Header({ lang }: { lang: Locale }) {
           href={`/${lang}/app`}
           className="metallic-fill rounded-full px-4 py-1.5 text-[13px] font-semibold transition hover:-translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-[3px]"
         >
-          App
+          {t.getStarted}
         </Link>
 
         <nav
