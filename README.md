@@ -15,7 +15,7 @@ which. The differentiator is a **pluggable, multi-language architecture**: the
 backend adapts the analysis per language, and adding a new one takes only a few
 lines. No existing free tool does this well across several languages at once.
 
-> **Status:** MVP. Supports **Python**, **JavaScript/TypeScript** and **Go**.
+> **Status:** MVP. Supports **Python**, **JavaScript/TypeScript**, **Go** and **Rust**.
 > Diagram type: call graph (functions as nodes, calls as arrows).
 
 ---
@@ -152,7 +152,7 @@ Newcomer-friendly tasks are tagged [`good first issue`](https://github.com/DataD
 
 **Shipped**
 
-- [x] Call graph for Python, JavaScript, TypeScript and Go
+- [x] Call graph for Python, JavaScript, TypeScript, Go and Rust
 - [x] Pluggable per-language architecture (add a language in a few lines)
 - [x] Bilingual UI (en/es) with in-app docs
 

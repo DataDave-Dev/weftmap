@@ -8,7 +8,7 @@ import HeroPreview from "./HeroPreview";
 
 gsap.registerPlugin(useGSAP);
 
-const LANGUAGES = ["Python", "JavaScript", "TypeScript"];
+const LANGUAGES = ["Python", "JavaScript", "TypeScript", "Go", "Rust"];
 
 type Props = {
   badge: string;

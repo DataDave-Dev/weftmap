@@ -113,7 +113,7 @@ export default function Features({
               {big && (
                 <div className="mt-auto pt-7">
                   <div className="flex flex-wrap gap-2">
-                    {["Python", "JavaScript", "TypeScript"].map((l) => (
+                    {["Python", "JavaScript", "TypeScript", "Go", "Rust"].map((l) => (
                       <span
                         key={l}
                         className="px-2.5 py-1 rounded-md border border-white/15 bg-white/[0.05] font-mono text-xs text-[#cbd5e1]"

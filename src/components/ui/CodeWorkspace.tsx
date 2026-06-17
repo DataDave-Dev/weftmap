@@ -4,13 +4,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Diagram from "./Diagram";
 import type { Graph } from "@/lib/analysis/types";
 
-const LANGUAGES = ["python", "javascript", "typescript", "go"];
+const LANGUAGES = ["python", "javascript", "typescript", "go", "rust"];
 
 const EXT: Record<string, string> = {
   python: "py",
   javascript: "js",
   typescript: "ts",
   go: "go",
+  rust: "rs",
 };
 
 const PROJECT_EXTS: Record<string, string[]> = {
@@ -18,6 +19,7 @@ const PROJECT_EXTS: Record<string, string[]> = {
   javascript: [".js", ".jsx", ".mjs", ".cjs"],
   typescript: [".ts", ".tsx"],
   go: [".go"],
+  rust: [".rs"],
 };
 
 const IGNORE_DIR =
@@ -111,6 +113,27 @@ func clean(data []int) []int {
 
 func save(x []int) {
 	write(x)
+}
+`,
+  rust: `fn main() {
+    let data = load();
+    save(transform(data));
+}
+
+fn load() -> Vec<i32> {
+    read()
+}
+
+fn transform(data: Vec<i32>) -> Vec<i32> {
+    clean(data)
+}
+
+fn clean(data: Vec<i32>) -> Vec<i32> {
+    data
+}
+
+fn save(x: Vec<i32>) {
+    write(x);
 }
 `,
 };
