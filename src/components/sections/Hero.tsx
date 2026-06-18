@@ -90,13 +90,13 @@ export default function Hero({
           <div className="js-actions flex flex-wrap gap-3 mt-8">
             <Link
               href={appHref}
-              className="rounded-full bg-[#4f46e5] dark:bg-[#6366f1] px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_24px_-8px_rgba(79,70,229,0.6)] transition hover:-translate-y-px hover:bg-[#4338ca]"
+              className="rounded-full bg-brand dark:bg-brand-dark px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_24px_-8px_rgba(79,70,229,0.6)] transition hover:-translate-y-px hover:bg-brand-hover dark:hover:bg-brand-dark-hover"
             >
               {getStarted}
             </Link>
             <Link
               href="#about"
-              className="rounded-full border border-[#e2e8f0] dark:border-[#232a36] bg-white dark:bg-[#12151c] px-7 py-3.5 text-base font-semibold text-[#0f172a] dark:text-[#e6e9ef] transition hover:-translate-y-px hover:border-slate-300 hover:bg-slate-50"
+              className="rounded-full border border-line dark:border-border-dark bg-white dark:bg-surface px-7 py-3.5 text-base font-semibold text-ink dark:text-fg transition hover:-translate-y-px hover:border-slate-300 dark:hover:border-muted hover:bg-slate-50 dark:hover:bg-surface-hover dark:hover:text-white"
             >
               {learnMore}
             </Link>

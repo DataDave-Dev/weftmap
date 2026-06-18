@@ -19,13 +19,13 @@ export default function SupportedLanguages({ title, subtitle, rows }: Props) {
         {subtitle}
       </p>
 
-      <ul className="mt-10 border-t border-[#e2e8f0] dark:border-[#232a36]">
+      <ul className="mt-10 border-t border-line dark:border-border-dark">
         {rows.map((row) => (
           <li
             key={row.name}
-            className="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-[#e2e8f0] dark:border-[#232a36] py-5 transition-colors hover:bg-white sm:grid-cols-[200px_140px_1fr]"
+            className="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-line dark:border-border-dark py-5 transition-colors hover:bg-slate-50 dark:hover:bg-surface-hover sm:grid-cols-[200px_140px_1fr]"
           >
-            <span className="font-mono text-base text-[#0f172a] dark:text-[#e6e9ef] transition-colors group-hover:text-[#4f46e5]">
+            <span className="font-mono text-base text-ink dark:text-fg transition-colors group-hover:text-brand dark:group-hover:text-brand-dark">
               {row.name}
             </span>
             <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-[#64748b] dark:text-[#7c8696]">

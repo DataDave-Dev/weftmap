@@ -121,8 +121,8 @@ export default function TestimonialsBoard({
   const chipClass = (active: boolean) =>
     `rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors ${
       active
-        ? "bg-[#4f46e5] text-white dark:bg-[#6366f1]"
-        : "border border-[#e2e8f0] text-[#475569] hover:border-[#4f46e5] hover:text-[#0f172a] dark:border-[#232a36] dark:text-[#9aa6b8]"
+        ? "bg-brand text-white dark:bg-brand-dark"
+        : "border border-line text-ink-soft hover:border-brand hover:text-ink hover:bg-slate-50 dark:border-border-dark dark:text-muted dark:hover:border-brand-dark dark:hover:text-fg dark:hover:bg-surface-hover"
     }`;
 
   return (
@@ -203,7 +203,7 @@ export default function TestimonialsBoard({
               <button
                 type="button"
                 onClick={() => setVisible((v) => v + PAGE)}
-                className="rounded-full border border-[#e2e8f0] dark:border-[#232a36] px-6 py-2.5 text-[14px] font-medium text-[#475569] dark:text-[#9aa6b8] transition-colors hover:border-[#4f46e5] hover:text-[#0f172a] dark:hover:text-[#e6e9ef]"
+                className="rounded-full border border-line dark:border-border-dark px-6 py-2.5 text-[14px] font-medium text-ink-soft dark:text-muted transition-colors hover:border-brand hover:text-ink hover:bg-slate-50 dark:hover:border-brand-dark dark:hover:text-fg dark:hover:bg-surface-hover"
               >
                 {labels.loadMore}
               </button>

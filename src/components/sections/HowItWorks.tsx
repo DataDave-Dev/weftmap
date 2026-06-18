@@ -48,17 +48,17 @@ export default function HowItWorks({
       <SectionHeading index="02" title={heading} />
 
       {/* Hairline grid: gap-px over a bordered container draws crisp rules between cells. */}
-      <ol className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-[#e2e8f0] dark:border-[#232a36] bg-[#e2e8f0] shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[760px]:grid-cols-1">
+      <ol className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-line dark:border-border-dark bg-line dark:bg-border-dark shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[760px]:grid-cols-1">
         {steps.map((step, i) => (
           <li
             key={step.title}
-            className="js-reveal group flex flex-col bg-white dark:bg-[#12151c] p-8 transition-colors duration-300 hover:bg-[#f8fafc]"
+            className="js-reveal group flex flex-col bg-white dark:bg-surface p-8 transition-colors duration-300 hover:bg-slate-50 dark:hover:bg-surface-hover"
           >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-2xl tracking-tight text-[#cbd5e1] transition-colors group-hover:text-[#4f46e5]">
+              <span className="font-mono text-2xl tracking-tight text-slate-300 transition-colors group-hover:text-brand dark:group-hover:text-brand-dark">
                 {`0${i + 1}`}
               </span>
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#e2e8f0] dark:border-[#232a36] bg-[#f1f5f9] dark:bg-[#1a1f29] text-[#4f46e5] dark:text-[#a5b4fc] transition-colors group-hover:border-[#c7d2fe]">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-line dark:border-border-dark bg-slate-100 dark:bg-surface-active text-brand dark:text-brand-dark-hover transition-colors group-hover:border-indigo-200 dark:group-hover:border-brand-dark">
                 {ICONS[i]}
               </span>
             </div>

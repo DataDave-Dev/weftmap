@@ -16,6 +16,14 @@
   --color-ink-faint: #64748b;
   --color-paper: #f6f7f9;
   --color-line: #e2e8f0;
+
+  /* Dark-mode visual polish tokens */
+  --color-surface-hover: #1e2330;
+  --color-surface-active: #2b3145;
+  --color-border-dark: #232a36;
+  --color-brand-hover: #4338ca;
+  --color-brand-dark: #6366f1;
+  --color-brand-dark-hover: #818cf8;
 }
 
 @layer base {
@@ -247,3 +255,27 @@ html.dark .react-flow__controls-button svg {
 html.dark .react-flow__attribution {
   color: rgba(255, 255, 255, 0.3);
 }
+
+/* ---- React Flow Custom Node & Selection overrides ---- */
+.react-flow__node {
+  transition: border-color 0.25s, box-shadow 0.25s !important;
+}
+
+.react-flow__node:hover {
+  border-color: var(--color-brand) !important;
+}
+
+html.dark .react-flow__node:hover {
+  border-color: var(--color-brand-dark) !important;
+}
+
+.react-flow__node.selected {
+  border-color: var(--color-brand) !important;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2) !important;
+}
+
+html.dark .react-flow__node.selected {
+  border-color: var(--color-brand-dark) !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.4) !important;
+}
+

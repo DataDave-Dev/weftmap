@@ -55,19 +55,19 @@ const GitHubIcon = (
 );
 
 const linkClass =
-  "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] text-[#475569] hover:text-[#0f172a] hover:bg-black/[0.04] transition-colors dark:text-[#94a3b8] dark:hover:text-[#e6e9ef] dark:hover:bg-white/[0.06]";
+  "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] text-ink-soft hover:text-ink hover:bg-black/[0.04] transition-colors dark:text-muted dark:hover:text-fg dark:hover:bg-surface-hover";
 
 const pillClass =
-  "flex items-center gap-1.5 rounded-full border border-[#e2e8f0] dark:border-[#232a36] px-3 py-1.5 text-[13px] font-medium text-[#475569] dark:text-[#9aa6b8] hover:border-[#4f46e5] hover:text-[#0f172a] dark:hover:text-[#e6e9ef] transition-colors";
+  "flex items-center gap-1.5 rounded-full border border-line dark:border-border-dark px-3 py-1.5 text-[13px] font-medium text-ink-soft dark:text-muted hover:border-brand hover:text-ink dark:hover:border-brand-dark dark:hover:text-fg dark:hover:bg-surface-hover transition-colors";
 
 const ctaClass =
-  "shrink-0 whitespace-nowrap rounded-full bg-[#4f46e5] px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:-translate-y-px hover:bg-[#4338ca] sm:px-4 dark:bg-[#6366f1] dark:hover:bg-[#4f46e5]";
+  "shrink-0 whitespace-nowrap rounded-full bg-brand px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:-translate-y-px hover:bg-brand-hover sm:px-4 dark:bg-brand-dark dark:hover:bg-brand-dark-hover";
 
 const signInClass =
-  "whitespace-nowrap rounded-full border border-[#e2e8f0] px-3.5 py-1.5 text-[13px] font-semibold text-[#0f172a] transition hover:bg-black/[0.04] dark:border-white/[0.14] dark:text-[#e6e9ef] dark:hover:bg-white/[0.06]";
+  "whitespace-nowrap rounded-full border border-line px-3.5 py-1.5 text-[13px] font-semibold text-ink transition hover:bg-black/[0.04] dark:border-border-dark dark:text-fg dark:hover:bg-surface-hover";
 
 const menuItemClass =
-  "flex w-full items-center px-3 py-2 rounded-lg text-left text-[13px] font-medium text-[#475569] hover:bg-[#f8fafc] hover:text-[#0f172a] dark:text-[#94a3b8] dark:hover:bg-white/[0.04] dark:hover:text-white transition-colors";
+  "flex w-full items-center px-3 py-2 rounded-lg text-left text-[13px] font-medium text-ink-soft hover:bg-slate-50 hover:text-ink dark:text-muted dark:hover:bg-surface-hover dark:hover:text-fg transition-colors";
 
 export default function Header({
   lang,
@@ -171,7 +171,7 @@ export default function Header({
               aria-expanded={dropdownOpen}
               aria-haspopup="listbox"
               aria-label="Select language"
-              className="flex items-center gap-1.5 px-3.5 py-[6px] rounded-full border text-[13px] font-semibold transition-all bg-black/[0.04] border-[#e2e8f0] text-[#0f172a] hover:bg-black/[0.08] dark:bg-white/[0.08] dark:border-white/[0.14] dark:text-[#cbd5e1] dark:hover:bg-white/[0.16]"
+              className="flex items-center gap-1.5 px-3.5 py-[6px] rounded-full border text-[13px] font-semibold transition-all bg-black/[0.04] border-line text-ink hover:bg-black/[0.08] dark:bg-surface dark:border-border-dark dark:text-fg dark:hover:bg-surface-hover"
             >
               <span>🌐</span>
               <span>{LANGUAGE_NAMES[lang] ?? lang.toUpperCase()}</span>
@@ -194,8 +194,8 @@ export default function Header({
                         onClick={() => setDropdownOpen(false)}
                         className={`flex items-center justify-between w-full px-3 py-1.5 rounded-lg text-left text-[13px] font-medium transition-colors ${
                           active
-                            ? "bg-[#f1f5f9] text-[#4f46e5] dark:bg-white/[0.08] dark:text-white"
-                            : "text-[#475569] hover:bg-[#f8fafc] hover:text-[#0f172a] dark:text-[#94a3b8] dark:hover:bg-white/[0.04] dark:hover:text-white"
+                            ? "bg-slate-100 text-brand dark:bg-surface-active dark:text-fg"
+                            : "text-ink-soft hover:bg-slate-50 hover:text-ink dark:text-muted dark:hover:bg-surface-hover dark:hover:text-fg"
                         }`}
                       >
                         <span>
@@ -220,7 +220,7 @@ export default function Header({
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 aria-expanded={userMenuOpen}
                 aria-haspopup="menu"
-                className="flex items-center gap-2 rounded-full border border-[#e2e8f0] p-0.5 pr-2.5 text-[13px] font-medium text-[#0f172a] transition-colors hover:bg-black/[0.04] dark:border-white/[0.14] dark:text-[#e6e9ef] dark:hover:bg-white/[0.06]"
+                className="flex items-center gap-2 rounded-full border border-line p-0.5 pr-2.5 text-[13px] font-medium text-ink transition-colors hover:bg-black/[0.04] dark:border-border-dark dark:text-fg dark:hover:bg-surface-hover"
               >
                 {avatar(26)}
                 <span className="max-w-[120px] truncate">
@@ -237,7 +237,7 @@ export default function Header({
                     className="fixed inset-0 z-10"
                     onClick={() => setUserMenuOpen(false)}
                   />
-                  <div className="absolute right-0 rtl:left-0 rtl:right-auto z-20 mt-2 w-48 rounded-xl border p-1 shadow-lg bg-white border-[#e2e8f0] dark:bg-[#0b0d12] dark:border-[#232a36]">
+                  <div className="absolute right-0 rtl:left-0 rtl:right-auto z-20 mt-2 w-48 rounded-xl border p-1 shadow-lg bg-white border-line dark:bg-[#0b0d12] dark:border-border-dark">
                     <div className="flex items-center gap-2 px-3 py-2">
                       {avatar(32)}
                       <div className="min-w-0">
@@ -290,7 +290,7 @@ export default function Header({
             onClick={() => setMenuOpen(true)}
             aria-label="Menu"
             aria-expanded={menuOpen}
-            className="grid place-items-center h-8 w-8 rounded-full border border-[#e2e8f0] text-[#0f172a] transition-colors hover:bg-black/[0.04] dark:border-white/[0.14] dark:text-[#e6e9ef] dark:hover:bg-white/[0.06]"
+            className="grid place-items-center h-8 w-8 rounded-full border border-line text-ink transition-colors hover:bg-black/[0.04] dark:border-border-dark dark:text-fg dark:hover:bg-surface-hover"
           >
             <svg
               width="18"
@@ -315,14 +315,14 @@ export default function Header({
             className="fixed inset-0 z-40 bg-black/20 sm:hidden"
             onClick={() => setMenuOpen(false)}
           />
-          <div className="fixed inset-x-3 top-[68px] z-50 rounded-2xl border p-2 shadow-xl sm:hidden bg-white border-[#e2e8f0] dark:bg-[#0b0d12] dark:border-[#232a36]">
+          <div className="fixed inset-x-3 top-[68px] z-50 rounded-2xl border p-2 shadow-xl sm:hidden bg-white border-line dark:bg-[#0b0d12] dark:border-border-dark">
             <div className="flex flex-col">
               <div onClick={() => setMenuOpen(false)}>{docsLink("w-full")}</div>
               <div onClick={() => setMenuOpen(false)} className="mt-1">
                 {starsLink("w-full justify-center")}
               </div>
 
-              <div className="my-2 border-t border-[#eef1f5] dark:border-[#232a36]" />
+              <div className="my-2 border-t border-line dark:border-border-dark" />
 
               {/* Languages */}
               <div className="grid grid-cols-2 gap-1">
@@ -335,8 +335,8 @@ export default function Header({
                       onClick={() => setMenuOpen(false)}
                       className={`flex items-center justify-between rounded-lg px-3 py-2 text-[13px] font-medium transition-colors ${
                         active
-                          ? "bg-[#f1f5f9] text-[#4f46e5] dark:bg-white/[0.08] dark:text-white"
-                          : "text-[#475569] hover:bg-[#f8fafc] hover:text-[#0f172a] dark:text-[#94a3b8] dark:hover:bg-white/[0.04] dark:hover:text-white"
+                          ? "bg-slate-100 text-brand dark:bg-surface-active dark:text-fg"
+                          : "text-ink-soft hover:bg-slate-50 hover:text-ink dark:text-muted dark:hover:bg-surface-hover dark:hover:text-fg"
                       }`}
                     >
                       <span>{LANGUAGE_NAMES[locale] ?? locale.toUpperCase()}</span>
@@ -346,7 +346,7 @@ export default function Header({
                 })}
               </div>
 
-              <div className="my-2 border-t border-[#eef1f5] dark:border-[#232a36]" />
+              <div className="my-2 border-t border-line dark:border-border-dark" />
 
               {/* Auth + CTA */}
               <Link

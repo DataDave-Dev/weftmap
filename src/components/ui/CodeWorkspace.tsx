@@ -361,8 +361,8 @@ export default function CodeWorkspace({
       onClick={() => setMode(value)}
       className={`px-3 py-1 rounded-md text-[12px] font-medium transition-colors ${
         mode === value
-          ? "bg-[#eef2ff] dark:bg-[#1b1f3a] text-[#0f172a] dark:text-[#e6e9ef]"
-          : "text-[#475569] dark:text-[#9aa6b8] hover:text-[#0f172a]"
+          ? "bg-[#eef2ff] dark:bg-[#1b1f3a] text-brand dark:text-[#e6e9ef]"
+          : "text-ink-soft dark:text-muted hover:text-ink dark:hover:text-fg hover:bg-slate-100 dark:hover:bg-surface-hover"
       }`}
     >
       {label}
@@ -430,10 +430,10 @@ export default function CodeWorkspace({
             {!files ? (
               <button
                 onClick={() => folderRef.current?.click()}
-                className="group grid place-items-center w-full h-full min-h-[260px] rounded-xl border border-dashed border-[#e2e8f0] dark:border-[#232a36] hover:border-[#4f46e5] hover:bg-[#f8fafc] transition-colors"
+                className="group grid place-items-center w-full h-full min-h-[260px] rounded-xl border border-dashed border-line dark:border-border-dark hover:border-brand dark:hover:border-brand-dark hover:bg-slate-50 dark:hover:bg-surface-hover transition-colors"
               >
                 <div className="text-center px-6">
-                  <div className="mx-auto mb-4 grid place-items-center w-12 h-12 rounded-xl border border-[#e2e8f0] dark:border-[#232a36] text-[#475569] dark:text-[#9aa6b8] group-hover:text-[#0f172a] transition-colors">
+                  <div className="mx-auto mb-4 grid place-items-center w-12 h-12 rounded-xl border border-line dark:border-border-dark text-ink-soft dark:text-muted group-hover:text-ink dark:group-hover:text-fg transition-colors">
                     <svg
                       width="22"
                       height="22"
@@ -460,7 +460,7 @@ export default function CodeWorkspace({
               <div className="flex flex-col gap-3">
                 <button
                   onClick={() => folderRef.current?.click()}
-                  className="self-start rounded-lg border border-[#e2e8f0] dark:border-[#232a36] px-3 py-1.5 text-[12px] text-[#475569] dark:text-[#9aa6b8] hover:text-[#0f172a] hover:border-[#4f46e5] transition-colors"
+                  className="self-start rounded-lg border border-line dark:border-border-dark px-3 py-1.5 text-[12px] text-ink-soft dark:text-muted hover:text-ink dark:hover:text-fg hover:border-brand dark:hover:border-brand-dark hover:bg-slate-50 dark:hover:bg-surface-hover transition-colors"
                 >
                   {uploadFolder}
                 </button>
@@ -487,7 +487,7 @@ export default function CodeWorkspace({
             <select
               value={language}
               onChange={onLanguageChange}
-              className="rounded-lg border border-[#e2e8f0] dark:border-[#232a36] bg-white dark:bg-[#12151c] px-2.5 py-1.5 text-sm text-[#0f172a] dark:text-[#e6e9ef] outline-none focus-visible:border-[#4f46e5]"
+              className="rounded-lg border border-line dark:border-border-dark bg-white dark:bg-surface px-2.5 py-1.5 text-sm text-ink dark:text-fg outline-none focus-visible:border-brand dark:focus-visible:border-brand-dark"
             >
               {LANGUAGES.map((lang) => (
                 <option key={lang} value={lang}>
@@ -522,7 +522,7 @@ export default function CodeWorkspace({
         onPointerDown={onSplitDown}
         onPointerMove={onSplitMove}
         onPointerUp={onSplitUp}
-        className="hidden lg:block shrink-0 w-1.5 cursor-col-resize touch-none bg-[#e2e8f0] hover:bg-[#cbd5e1] active:bg-[#94a3b8] transition-colors"
+        className="hidden lg:block shrink-0 w-1.5 cursor-col-resize touch-none bg-line dark:bg-border-dark hover:bg-slate-300 dark:hover:bg-surface-hover active:bg-slate-400 dark:active:bg-surface-active transition-colors"
       />
 
       {/* ── Diagram pane ── */}
@@ -543,7 +543,7 @@ export default function CodeWorkspace({
                 <button
                   onClick={handleSave}
                   disabled={saving}
-                  className="rounded-full border border-[#e2e8f0] dark:border-[#232a36] px-3 py-1 text-[12px] font-medium text-[#475569] dark:text-[#9aa6b8] transition-colors hover:border-[#4f46e5] hover:text-[#0f172a] disabled:opacity-50"
+                  className="rounded-full border border-line dark:border-border-dark px-3 py-1 text-[12px] font-medium text-ink-soft dark:text-muted transition-colors hover:border-brand dark:hover:border-brand-dark hover:text-ink dark:hover:text-fg hover:bg-slate-50 dark:hover:bg-surface-hover disabled:opacity-50"
                 >
                   {saved ? savedLabel : saveLabel}
                 </button>

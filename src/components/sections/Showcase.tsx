@@ -171,8 +171,8 @@ export default function Showcase({
     >
       <SectionHeading index="04" title={title} />
 
-      <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[#e2e8f0] dark:border-[#232a36] bg-[#e2e8f0] shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[860px]:grid-cols-1">
-        <div className="group flex flex-col bg-white dark:bg-[#12151c] p-8 transition-colors duration-300 hover:bg-[#f8fafc]">
+      <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line dark:border-border-dark bg-line dark:bg-border-dark shadow-[0_1px_3px_rgba(15,23,42,0.06)] max-[860px]:grid-cols-1">
+        <div className="group flex flex-col bg-white dark:bg-surface p-8 transition-colors duration-300 hover:bg-slate-50 dark:hover:bg-surface-hover">
           <div className="flex flex-1 items-center justify-center py-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
             <CallGraphMini />
           </div>
@@ -183,7 +183,7 @@ export default function Showcase({
             {callDesc}
           </p>
         </div>
-        <div className="group flex flex-col bg-white dark:bg-[#12151c] p-8 transition-colors duration-300 hover:bg-[#f8fafc]">
+        <div className="group flex flex-col bg-white dark:bg-surface p-8 transition-colors duration-300 hover:bg-slate-50 dark:hover:bg-surface-hover">
           <div className="flex flex-1 items-center justify-center py-4 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
             <SchemaMini />
           </div>
