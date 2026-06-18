@@ -1,8 +1,7 @@
 import Link from "next/link";
+import { REPO_URL as REPO } from "@/lib/constants";
 
-const REPO = "https://github.com/DataDave-Dev/weftmap";
-const GOOD_FIRST =
-  "https://github.com/DataDave-Dev/weftmap/issues?q=is%3Aopen+label%3A%22good+first+issue%22";
+const GOOD_FIRST = `${REPO}/issues?q=is%3Aopen+label%3A%22good+first+issue%22`;
 
 type Props = {
   title: string;

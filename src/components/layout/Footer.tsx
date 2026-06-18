@@ -1,9 +1,8 @@
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
+import { REPO_URL as REPO } from "@/lib/constants";
 import Logo from "./Logo";
-
-const REPO = "https://github.com/DataDave-Dev/weftmap";
 
 type Props = {
   lang: Locale;

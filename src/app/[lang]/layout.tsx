@@ -6,6 +6,8 @@ import { locales, isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { Analytics } from "@vercel/analytics/next";
 import { auth } from "@/auth";
+import { getRepoStars } from "@/lib/github";
+import { formatStars } from "@/lib/format";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "@fontsource-variable/lexend";
@@ -31,7 +33,7 @@ export default async function RootLayout({
   if (!isLocale(lang)) notFound();
   const t = getDictionary(lang as Locale);
   const nonce = (await headers()).get("x-nonce") ?? undefined;
-  const session = await auth();
+  const [session, stars] = await Promise.all([auth(), getRepoStars()]);
 
   return (
     <html
@@ -53,7 +55,11 @@ export default async function RootLayout({
       </head>
       <body>
         <div className="grid-bg" aria-hidden="true" />
-        <Header lang={lang} user={session?.user ?? null} />
+        <Header
+          lang={lang}
+          user={session?.user ?? null}
+          stars={stars !== null ? formatStars(stars) : null}
+        />
         {children}
         <Footer
           lang={lang}
