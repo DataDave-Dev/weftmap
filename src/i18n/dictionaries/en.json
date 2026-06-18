@@ -171,6 +171,16 @@
     "testimonialSubmit": "Post",
     "testimonialSignIn": "Sign in to share your experience.",
     "testimonialsEmpty": "Be the first to share your experience.",
-    "testimonialThanks": "Thanks for sharing!"
+    "testimonialThanks": "Thanks for sharing!",
+    "testimonialRatingLabel": "Your rating",
+    "testimonialSearch": "Search experiences…",
+    "testimonialSort": "Sort",
+    "testimonialSortNewest": "Newest",
+    "testimonialSortOldest": "Oldest",
+    "testimonialSortTop": "Top rated",
+    "testimonialFilterRating": "Rating",
+    "testimonialAllRatings": "All",
+    "testimonialLoadMore": "Load more",
+    "testimonialNoResults": "No experiences match your filters."
   }
 }

@@ -175,6 +175,16 @@
     "testimonialSubmit": "Publicar",
     "testimonialSignIn": "Entre para compartilhar sua experiência.",
     "testimonialsEmpty": "Seja o primeiro a compartilhar sua experiência.",
-    "testimonialThanks": "Obrigado por compartilhar!"
+    "testimonialThanks": "Obrigado por compartilhar!",
+    "testimonialRatingLabel": "Sua avaliação",
+    "testimonialSearch": "Buscar experiências…",
+    "testimonialSort": "Ordenar",
+    "testimonialSortNewest": "Recentes",
+    "testimonialSortOldest": "Antigas",
+    "testimonialSortTop": "Mais bem avaliadas",
+    "testimonialFilterRating": "Avaliação",
+    "testimonialAllRatings": "Todas",
+    "testimonialLoadMore": "Carregar mais",
+    "testimonialNoResults": "Nenhuma experiência corresponde aos filtros."
   }
 }

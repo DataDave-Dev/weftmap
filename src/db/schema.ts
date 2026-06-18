@@ -90,6 +90,7 @@ export const testimonials = sqliteTable("testimonial", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   body: text("body").notNull(),
+  rating: integer("rating"), // 1–5; nullable for rows created before ratings
   createdAt: integer("createdAt", { mode: "timestamp_ms" })
     .notNull()
     .$defaultFn(() => new Date()),
