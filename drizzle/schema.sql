@@ -15,4 +15,4 @@ CREATE TABLE account (userId text NOT NULL, type text NOT NULL, provider text NO
 CREATE TABLE session (sessionToken text PRIMARY KEY NOT NULL, userId text NOT NULL, expires integer NOT NULL, FOREIGN KEY (userId) REFERENCES user(id) ON DELETE cascade);
 CREATE TABLE verificationToken (identifier text NOT NULL, token text NOT NULL, expires integer NOT NULL, PRIMARY KEY(identifier, token));
 CREATE TABLE graph (id text PRIMARY KEY NOT NULL, userId text NOT NULL, title text NOT NULL, language text NOT NULL, source text NOT NULL, graph text NOT NULL, createdAt integer NOT NULL, FOREIGN KEY (userId) REFERENCES user(id) ON DELETE cascade);
-CREATE TABLE testimonial (id text PRIMARY KEY NOT NULL, userId text NOT NULL, body text NOT NULL, createdAt integer NOT NULL, FOREIGN KEY (userId) REFERENCES user(id) ON DELETE cascade);
+CREATE TABLE testimonial (id text PRIMARY KEY NOT NULL, userId text NOT NULL, body text NOT NULL, rating integer, createdAt integer NOT NULL, FOREIGN KEY (userId) REFERENCES user(id) ON DELETE cascade);

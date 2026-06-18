@@ -175,6 +175,16 @@
     "testimonialSubmit": "نشر",
     "testimonialSignIn": "سجّل الدخول لمشاركة تجربتك.",
     "testimonialsEmpty": "كن أول من يشارك تجربته.",
-    "testimonialThanks": "شكرًا على المشاركة!"
+    "testimonialThanks": "شكرًا على المشاركة!",
+    "testimonialRatingLabel": "تقييمك",
+    "testimonialSearch": "ابحث في التجارب…",
+    "testimonialSort": "ترتيب",
+    "testimonialSortNewest": "الأحدث",
+    "testimonialSortOldest": "الأقدم",
+    "testimonialSortTop": "الأعلى تقييمًا",
+    "testimonialFilterRating": "التقييم",
+    "testimonialAllRatings": "الكل",
+    "testimonialLoadMore": "تحميل المزيد",
+    "testimonialNoResults": "لا توجد تجارب تطابق عوامل التصفية."
   }
 }

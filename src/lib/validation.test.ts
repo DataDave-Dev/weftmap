@@ -61,9 +61,24 @@ describe("testimonialSchema", () => {
     expect(testimonialSchema.safeParse({ body: "hi" }).success).toBe(false);
   });
 
-  test("accepts and trims a valid body", () => {
-    const result = testimonialSchema.safeParse({ body: "  great tool  " });
+  test("accepts and trims a valid body with a rating", () => {
+    const result = testimonialSchema.safeParse({
+      body: "  great tool  ",
+      rating: 5,
+    });
     expect(result.success).toBe(true);
-    if (result.success) expect(result.data.body).toBe("great tool");
+    if (result.success) {
+      expect(result.data.body).toBe("great tool");
+      expect(result.data.rating).toBe(5);
+    }
+  });
+
+  test("rejects a missing or out-of-range rating", () => {
+    expect(testimonialSchema.safeParse({ body: "great tool" }).success).toBe(
+      false,
+    );
+    expect(
+      testimonialSchema.safeParse({ body: "great tool", rating: 6 }).success,
+    ).toBe(false);
   });
 });
