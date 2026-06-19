@@ -95,7 +95,9 @@ export default function TestimonialsBoard({
         featured ? "lg:col-span-2" : ""
       }`}
     >
-      {item.rating ? <Stars value={item.rating} size={featured ? 18 : 15} /> : null}
+      {item.rating ? (
+        <Stars value={item.rating} size={featured ? 18 : 15} />
+      ) : null}
       <p
         className={`leading-[1.65] text-[#0f172a] dark:text-[#e6e9ef] ${
           featured ? "text-lg" : "text-[15px]"

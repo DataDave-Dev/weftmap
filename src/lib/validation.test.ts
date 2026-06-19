@@ -8,7 +8,10 @@ import {
 
 describe("graphMetaSchema", () => {
   test("rejects an empty title", () => {
-    const result = graphMetaSchema.safeParse({ title: "  ", language: "python" });
+    const result = graphMetaSchema.safeParse({
+      title: "  ",
+      language: "python",
+    });
     expect(result.success).toBe(false);
   });
 

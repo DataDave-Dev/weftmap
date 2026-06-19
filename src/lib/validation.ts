@@ -16,11 +16,15 @@ export const graphMetaSchema = z.object({
 // loose objects rather than re-declaring the whole type.
 export const graphSchema = z.object({
   nodes: z
-    .array(z.object({ id: z.string(), label: z.string(), type: z.string() }).loose())
+    .array(
+      z.object({ id: z.string(), label: z.string(), type: z.string() }).loose(),
+    )
     .max(5000),
   edges: z
     .array(
-      z.object({ source: z.string(), target: z.string(), kind: z.string() }).loose(),
+      z
+        .object({ source: z.string(), target: z.string(), kind: z.string() })
+        .loose(),
     )
     .max(20000),
 });

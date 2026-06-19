@@ -304,7 +304,16 @@ export default function CodeWorkspace({
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, mode, files, language, code, setGraph, setError, setIsLoading]);
+  }, [
+    isLoading,
+    mode,
+    files,
+    language,
+    code,
+    setGraph,
+    setError,
+    setIsLoading,
+  ]);
 
   async function handleSave() {
     if (!graph || saving) return;
@@ -339,8 +348,6 @@ export default function CodeWorkspace({
     );
     setFiles(null); // file extensions differ per language
   }
-
-
 
   function syncScroll(e: React.UIEvent<HTMLTextAreaElement>) {
     if (gutterRef.current)
@@ -425,7 +432,7 @@ export default function CodeWorkspace({
                 <div key={i}>{i + 1}</div>
               ))}
             </div>
-             <textarea
+            <textarea
               value={code}
               onChange={(e) => setCode(e.target.value)}
               onScroll={syncScroll}

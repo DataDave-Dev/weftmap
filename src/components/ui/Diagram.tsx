@@ -456,7 +456,9 @@ function DiagramFlow({
     const height = bounds.height + padding * 2;
 
     // 2. Locate the viewport element inside React Flow DOM
-    const viewport = document.querySelector(".react-flow__viewport") as HTMLElement | null;
+    const viewport = document.querySelector(
+      ".react-flow__viewport",
+    ) as HTMLElement | null;
     if (!viewport) return;
 
     // 3. Set background color relative to format and theme
@@ -564,7 +566,10 @@ function DiagramFlow({
 
         {/* Separator */}
         {legend.length > 0 && (
-          <div className="w-[1px] h-3.5 bg-[#e2e8f0] dark:bg-[#232a36] mx-0.5" aria-hidden="true" />
+          <div
+            className="w-[1px] h-3.5 bg-[#e2e8f0] dark:bg-[#232a36] mx-0.5"
+            aria-hidden="true"
+          />
         )}
 
         {/* Export Dropdown Selector */}
@@ -640,10 +645,7 @@ function DiagramFlow({
   );
 }
 
-export default function Diagram(props: {
-  graph: Graph;
-  emptyLabel: string;
-}) {
+export default function Diagram(props: { graph: Graph; emptyLabel: string }) {
   return (
     <ReactFlowProvider>
       <DiagramFlow {...props} />
