@@ -60,8 +60,8 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1
       web-tree-sitter:
-        specifier: ^0.26.9
-        version: 0.26.9
+        specifier: ^0.22.6
+        version: 0.22.6
       zod:
         specifier: ^4.4.3
         version: 4.4.3
@@ -3312,8 +3312,8 @@ packages:
       jsdom:
         optional: true
 
-  web-tree-sitter@0.26.9:
-    resolution: {integrity: sha512-YJwSHANl6XFgeEjB8nitgj0qZYt5gkIesJ4w2srS2wcLB4GUa4xcOkM0YaMsU6WNR53YVIkDSY7Ej4pf3IXtCA==}
+  web-tree-sitter@0.22.6:
+    resolution: {integrity: sha512-hS87TH71Zd6mGAmYCvlgxeGDjqd9GTeqXNqTT+u0Gs51uIozNIaaq/kUAbV/Zf56jb2ZOyG8BxZs2GG9wbLi6Q==}
 
   which-boxed-primitive@1.1.1:
     resolution: {integrity: sha512-TbX3mj8n0odCBFVlY8AxkqcHASw3L60jIuF8jFP78az3C2YhmGvqbHBpAjTRH2/xqYunrJ9g1jSyjCjpoWzIAA==}
@@ -6516,7 +6516,7 @@ snapshots:
     transitivePeerDependencies:
       - msw
 
-  web-tree-sitter@0.26.9: {}
+  web-tree-sitter@0.22.6: {}
 
   which-boxed-primitive@1.1.1:
     dependencies:
