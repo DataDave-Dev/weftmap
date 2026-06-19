@@ -2,10 +2,7 @@
 
 import { useActionState, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  postTestimonial,
-  type TestimonialFormState,
-} from "@/lib/testimonials";
+import { postTestimonial, type TestimonialFormState } from "@/lib/testimonials";
 
 const INITIAL: TestimonialFormState = { ok: false };
 

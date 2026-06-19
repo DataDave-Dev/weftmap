@@ -137,9 +137,7 @@ export default function Header({
     );
 
   return (
-    <header
-      className="sticky top-0 z-50 flex items-center justify-between gap-3 px-4 py-3.5 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:px-6 sm:py-4 border-b border-[#e2e8f0] dark:border-[#232a36] backdrop-blur-xl bg-white/80 dark:bg-[#0b0d12]/80"
-    >
+    <header className="sticky top-0 z-50 flex items-center justify-between gap-3 px-4 py-3.5 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:px-6 sm:py-4 border-b border-[#e2e8f0] dark:border-[#232a36] backdrop-blur-xl bg-white/80 dark:bg-[#0b0d12]/80">
       {/* ── Left: brand ── */}
       <Link
         href={`/${lang}`}
@@ -339,7 +337,9 @@ export default function Header({
                           : "text-ink-soft hover:bg-slate-50 hover:text-ink dark:text-muted dark:hover:bg-surface-hover dark:hover:text-fg"
                       }`}
                     >
-                      <span>{LANGUAGE_NAMES[locale] ?? locale.toUpperCase()}</span>
+                      <span>
+                        {LANGUAGE_NAMES[locale] ?? locale.toUpperCase()}
+                      </span>
                       {active && <span className="text-[10px]">✓</span>}
                     </Link>
                   );

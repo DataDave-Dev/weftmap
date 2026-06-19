@@ -258,7 +258,9 @@ html.dark .react-flow__attribution {
 
 /* ---- React Flow Custom Node & Selection overrides ---- */
 .react-flow__node {
-  transition: border-color 0.25s, box-shadow 0.25s !important;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s !important;
 }
 
 .react-flow__node:hover {
@@ -278,4 +280,3 @@ html.dark .react-flow__node.selected {
   border-color: var(--color-brand-dark) !important;
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.4) !important;
 }
-

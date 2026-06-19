@@ -253,7 +253,9 @@ describe("POST /api/analyze", () => {
   });
 
   it("returns 500 when analyzer throws an error", async () => {
-    const mockAnalyzeProject = vi.fn().mockRejectedValue(new Error("Parsing failed"));
+    const mockAnalyzeProject = vi
+      .fn()
+      .mockRejectedValue(new Error("Parsing failed"));
 
     mockGetAnalyzer.mockReturnValue({
       language: "python",
@@ -268,7 +270,9 @@ describe("POST /api/analyze", () => {
       }),
     });
 
-    const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const consoleErrorSpy = vi
+      .spyOn(console, "error")
+      .mockImplementation(() => {});
 
     const res = await POST(req);
     expect(res.status).toBe(500);
