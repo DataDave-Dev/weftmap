@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/dagre": "^0.7.54",
-    "@types/node": "^20",
+    "@types/node": "^25",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "drizzle-kit": "^0.31.10",
