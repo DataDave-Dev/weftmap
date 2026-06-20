@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { locales, isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -37,6 +37,8 @@ export default async function RootLayout({
   const themeCookie = cookieStore.get("theme");
   const isDark = themeCookie?.value === "dark";
 
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   const t = getDictionary(lang as Locale);
   const [session, stars] = await Promise.all([auth(), getRepoStars()]);
 
@@ -49,6 +51,7 @@ export default async function RootLayout({
     >
       <head>
         <script
+          nonce={nonce}
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
