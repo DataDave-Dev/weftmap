@@ -27,3 +27,27 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+
+  e2e:
+    runs-on: ubuntu-latest
+    env:
+      AUTH_SECRET: some-dummy-secret-for-ci
+      AUTH_TRUST_HOST: "true"
+      TURSO_DATABASE_URL: file:local.db
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright Chromium Browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run E2E Smoke Tests
+        run: pnpm test:e2e
