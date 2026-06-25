@@ -13,10 +13,20 @@ import Footer from "@/components/layout/Footer";
 import "@fontsource-variable/lexend";
 import "../globals.css";
 
-export const metadata: Metadata = {
-  title: "Weftmap",
-  description: "Paste code and get an interactive call graph.",
-};
+import { getAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "Weftmap",
+    description: "Paste code and get an interactive call graph.",
+    alternates: getAlternates("", lang),
+  };
+}
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));

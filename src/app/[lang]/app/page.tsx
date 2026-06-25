@@ -5,9 +5,19 @@ import { isLocale } from "@/i18n/config";
 import { auth } from "@/auth";
 import CodeWorkspace from "@/components/ui/CodeWorkspace";
 
-export const metadata: Metadata = {
-  title: "Weftmap — Editor",
-};
+import { getAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "Weftmap — Editor",
+    alternates: getAlternates("app", lang),
+  };
+}
 
 export default async function AppPage({
   params,

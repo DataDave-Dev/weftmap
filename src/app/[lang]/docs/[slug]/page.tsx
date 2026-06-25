@@ -10,6 +10,8 @@ export function generateStaticParams() {
   return locales.flatMap((lang) => DOC_SLUGS.map((slug) => ({ lang, slug })));
 }
 
+import { getAlternates } from "@/lib/seo";
+
 export async function generateMetadata({
   params,
 }: {
@@ -19,7 +21,10 @@ export async function generateMetadata({
   const item = DOC_NAV.find((d) => d.slug === slug);
   const locale: Locale = isLocale(lang) ? lang : "en";
   const title = item ? (item.title[locale] ?? item.title["en"]) : "Docs";
-  return { title: `${title} — Weftmap` };
+  return {
+    title: `${title} — Weftmap`,
+    alternates: getAlternates(`docs/${slug}`, lang),
+  };
 }
 
 export default async function DocPage({

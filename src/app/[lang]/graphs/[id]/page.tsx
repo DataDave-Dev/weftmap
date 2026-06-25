@@ -8,9 +8,19 @@ import { getGraph } from "@/lib/graphs";
 import Diagram from "@/components/ui/Diagram";
 import type { Graph } from "@/lib/analysis/types";
 
-export const metadata: Metadata = {
-  title: "Weftmap — Saved graph",
-};
+import { getAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string; id: string }>;
+}): Promise<Metadata> {
+  const { lang, id } = await params;
+  return {
+    title: "Weftmap — Saved graph",
+    alternates: getAlternates(`graphs/${id}`, lang),
+  };
+}
 
 export default async function SavedGraphPage({
   params,

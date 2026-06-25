@@ -6,9 +6,19 @@ import { auth } from "@/auth";
 import { listGraphs } from "@/lib/graphs";
 import GraphListItem from "@/components/ui/GraphListItem";
 
-export const metadata: Metadata = {
-  title: "Weftmap — My graphs",
-};
+import { getAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+  return {
+    title: "Weftmap — My graphs",
+    alternates: getAlternates("graphs", lang),
+  };
+}
 
 export default async function GraphsPage({
   params,
