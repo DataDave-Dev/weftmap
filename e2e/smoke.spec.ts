@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 
-test("should load app, click analyze on default snippet, and render call graph nodes", async ({ page }) => {
+test("should load app, click analyze on default snippet, and render call graph nodes", async ({
+  page,
+}) => {
   // 1. Visit the app in English locale
   await page.goto("/en/app");
 
@@ -22,7 +24,13 @@ test("should load app, click analyze on default snippet, and render call graph n
   await expect(nodes).toHaveCount(6);
 
   // 6. Verify key node labels contain our function names and container file
-  await expect(page.locator(".react-flow__node", { hasText: "snippet.py" })).toBeVisible();
-  await expect(page.locator(".react-flow__node", { hasText: "main" })).toBeVisible();
-  await expect(page.locator(".react-flow__node", { hasText: "clean" })).toBeVisible();
+  await expect(
+    page.locator(".react-flow__node", { hasText: "snippet.py" }),
+  ).toBeVisible();
+  await expect(
+    page.locator(".react-flow__node", { hasText: "main" }),
+  ).toBeVisible();
+  await expect(
+    page.locator(".react-flow__node", { hasText: "clean" }),
+  ).toBeVisible();
 });

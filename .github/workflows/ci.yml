@@ -46,6 +46,9 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Push database schema
+        run: pnpm db:push
+
       - name: Install Playwright Chromium Browser
         run: pnpm exec playwright install --with-deps chromium
 
