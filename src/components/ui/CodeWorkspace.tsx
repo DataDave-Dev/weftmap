@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Diagram from "./Diagram";
 import { saveGraph } from "@/lib/graphs";
 import type { Graph } from "@/lib/analysis/types";
+import { graphSchema } from "@/lib/validation";
 
 const LANGUAGES = ["python", "javascript", "typescript", "go", "rust", "sql"];
 
@@ -297,7 +298,12 @@ export default function CodeWorkspace({
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Error");
-      setGraph(data as Graph);
+
+      const parsed = graphSchema.safeParse(data);
+      if (!parsed.success) {
+        throw new Error("Invalid graph data returned by the API.");
+      }
+      setGraph(parsed.data as Graph);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error");
       setGraph(null);

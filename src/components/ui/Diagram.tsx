@@ -22,6 +22,7 @@ import { toPng, toJpeg, toSvg } from "html-to-image";
 import dagre from "@dagrejs/dagre";
 import "reactflow/dist/style.css";
 import type { Graph, GraphNode, TableColumn } from "@/lib/analysis/types";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 const NODE_W = 156;
 const NODE_H = 40;
@@ -140,7 +141,7 @@ const isContainer = (n: GraphNode) => n.type === "module" || n.type === "class";
 
 type Layout = { nodes: Node[]; edges: Edge[] };
 
-function layout(graph: Graph, dark: boolean): Layout {
+export function layout(graph: Graph, dark: boolean): Layout {
   const byId = new Map(graph.nodes.map((n) => [n.id, n]));
   const childrenOf = new Map<string, GraphNode[]>();
   const roots: GraphNode[] = [];
@@ -160,7 +161,12 @@ function layout(graph: Graph, dark: boolean): Layout {
   // Direct child of `container` that is, or contains, `nodeId`.
   function ancestorIn(nodeId: string, container: string): string | null {
     let cur: string | undefined = nodeId;
+    const visited = new Set<string>();
     while (cur) {
+      if (visited.has(cur)) {
+        return null;
+      }
+      visited.add(cur);
       const n = byId.get(cur);
       if (!n) return null;
       if (n.parent === container) return cur;
@@ -169,12 +175,25 @@ function layout(graph: Graph, dark: boolean): Layout {
     return null;
   }
 
+  const visitedSizeOf = new Set<string>();
+
   // Lay out a container's direct children (recursively) and return its size.
   function sizeOf(id: string): { w: number; h: number } {
-    const node = byId.get(id)!;
-    if (!isContainer(node)) return { w: NODE_W, h: NODE_H };
+    if (visitedSizeOf.has(id)) {
+      return { w: NODE_W, h: NODE_H };
+    }
+    visitedSizeOf.add(id);
+
+    const node = byId.get(id);
+    if (!node || !isContainer(node)) {
+      visitedSizeOf.delete(id);
+      return { w: NODE_W, h: NODE_H };
+    }
     const kids = childrenOf.get(id) ?? [];
-    if (kids.length === 0) return { w: 200, h: HEADER + 14 };
+    if (kids.length === 0) {
+      visitedSizeOf.delete(id);
+      return { w: 200, h: HEADER + 14 };
+    }
 
     const g = new dagre.graphlib.Graph();
     g.setGraph({ rankdir: "TB", nodesep: 24, ranksep: 40 });
@@ -207,6 +226,7 @@ function layout(graph: Graph, dark: boolean): Layout {
       maxX = Math.max(maxX, rx + s.w);
       maxY = Math.max(maxY, ry + s.h);
     }
+    visitedSizeOf.delete(id);
     return { w: maxX + PAD, h: maxY + PAD };
   }
 
@@ -222,7 +242,12 @@ function layout(graph: Graph, dark: boolean): Layout {
   // Top-level layout of modules (imports + cross-module calls/extends).
   const topAncestor = (nodeId: string): string | null => {
     let cur: string | undefined = nodeId;
+    const visited = new Set<string>();
     while (cur) {
+      if (visited.has(cur)) {
+        return null;
+      }
+      visited.add(cur);
       const n = byId.get(cur);
       if (!n) return null;
       if (!n.parent) return cur;
@@ -252,7 +277,12 @@ function layout(graph: Graph, dark: boolean): Layout {
   const depthOf = (n: GraphNode): number => {
     let d = 0;
     let cur = n.parent;
+    const visited = new Set<string>();
     while (cur) {
+      if (visited.has(cur)) {
+        break;
+      }
+      visited.add(cur);
       d++;
       cur = byId.get(cur)?.parent;
     }
@@ -647,8 +677,10 @@ function DiagramFlow({
 
 export default function Diagram(props: { graph: Graph; emptyLabel: string }) {
   return (
-    <ReactFlowProvider>
-      <DiagramFlow {...props} />
-    </ReactFlowProvider>
+    <ErrorBoundary>
+      <ReactFlowProvider>
+        <DiagramFlow {...props} />
+      </ReactFlowProvider>
+    </ErrorBoundary>
   );
 }
