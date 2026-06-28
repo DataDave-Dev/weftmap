@@ -6,7 +6,7 @@ import { saveGraph } from "@/lib/graphs";
 import type { Graph } from "@/lib/analysis/types";
 import { graphSchema } from "@/lib/validation";
 
-const LANGUAGES = ["python", "javascript", "typescript", "go", "rust", "sql"];
+const LANGUAGES = ["python", "javascript", "typescript", "go", "rust", "sql", "java"];
 
 const EXT: Record<string, string> = {
   python: "py",
@@ -15,6 +15,7 @@ const EXT: Record<string, string> = {
   go: "go",
   rust: "rs",
   sql: "sql",
+  java: "java",
 };
 
 const PROJECT_EXTS: Record<string, string[]> = {
@@ -24,6 +25,7 @@ const PROJECT_EXTS: Record<string, string[]> = {
   go: [".go"],
   rust: [".rs"],
   sql: [".sql"],
+  java: [".java"],
 };
 
 const IGNORE_DIR =
@@ -163,6 +165,29 @@ CREATE TABLE post_tags (
   FOREIGN KEY (post_id) REFERENCES posts (id),
   FOREIGN KEY (tag_id) REFERENCES tags (id)
 );
+`,
+  java: `public class App {
+    public static void main(String[] args) {
+        int[] data = load();
+        save(transform(data));
+    }
+
+    public static int[] load() {
+        return read();
+    }
+
+    public static int[] transform(int[] data) {
+        return clean(data);
+    }
+
+    public static int[] clean(int[] data) {
+        return data;
+    }
+
+    public static void save(int[] x) {
+        write(x);
+    }
+}
 `,
 };
 

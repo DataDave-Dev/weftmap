@@ -5,6 +5,7 @@ import { typescriptAnalyzer } from "./typescript";
 import { goAnalyzer } from "./go";
 import { rustAnalyzer } from "./rust";
 import { sqlAnalyzer } from "./sql";
+import { javaAnalyzer } from "./java";
 import type { Graph, LanguageAnalyzer, SourceFile } from "../types";
 
 function run(
@@ -491,5 +492,49 @@ CREATE TABLE user_roles (
       "table::roles",
       "table::users",
     ]);
+  });
+});
+
+describe("java", () => {
+  test("call graph and inheritance inside java files", async () => {
+    const graph = await run(javaAnalyzer, [
+      [
+        "com/example/App.java",
+        `package com.example;
+        import com.example.Service;
+
+        public class App extends BaseApp {
+            public static void main(String[] args) {
+                Service service = new Service();
+                service.execute();
+            }
+        }
+        class BaseApp {}`
+      ],
+      [
+        "com/example/Service.java",
+        `package com.example;
+
+        public class Service {
+            public void execute() {
+                log();
+            }
+            private void log() {}
+        }`
+      ]
+    ]);
+
+    // Check class nodes
+    expect(hasNode(graph, "class::com/example/App.java::App")).toBe(true);
+    expect(hasNode(graph, "class::com/example/Service.java::Service")).toBe(true);
+
+    // Check class inheritance (App extends BaseApp)
+    expect(hasEdge(graph, "class::com/example/App.java::App", "class::com/example/App.java::BaseApp", "extends")).toBe(true);
+
+    // Check call graph edge (execute calls log)
+    expect(hasEdge(graph, "com/example/Service.java::execute", "com/example/Service.java::log", "calls")).toBe(true);
+
+    // Check call graph edge between files (main calls execute)
+    expect(hasEdge(graph, "com/example/App.java::main", "com/example/Service.java::execute", "calls")).toBe(true);
   });
 });
