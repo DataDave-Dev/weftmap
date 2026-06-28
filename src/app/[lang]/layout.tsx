@@ -59,16 +59,15 @@ export default async function RootLayout({
       className={isDark ? "dark" : ""}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          nonce={nonce}
+      <head />
+      <body>
+        <div
           suppressHydrationWarning
+          style={{ display: "none" }}
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`,
+            __html: `<script nonce="${nonce}">(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();</script>`,
           }}
         />
-      </head>
-      <body>
         <div className="grid-bg" aria-hidden="true" />
         <Header
           lang={lang}

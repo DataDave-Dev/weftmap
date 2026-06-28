@@ -280,3 +280,13 @@ html.dark .react-flow__node.selected {
   border-color: var(--color-brand-dark) !important;
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.4) !important;
 }
+
+/* Force code-related blocks to stay Left-to-Right in all locales */
+pre,
+code,
+textarea.font-mono,
+.font-mono textarea {
+  direction: ltr !important;
+  unicode-bidi: plaintext !important;
+  text-align: left !important;
+}

@@ -422,7 +422,7 @@ export default function CodeWorkspace({
 
         {/* Body */}
         {mode === "snippet" ? (
-          <div className="relative flex flex-1 overflow-hidden font-mono text-[13px] leading-[1.7]">
+          <div dir="ltr" className="relative flex flex-1 overflow-hidden font-mono text-[13px] leading-[1.7]">
             <div
               ref={gutterRef}
               aria-hidden="true"
