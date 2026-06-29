@@ -22,6 +22,7 @@ const EXT: Record<string, string> = {
   go: "go",
   rust: "rs",
   sql: "sql",
+  java: "java",
 };
 
 function normalizePath(p: string): string {
