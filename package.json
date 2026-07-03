@@ -54,7 +54,7 @@
     "@vitest/coverage-v8": "^4.1.9",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
-    "eslint-config-next": "16.2.9",
+    "eslint-config-next": "16.2.10",
     "prettier": "^3.8.4",
     "tree-sitter-wasms": "^0.1.13",
     "typescript": "^5",
