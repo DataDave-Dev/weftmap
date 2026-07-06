@@ -17,7 +17,7 @@ export default function DocsSidebar({
   const t = getDictionary(lang);
 
   return (
-    <nav aria-label="Docs">
+    <nav aria-label={t.aria.docs}>
       {showHeading && (
         <p className="mb-4 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[#94a3b8]">
           {t.documentation}

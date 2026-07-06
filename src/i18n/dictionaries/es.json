@@ -153,6 +153,14 @@
   "notFoundDesc": "El enlace puede estar roto o la página se movió. Volvamos al camino.",
   "notFoundHome": "Volver al inicio",
   "notFoundApp": "Abrir la app",
+  "aria": {
+    "sections": "Secciones",
+    "selectLanguage": "Seleccionar idioma",
+    "menu": "Menú",
+    "docs": "Documentación",
+    "resizePanels": "Redimensionar paneles",
+    "githubRepository": "Repositorio de GitHub"
+  },
   "auth": {
     "signIn": "Iniciar sesión",
     "signOut": "Cerrar sesión",

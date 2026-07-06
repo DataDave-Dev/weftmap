@@ -207,6 +207,7 @@ type Props = {
   projectTab: string;
   uploadFolder: string;
   projectHint: string;
+  resizePanelsLabel: string;
   isAuthed: boolean;
   saveLabel: string;
   savedLabel: string;
@@ -225,6 +226,7 @@ export default function CodeWorkspace({
   projectTab,
   uploadFolder,
   projectHint,
+  resizePanelsLabel,
   isAuthed,
   saveLabel,
   savedLabel,
@@ -565,7 +567,7 @@ export default function CodeWorkspace({
       <div
         role="separator"
         aria-orientation="vertical"
-        aria-label="Resize panels"
+        aria-label={resizePanelsLabel}
         onPointerDown={onSplitDown}
         onPointerMove={onSplitMove}
         onPointerUp={onSplitUp}

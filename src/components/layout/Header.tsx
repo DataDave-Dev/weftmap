@@ -149,7 +149,7 @@ export default function Header({
 
       {/* ── Center: primary nav (desktop) ── */}
       <nav
-        aria-label="Sections"
+        aria-label={t.aria.sections}
         className="hidden sm:flex items-center justify-center gap-1"
       >
         {docsLink()}
@@ -168,7 +168,7 @@ export default function Header({
               onClick={() => setDropdownOpen(!dropdownOpen)}
               aria-expanded={dropdownOpen}
               aria-haspopup="listbox"
-              aria-label="Select language"
+              aria-label={t.aria.selectLanguage}
               className="flex items-center gap-1.5 px-3.5 py-[6px] rounded-full border text-[13px] font-semibold transition-all bg-black/[0.04] border-line text-ink hover:bg-black/[0.08] dark:bg-surface dark:border-border-dark dark:text-fg dark:hover:bg-surface-hover"
             >
               <span>🌐</span>
@@ -286,7 +286,7 @@ export default function Header({
           <ThemeToggle />
           <button
             onClick={() => setMenuOpen(true)}
-            aria-label="Menu"
+            aria-label={t.aria.menu}
             aria-expanded={menuOpen}
             className="grid place-items-center h-8 w-8 rounded-full border border-line text-ink transition-colors hover:bg-black/[0.04] dark:border-border-dark dark:text-fg dark:hover:bg-surface-hover"
           >

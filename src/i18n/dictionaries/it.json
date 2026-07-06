@@ -157,6 +157,14 @@
   "notFoundDesc": "Il link potrebbe essere interrotto o la pagina potrebbe essere stata spostata. Torniamo in pista.",
   "notFoundHome": "Torna alla home",
   "notFoundApp": "Apri l'app",
+  "aria": {
+    "sections": "Sezioni",
+    "selectLanguage": "Seleziona lingua",
+    "menu": "Menu",
+    "docs": "Documentazione",
+    "resizePanels": "Ridimensiona pannelli",
+    "githubRepository": "Repository GitHub"
+  },
   "auth": {
     "signIn": "Accedi",
     "signOut": "Esci",

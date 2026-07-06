@@ -153,6 +153,14 @@
   "notFoundDesc": "The link may be broken or the page may have moved. Let's get you back on track.",
   "notFoundHome": "Back home",
   "notFoundApp": "Open the app",
+  "aria": {
+    "sections": "Sections",
+    "selectLanguage": "Select language",
+    "menu": "Menu",
+    "docs": "Docs",
+    "resizePanels": "Resize panels",
+    "githubRepository": "GitHub repository"
+  },
   "auth": {
     "signIn": "Sign in",
     "signOut": "Sign out",
