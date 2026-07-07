@@ -157,6 +157,14 @@
   "notFoundDesc": "O link pode estar quebrado ou a página pode ter sido movida. Vamos colocar você de volta nos trilhos.",
   "notFoundHome": "Voltar ao início",
   "notFoundApp": "Abrir o aplicativo",
+  "aria": {
+    "sections": "Seções",
+    "selectLanguage": "Selecionar idioma",
+    "menu": "Menu",
+    "docs": "Documentação",
+    "resizePanels": "Redimensionar painéis",
+    "githubRepository": "Repositório do GitHub"
+  },
   "auth": {
     "signIn": "Entrar",
     "signOut": "Sair",

@@ -87,7 +87,7 @@ export default function Footer({
             href={REPO}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="GitHub repository"
+            aria-label={t.aria.githubRepository}
             className="mt-7 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e2e8f0] dark:border-[#232a36] bg-white dark:bg-[#12151c] text-[#475569] dark:text-[#9aa6b8] transition-all hover:-translate-y-0.5 hover:border-[#c7d2fe] hover:text-[#4f46e5]"
           >
             <svg

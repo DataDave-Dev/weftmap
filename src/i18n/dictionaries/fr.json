@@ -157,6 +157,14 @@
   "notFoundDesc": "Le lien est peut-être cassé ou la page a été déplacée. Revenons sur le bon chemin.",
   "notFoundHome": "Retour à l'accueil",
   "notFoundApp": "Ouvrir l'application",
+  "aria": {
+    "sections": "Sections",
+    "selectLanguage": "Sélectionner la langue",
+    "menu": "Menu",
+    "docs": "Documentation",
+    "resizePanels": "Redimensionner les panneaux",
+    "githubRepository": "Dépôt GitHub"
+  },
   "auth": {
     "signIn": "Se connecter",
     "signOut": "Se déconnecter",

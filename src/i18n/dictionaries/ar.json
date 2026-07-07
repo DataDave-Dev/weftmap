@@ -157,6 +157,14 @@
   "notFoundDesc": "ربما الرابط تالف أو تم نقل الصفحة. لنعدك إلى المسار الصحيح.",
   "notFoundHome": "العودة للرئيسية",
   "notFoundApp": "افتح التطبيق",
+  "aria": {
+    "sections": "الأقسام",
+    "selectLanguage": "اختيار اللغة",
+    "menu": "القائمة",
+    "docs": "التوثيق",
+    "resizePanels": "تغيير حجم اللوحات",
+    "githubRepository": "مستودع GitHub"
+  },
   "auth": {
     "signIn": "تسجيل الدخول",
     "signOut": "تسجيل الخروج",

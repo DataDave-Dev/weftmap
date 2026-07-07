@@ -43,6 +43,7 @@ export default async function AppPage({
         projectTab={t.projectTab}
         uploadFolder={t.uploadFolder}
         projectHint={t.projectHint}
+        resizePanelsLabel={t.aria.resizePanels}
         isAuthed={!!session?.user}
         saveLabel={t.auth.save}
         savedLabel={t.auth.saved}
