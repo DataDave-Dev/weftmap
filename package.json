@@ -30,7 +30,7 @@
     "@fontsource-variable/lexend": "^5.2.11",
     "@gsap/react": "^2.1.2",
     "@libsql/client": "^0.17.4",
-    "@tailwindcss/postcss": "^4.3.1",
+    "@tailwindcss/postcss": "^4.3.3",
     "@vercel/analytics": "^2.0.1",
     "drizzle-orm": "^0.45.2",
     "gsap": "^3.15.0",
