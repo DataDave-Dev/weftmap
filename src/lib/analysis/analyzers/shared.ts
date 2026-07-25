@@ -122,65 +122,68 @@ function parseFile(
       imports: new Set<string>(),
     };
   }
-  const root = tree.rootNode;
+  try {
+    const root = tree.rootNode;
 
-  const classNodeTypes = spec.classNodeTypes ?? new Set<string>();
-  const defs = new Set<string>();
-  const methodClass = new Map<string, string | null>();
-  for (const { node } of queries.defQuery.captures(root)) {
-    const name = resolveName(node);
-    if (!name) continue;
-    defs.add(name);
-    const cls = enclosingClassName(node, classNodeTypes);
-    // Same name in different contexts (two classes, or module-level vs class)
-    // -> ambiguous, mark null so we don't attribute it to the wrong class.
-    if (methodClass.has(name)) {
-      if (methodClass.get(name) !== cls) methodClass.set(name, null);
-    } else {
-      methodClass.set(name, cls);
-    }
-  }
-
-  const classes = new Set<string>();
-  const extendsRel: { cls: string; base: string }[] = [];
-  if (queries.classQuery) {
-    for (const { node } of queries.classQuery.captures(root)) {
+    const classNodeTypes = spec.classNodeTypes ?? new Set<string>();
+    const defs = new Set<string>();
+    const methodClass = new Map<string, string | null>();
+    for (const { node } of queries.defQuery.captures(root)) {
       const name = resolveName(node);
       if (!name) continue;
-      classes.add(name);
-      const bases = spec.classBases?.(node) ?? [];
-      for (const base of bases) extendsRel.push({ cls: name, base });
+      defs.add(name);
+      const cls = enclosingClassName(node, classNodeTypes);
+      // Same name in different contexts (two classes, or module-level vs class)
+      // -> ambiguous, mark null so we don't attribute it to the wrong class.
+      if (methodClass.has(name)) {
+        if (methodClass.get(name) !== cls) methodClass.set(name, null);
+      } else {
+        methodClass.set(name, cls);
+      }
     }
-  }
 
-  const calls: { caller: string | null; callee: string }[] = [];
-  for (const { node } of queries.callQuery.captures(root)) {
-    calls.push({
-      caller: enclosingFunctionName(node, spec.funcDefTypes),
-      callee: node.text,
-    });
-  }
+    const classes = new Set<string>();
+    const extendsRel: { cls: string; base: string }[] = [];
+    if (queries.classQuery) {
+      for (const { node } of queries.classQuery.captures(root)) {
+        const name = resolveName(node);
+        if (!name) continue;
+        classes.add(name);
+        const bases = spec.classBases?.(node) ?? [];
+        for (const base of bases) extendsRel.push({ cls: name, base });
+      }
+    }
 
-  const imports = new Set<string>();
-  for (const { node } of queries.importQuery.captures(root)) {
-    const target = spec.resolveModule(
-      source.path,
-      stripQuotes(node.text),
-      paths,
-    );
-    if (target && target !== source.path) imports.add(target);
-  }
+    const calls: { caller: string | null; callee: string }[] = [];
+    for (const { node } of queries.callQuery.captures(root)) {
+      calls.push({
+        caller: enclosingFunctionName(node, spec.funcDefTypes),
+        callee: node.text,
+      });
+    }
 
-  tree.delete();
-  return {
-    file: source.path,
-    defs,
-    methodClass,
-    classes,
-    extendsRel,
-    calls,
-    imports,
-  };
+    const imports = new Set<string>();
+    for (const { node } of queries.importQuery.captures(root)) {
+      const target = spec.resolveModule(
+        source.path,
+        stripQuotes(node.text),
+        paths,
+      );
+      if (target && target !== source.path) imports.add(target);
+    }
+
+    return {
+      file: source.path,
+      defs,
+      methodClass,
+      classes,
+      extendsRel,
+      calls,
+      imports,
+    };
+  } finally {
+    tree.delete();
+  }
 }
 
 /** Pick the defining file for a name, preferring local, then imported, then unique. */
