@@ -44,6 +44,7 @@ next-env.d.ts
 /local.db
 local.db*
 
-# claude code
+# AI files
 .claude/
 CLAUDE.local.md
+openspec/
