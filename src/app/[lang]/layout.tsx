@@ -25,6 +25,9 @@ export async function generateMetadata({
     title: "Weftmap",
     description: "Paste code and get an interactive call graph.",
     alternates: getAlternates("", lang),
+    verification: {
+      google: "NeVGXzdAz1xSZWGc8BaJqwBxOOQ7sR4YGK_GV50qerM",
+    },
   };
 }
 
