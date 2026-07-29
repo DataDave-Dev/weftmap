@@ -76,7 +76,7 @@
   "showcaseSchemaTitle": "Schema SQL",
   "showcaseSchemaDesc": "Le tabelle diventano entità e le chiavi esterne diventano relazioni con cardinalità.",
   "languagesTitle": "Linguaggi",
-  "languagesSubtitle": "Sei oggi — cinque producono un grafo delle chiamate, SQL produce un diagramma ER.",
+  "languagesSubtitle": "Sette oggi — sei producono un grafo delle chiamate, SQL produce un diagramma ER.",
   "languageRows": [
     {
       "name": "Python",
@@ -102,6 +102,11 @@
       "name": "Rust",
       "kind": "Grafo delle chiamate",
       "detail": "Funzioni e chiamate"
+    },
+    {
+      "name": "Java",
+      "kind": "Grafo delle chiamate",
+      "detail": "Metodi e classi"
     },
     {
       "name": "SQL",
@@ -194,5 +199,125 @@
     "testimonialAllRatings": "Tutte",
     "testimonialLoadMore": "Carica altro",
     "testimonialNoResults": "Nessuna esperienza corrisponde ai filtri."
+  },
+  "seo": {
+    "home": {
+      "title": "Grafo delle chiamate per Python, Go, Rust e SQL",
+      "description": "Incolla il codice e ottieni un grafo delle chiamate interattivo in pochi secondi. Python, JavaScript, TypeScript, Go, Rust, Java e SQL. Gratis e open source."
+    },
+    "app": {
+      "title": "Incolla il codice, ottieni il grafo",
+      "description": "Incolla uno snippet o carica una cartella, scegli il linguaggio e ottieni un grafo interattivo con zoom ed esportazione. Nessuna registrazione richiesta."
+    },
+    "graphs": {
+      "title": "I miei grafi salvati",
+      "description": "I tuoi grafi delle chiamate e diagrammi di schema salvati, pronti da riaprire, condividere o esportare quando vuoi. Accedi con GitHub per conservarli."
+    },
+    "docs.introduction": {
+      "title": "Introduzione",
+      "description": "Cos'è Weftmap, quale problema risolve e come un backend modulare basato su Tree-sitter rende praticabile l'analisi su più linguaggi contemporaneamente."
+    },
+    "docs.getting-started": {
+      "title": "Iniziare",
+      "description": "Usa Weftmap nel browser o in locale: incolla uno snippet, scegli il linguaggio e leggi il tuo primo grafo delle chiamate in meno di un minuto. Passo passo."
+    },
+    "docs.reading-the-diagram": {
+      "title": "Leggere il diagramma",
+      "description": "Come leggere un grafo di Weftmap: cosa significano nodi e frecce, perché le chiamate alle librerie vengono filtrate e come dagre dispone le funzioni."
+    },
+    "docs.languages": {
+      "title": "Linguaggi supportati",
+      "description": "Tutti i linguaggi che Weftmap analizza oggi — Python, JavaScript, TypeScript, Go, Rust, Java e SQL — e cosa estrae dal tuo codice ciascun analizzatore."
+    },
+    "docs.how-it-works": {
+      "title": "Come funziona",
+      "description": "Dentro la pipeline: validazione dell'input, parsing con Tree-sitter WASM, visita dell'albero sintattico e il grafo normalizzato inviato a React Flow."
+    },
+    "docs.api": {
+      "title": "Riferimento API",
+      "description": "L'endpoint POST /api/analyze: forma della richiesta, linguaggi accettati, il JSON del grafo restituito, limiti di dimensione ed errori possibili."
+    },
+    "docs.adding-a-language": {
+      "title": "Aggiungere un linguaggio",
+      "description": "Aggiungi un linguaggio a Weftmap con un LangSpec e due query Tree-sitter. La guida completa, dal WASM della grammatica al grafo delle chiamate finito."
+    },
+    "docs.faq": {
+      "title": "Domande frequenti",
+      "description": "Se il tuo codice lascia la tua macchina, quali sono i limiti di dimensione, quali linguaggi sono supportati e con quale licenza. Risposte brevi e chiare."
+    },
+    "landing.python": {
+      "title": "Grafo delle chiamate per Python",
+      "description": "Incolla codice Python e vedi quale funzione chiama quale, come diagramma interattivo. Gestisce classi, import ed ereditarietà. Gratis, senza installare."
+    },
+    "landing.javascript": {
+      "title": "Grafo delle chiamate JavaScript",
+      "description": "Trasforma JavaScript in un grafo delle chiamate interattivo. Funzioni, arrow function, classi e import ES, analizzati al volo. Gratuito da usare subito."
+    },
+    "landing.typescript": {
+      "title": "Grafo delle chiamate TypeScript",
+      "description": "Mappa il flusso di chiamate di qualsiasi file TypeScript in un diagramma interattivo. Usa la grammatica tipizzata: generici e interfacce si leggono bene."
+    },
+    "landing.go": {
+      "title": "Grafo delle chiamate per Go",
+      "description": "Incolla codice Go e ottieni un diagramma di quali funzioni e metodi chiamano quali. Le chiamate alla libreria standard sono filtrate per leggibilità."
+    },
+    "landing.rust": {
+      "title": "Grafo delle chiamate per Rust",
+      "description": "Guarda come le tue funzioni Rust si chiamano a vicenda in un diagramma interattivo. Incolla un modulo o un file intero e segui il flusso nel browser."
+    },
+    "landing.java": {
+      "title": "Grafo delle chiamate per Java",
+      "description": "Incolla codice Java e ottieni un grafo interattivo dei tuoi metodi e classi. Utile per esaminare un servizio sconosciuto prima di leggerlo per intero."
+    },
+    "landing.sql": {
+      "title": "Diagramma ER da codice SQL",
+      "description": "Incolla DDL SQL e ottieni un diagramma entità-relazione: tabelle come nodi, chiavi esterne come archi. Leggi uno schema senza aprire il database."
+    }
+  },
+  "landing": {
+    "exampleHeading": "Esempio",
+    "showsHeading": "Cosa mostra il diagramma",
+    "ctaTitle": "Ora provalo con il tuo codice",
+    "ctaDesc": "Incolla un file, scegli il linguaggio e avvia l'analisi. Non viene salvato nulla.",
+    "ctaButton": "Apri l'editor",
+    "docsReadDiagram": "Come leggere il diagramma",
+    "docsLanguages": "Tutti i linguaggi supportati",
+    "pages": {
+      "python": {
+        "h1": "Generatore di grafo delle chiamate Python",
+        "intro": "Incolla un file Python e Weftmap disegna quale funzione chiama quale. Serve quando erediti un modulo senza docstring e ti serve vederne la forma prima di leggerlo da cima a fondo.",
+        "shows": "L'analizzatore Python riconosce funzioni, classi, import ed ereditarietà, quindi una sottoclasse appare collegata alla base che estende. Le chiamate alla libreria standard e ai pacchetti di terze parti restano fuori: riempirebbero il diagramma senza dirti nulla sul tuo codice."
+      },
+      "javascript": {
+        "h1": "Generatore di grafo delle chiamate JavaScript",
+        "intro": "Butta dentro un file JavaScript e ottieni un diagramma del suo flusso di chiamate. Comodo per quel modulo di utility cresciuto per tre anni, di cui nessuno sa più quale metà sia ancora viva.",
+        "shows": "Dichiarazioni di funzione, arrow function e metodi di classe diventano nodi, e gli import ES collegano i file da cui provengono. I callback passati inline vengono risolti alla funzione che nominano, così un handler agganciato tramite un event emitter resta comunque collegato."
+      },
+      "typescript": {
+        "h1": "Generatore di grafo delle chiamate TypeScript",
+        "intro": "Guarda la struttura delle chiamate di qualsiasi file TypeScript senza configurare un language server. Incolli, scegli TypeScript e leggi il diagramma.",
+        "shows": "Weftmap analizza TypeScript con la sua grammatica dedicata invece di rimuovere prima i tipi, così generici, interfacce e annotazioni non mandano mai in crisi il parsing. Ottieni lo stesso grafo dell'analizzatore JavaScript, su codice dove un parser JS puro si blocca."
+      },
+      "go": {
+        "h1": "Generatore di grafo delle chiamate Go",
+        "intro": "Incolla codice Go e guarda quali funzioni e metodi ne chiamano altri. Un modo rapido per farsi un'idea di un pacchetto che stai per toccare.",
+        "shows": "Go non ha classi, quindi il grafo è più piatto di quello Python o Java: funzioni e metodi sono nodi, le chiamate sono frecce. I receiver restano accanto ai loro metodi, così si vede a quale tipo appartiene ciascuno. Le chiamate alla libreria standard vengono filtrate."
+      },
+      "rust": {
+        "h1": "Generatore di grafo delle chiamate Rust",
+        "intro": "Segui come si raggiungono tra loro le funzioni di un modulo Rust, senza aspettare un cargo check completo. Incolli un file e il diagramma compare.",
+        "shows": "Le funzioni libere e le loro chiamate formano il grafo. Poiché l'analisi è puramente sintattica, il file non deve compilare: puoi puntare Weftmap su un modulo a metà refactoring, con il borrow checker ancora scontento, e ottenere comunque un quadro leggibile."
+      },
+      "java": {
+        "h1": "Generatore di grafo delle chiamate Java",
+        "intro": "Incolla una classe Java e ottieni un diagramma di come i suoi metodi si chiamano a vicenda. Pensato per quando apri un servizio sconosciuto e vuoi lo schema prima del dettaglio.",
+        "shows": "I metodi diventano nodi e le classi li raggruppano, così il diagramma riflette la struttura che già vedi nel file. Le chiamate al JDK e alle librerie vengono scartate, lasciando solo i percorsi che appartengono al codice incollato."
+      },
+      "sql": {
+        "h1": "Generatore di diagramma ER da SQL",
+        "intro": "Incolla DDL SQL e ottieni un diagramma entità-relazione. Nessuna stringa di connessione, nessun client, nessun accesso in lettura: solo le istruzioni CREATE TABLE.",
+        "shows": "Questo è l'unico linguaggio in cui Weftmap non disegna un grafo delle chiamate. Le tabelle diventano nodi con le loro colonne, chiavi primarie ed esterne vengono marcate, e ogni chiave esterna diventa una freccia verso la tabella referenziata, etichettata con la sua cardinalità."
+      }
+    }
   }
 }

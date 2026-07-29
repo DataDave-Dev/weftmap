@@ -5,7 +5,7 @@ import { isLocale } from "@/i18n/config";
 import { auth } from "@/auth";
 import CodeWorkspace from "@/components/ui/CodeWorkspace";
 
-import { getAlternates } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -13,10 +13,11 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  return {
-    title: "Weftmap — Editor",
-    alternates: getAlternates("app", lang),
-  };
+  return buildMetadata({
+    lang: isLocale(lang) ? lang : "en",
+    path: "app",
+    seoKey: "app",
+  });
 }
 
 export default async function AppPage({

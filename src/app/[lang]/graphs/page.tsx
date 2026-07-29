@@ -6,7 +6,7 @@ import { auth } from "@/auth";
 import { listGraphs } from "@/lib/graphs";
 import GraphListItem from "@/components/ui/GraphListItem";
 
-import { getAlternates } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -15,8 +15,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   return {
-    title: "Weftmap — My graphs",
-    alternates: getAlternates("graphs", lang),
+    ...buildMetadata({
+      lang: isLocale(lang) ? lang : "en",
+      path: "graphs",
+      seoKey: "graphs",
+    }),
+    // Auth-gated: a crawler only ever sees the signed-out shell. Also
+    // disallowed in robots.txt; noindex is the backstop for URLs found via an
+    // external link, which a disallow alone would still leave indexable.
+    robots: { index: false, follow: false },
   };
 }
 

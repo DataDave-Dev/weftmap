@@ -1,4 +1,6 @@
+import Link from "next/link";
 import SectionHeading from "./SectionHeading";
+import { LANDING_LANGUAGES } from "@/lib/landing-languages";
 
 type Row = { name: string; kind: string; detail: string };
 
@@ -6,9 +8,21 @@ type Props = {
   title: string;
   subtitle: string;
   rows: Row[];
+  lang: string;
 };
 
-export default function SupportedLanguages({ title, subtitle, rows }: Props) {
+// Row labels are localized ("جافا (Java)"), so match on the English name being
+// present rather than on equality.
+function landingIdFor(rowName: string): string | undefined {
+  return LANDING_LANGUAGES.find((l) => rowName.includes(l.name))?.id;
+}
+
+export default function SupportedLanguages({
+  title,
+  subtitle,
+  rows,
+  lang,
+}: Props) {
   return (
     <section
       id="languages"
@@ -20,14 +34,27 @@ export default function SupportedLanguages({ title, subtitle, rows }: Props) {
       </p>
 
       <ul className="mt-10 border-t border-line dark:border-border-dark">
-        {rows.map((row) => (
+        {rows.map((row) => {
+          const id = landingIdFor(row.name);
+          return (
           <li
             key={row.name}
             className="group grid grid-cols-[1fr_auto] items-baseline gap-x-6 gap-y-1 border-b border-line dark:border-border-dark py-5 transition-colors hover:bg-slate-50 dark:hover:bg-surface-hover sm:grid-cols-[200px_140px_1fr]"
           >
-            <span className="font-mono text-base text-ink dark:text-fg transition-colors group-hover:text-brand dark:group-hover:text-brand-dark">
-              {row.name}
-            </span>
+            {/* Each row links to its landing page: the homepage is the
+                strongest internal link source the site has. */}
+            {id ? (
+              <Link
+                href={`/${lang}/call-graph/${id}`}
+                className="font-mono text-base text-ink dark:text-fg underline-offset-4 transition-colors group-hover:text-brand group-hover:underline dark:group-hover:text-brand-dark"
+              >
+                {row.name}
+              </Link>
+            ) : (
+              <span className="font-mono text-base text-ink dark:text-fg transition-colors group-hover:text-brand dark:group-hover:text-brand-dark">
+                {row.name}
+              </span>
+            )}
             <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-[#64748b] dark:text-[#7c8696]">
               {row.kind}
             </span>
@@ -35,7 +62,8 @@ export default function SupportedLanguages({ title, subtitle, rows }: Props) {
               {row.detail}
             </span>
           </li>
-        ))}
+          );
+        })}
       </ul>
     </section>
   );

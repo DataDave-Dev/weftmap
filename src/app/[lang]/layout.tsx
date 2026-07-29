@@ -13,7 +13,12 @@ import Footer from "@/components/layout/Footer";
 import "@fontsource-variable/lexend";
 import "../globals.css";
 
-import { getAlternates } from "@/lib/seo";
+import {
+  SITE_URL,
+  TITLE_SUFFIX,
+  buildMetadata,
+  getSeoEntry,
+} from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -21,10 +26,19 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
+  const locale: Locale = isLocale(lang) ? lang : "en";
+
   return {
-    title: "Weftmap",
-    description: "Paste code and get an interactive call graph.",
-    alternates: getAlternates("", lang),
+    // Homepage metadata doubles as the default every child route inherits when
+    // it doesn't set its own.
+    ...buildMetadata({ lang: locale, path: "", seoKey: "home" }),
+    // Makes relative asset paths (the opengraph-image file convention) resolve
+    // to absolute URLs in the rendered HTML.
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: getSeoEntry(locale, "home").title + TITLE_SUFFIX,
+      template: `%s${TITLE_SUFFIX}`,
+    },
     verification: {
       google: "NeVGXzdAz1xSZWGc8BaJqwBxOOQ7sR4YGK_GV50qerM",
     },

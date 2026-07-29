@@ -76,7 +76,7 @@
   "showcaseSchemaTitle": "Schéma SQL",
   "showcaseSchemaDesc": "Les tables deviennent des entités et les clés étrangères des relations avec leur cardinalité.",
   "languagesTitle": "Langages",
-  "languagesSubtitle": "Six aujourd'hui — cinq produisent un graphe d'appels, SQL produit un schéma relationnel.",
+  "languagesSubtitle": "Sept aujourd'hui — six produisent un graphe d'appels, SQL produit un schéma relationnel.",
   "languageRows": [
     {
       "name": "Python",
@@ -102,6 +102,11 @@
       "name": "Rust",
       "kind": "Graphe d'appels",
       "detail": "Fonctions et appels"
+    },
+    {
+      "name": "Java",
+      "kind": "Graphe d'appels",
+      "detail": "Méthodes et classes"
     },
     {
       "name": "SQL",
@@ -194,5 +199,125 @@
     "testimonialAllRatings": "Toutes",
     "testimonialLoadMore": "Charger plus",
     "testimonialNoResults": "Aucune expérience ne correspond aux filtres."
+  },
+  "seo": {
+    "home": {
+      "title": "Graphe d'appels pour Python, Go, Rust et SQL",
+      "description": "Collez du code et obtenez un graphe d'appels interactif en quelques secondes. Python, JavaScript, TypeScript, Go, Rust, Java et SQL. Libre et gratuit."
+    },
+    "app": {
+      "title": "Collez du code, obtenez le graphe",
+      "description": "Collez un extrait ou envoyez un dossier, choisissez le langage et obtenez un graphe d'appels interactif, zoomable et exportable. Sans compte ni stockage."
+    },
+    "graphs": {
+      "title": "Mes graphes enregistrés",
+      "description": "Vos graphes d'appels et schémas enregistrés, prêts à rouvrir, partager ou exporter quand vous voulez. Connectez-vous avec GitHub pour les conserver."
+    },
+    "docs.introduction": {
+      "title": "Introduction",
+      "description": "Ce qu'est Weftmap, le problème qu'il résout, et comment un backend modulaire fondé sur Tree-sitter rend l'analyse multi-langage réellement praticable."
+    },
+    "docs.getting-started": {
+      "title": "Démarrer",
+      "description": "Utilisez Weftmap dans le navigateur ou en local : collez un extrait, choisissez le langage et lisez votre premier graphe d'appels en moins d'une minute."
+    },
+    "docs.reading-the-diagram": {
+      "title": "Lire le diagramme",
+      "description": "Comment lire un graphe Weftmap : le sens des nœuds et des flèches, pourquoi les appels aux bibliothèques sont filtrés, et comment dagre ordonne le tout."
+    },
+    "docs.languages": {
+      "title": "Langages pris en charge",
+      "description": "Tous les langages analysés par Weftmap aujourd'hui — Python, JavaScript, TypeScript, Go, Rust, Java et SQL — et ce que chaque analyseur extrait du code."
+    },
+    "docs.how-it-works": {
+      "title": "Comment ça marche",
+      "description": "Dans le pipeline : validation de l'entrée, analyse avec Tree-sitter WASM, parcours de l'arbre syntaxique et le graphe normalisé envoyé à React Flow."
+    },
+    "docs.api": {
+      "title": "Référence de l'API",
+      "description": "Le point d'entrée POST /api/analyze : forme de la requête, langages acceptés, le JSON du graphe renvoyé, limites de taille et erreurs possibles."
+    },
+    "docs.adding-a-language": {
+      "title": "Ajouter un langage",
+      "description": "Ajoutez un langage à Weftmap avec un LangSpec et deux requêtes Tree-sitter. Le guide complet, du WASM de la grammaire au graphe d'appels fonctionnel."
+    },
+    "docs.faq": {
+      "title": "Questions fréquentes",
+      "description": "Votre code quitte-t-il votre machine, quelles sont les limites de taille, quels langages sont pris en charge et sous quelle licence. Réponses courtes."
+    },
+    "landing.python": {
+      "title": "Graphe d'appels Python en ligne",
+      "description": "Collez du code Python et voyez quelle fonction appelle laquelle, sous forme de diagramme interactif. Gère classes, imports et héritage. Sans installation."
+    },
+    "landing.javascript": {
+      "title": "Graphe d'appels JavaScript",
+      "description": "Transformez du JavaScript en graphe d'appels interactif. Fonctions, fonctions fléchées, classes et imports ES, analysés à la volée. Gratuit à utiliser."
+    },
+    "landing.typescript": {
+      "title": "Graphe d'appels TypeScript",
+      "description": "Cartographiez le flux d'appels de n'importe quel fichier TypeScript. Utilise la grammaire typée : génériques et interfaces sont analysés correctement."
+    },
+    "landing.go": {
+      "title": "Graphe d'appels Go en ligne",
+      "description": "Collez du code Go et obtenez un diagramme des fonctions et méthodes qui s'appellent. Les appels à la bibliothèque standard sont filtrés pour la lisibilité."
+    },
+    "landing.rust": {
+      "title": "Graphe d'appels Rust en ligne",
+      "description": "Voyez comment vos fonctions Rust s'appellent entre elles dans un diagramme interactif. Collez un module ou un fichier entier et suivez le flux d'exécution."
+    },
+    "landing.java": {
+      "title": "Graphe d'appels Java en ligne",
+      "description": "Collez du code Java et obtenez un graphe d'appels interactif de vos méthodes et classes. Pratique pour parcourir un service inconnu avant de tout lire."
+    },
+    "landing.sql": {
+      "title": "Schéma relationnel depuis du SQL",
+      "description": "Collez du DDL SQL et obtenez un schéma entité-association : tables en nœuds, clés étrangères en arêtes. Lisez un schéma sans ouvrir la base de données."
+    }
+  },
+  "landing": {
+    "exampleHeading": "Exemple",
+    "showsHeading": "Ce que montre le diagramme",
+    "ctaTitle": "Essayez maintenant avec votre propre code",
+    "ctaDesc": "Collez un fichier, choisissez le langage, lancez l'analyse. Rien n'est conservé.",
+    "ctaButton": "Ouvrir l'éditeur",
+    "docsReadDiagram": "Comment lire le diagramme",
+    "docsLanguages": "Tous les langages pris en charge",
+    "pages": {
+      "python": {
+        "h1": "Générateur de graphe d'appels Python",
+        "intro": "Collez un fichier Python et Weftmap dessine quelle fonction appelle laquelle. Utile quand vous héritez d'un module sans docstrings et qu'il vous faut sa forme avant de le lire de bout en bout.",
+        "shows": "L'analyseur Python repère les fonctions, les classes, les imports et l'héritage : une sous-classe apparaît donc reliée à la base qu'elle étend. Les appels à la bibliothèque standard et aux paquets tiers sont écartés, car ils rempliraient le diagramme sans rien dire de votre propre code."
+      },
+      "javascript": {
+        "h1": "Générateur de graphe d'appels JavaScript",
+        "intro": "Déposez un fichier JavaScript et obtenez un diagramme de son flux d'appels. Pratique pour ce module utilitaire qui a grossi pendant trois ans et dont plus personne ne sait quelle moitié sert encore.",
+        "shows": "Déclarations de fonctions, fonctions fléchées et méthodes de classe deviennent des nœuds, et les imports ES relient les fichiers d'origine. Les callbacks passés en ligne sont résolus vers la fonction qu'ils nomment : un handler branché via un émetteur d'événements reste donc connecté."
+      },
+      "typescript": {
+        "h1": "Générateur de graphe d'appels TypeScript",
+        "intro": "Visualisez la structure d'appels de n'importe quel fichier TypeScript sans installer de language server. Vous collez, vous choisissez TypeScript, vous lisez le diagramme.",
+        "shows": "Weftmap analyse TypeScript avec sa grammaire dédiée plutôt qu'en retirant d'abord les types : génériques, interfaces et annotations ne cassent jamais l'analyse. Vous obtenez le même graphe qu'avec l'analyseur JavaScript, sur du code où un parseur JS classique échoue."
+      },
+      "go": {
+        "h1": "Générateur de graphe d'appels Go",
+        "intro": "Collez du code Go et voyez quelles fonctions et méthodes en appellent d'autres. Une manière rapide de jauger un paquet que vous vous apprêtez à modifier.",
+        "shows": "Go n'a pas de classes : le graphe est donc plus plat que son équivalent Python ou Java, avec les fonctions et méthodes en nœuds et les appels en flèches. Les receivers restent attachés à leurs méthodes, ce qui garde visible le type auquel chacune se rattache. Les appels à la bibliothèque standard sont filtrés."
+      },
+      "rust": {
+        "h1": "Générateur de graphe d'appels Rust",
+        "intro": "Suivez comment les fonctions d'un module Rust s'atteignent, sans attendre un cargo check complet. Vous collez un fichier et le diagramme apparaît.",
+        "shows": "Les fonctions libres et leurs appels forment le graphe. Comme l'analyse est purement syntaxique, le fichier n'a pas besoin de compiler : vous pouvez pointer Weftmap sur un module en plein refactoring, alors que le borrow checker râle encore, et obtenir tout de même une image lisible."
+      },
+      "java": {
+        "h1": "Générateur de graphe d'appels Java",
+        "intro": "Collez une classe Java et obtenez un diagramme de la façon dont ses méthodes s'appellent. Conçu pour le moment où vous ouvrez un service inconnu et voulez la trame avant le détail.",
+        "shows": "Les méthodes deviennent des nœuds et les classes les regroupent : le diagramme reflète la structure que vous voyez déjà dans le fichier. Les appels au JDK et aux bibliothèques sont écartés, ne laissant que les chemins appartenant au code collé."
+      },
+      "sql": {
+        "h1": "Générateur de schéma relationnel depuis du SQL",
+        "intro": "Collez du DDL SQL et obtenez un schéma entité-association. Pas de chaîne de connexion, pas de client, aucun accès en lecture : seulement les instructions CREATE TABLE.",
+        "shows": "C'est le seul langage pour lequel Weftmap ne dessine pas de graphe d'appels. Les tables deviennent des nœuds portant leurs colonnes, les clés primaires et étrangères sont signalées, et chaque clé étrangère devient une flèche vers la table référencée, étiquetée avec sa cardinalité."
+      }
+    }
   }
 }
