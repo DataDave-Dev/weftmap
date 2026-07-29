@@ -8,17 +8,20 @@ import { getGraph } from "@/lib/graphs";
 import Diagram from "@/components/ui/Diagram";
 import type { Graph } from "@/lib/analysis/types";
 
-import { getAlternates } from "@/lib/seo";
+import { getSeoEntry } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ lang: string; id: string }>;
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-  const { lang, id } = await params;
+  const { lang } = await params;
+  // Auth-gated and per-user, so no canonical, no hreflang and no structured
+  // data — nothing here should reach an index. The title stays generic: the
+  // stored graph title is user input.
   return {
-    title: "Weftmap — Saved graph",
-    alternates: getAlternates(`graphs/${id}`, lang),
+    title: getSeoEntry(isLocale(lang) ? lang : "en", "graphs").title,
+    robots: { index: false, follow: false },
   };
 }
 

@@ -76,7 +76,7 @@
   "showcaseSchemaTitle": "SQL schema",
   "showcaseSchemaDesc": "Tables become entities and foreign keys become relationships with cardinality.",
   "languagesTitle": "Languages",
-  "languagesSubtitle": "Six today — five produce a call graph, SQL produces an ER diagram.",
+  "languagesSubtitle": "Seven today — six produce a call graph, SQL produces an ER diagram.",
   "languageRows": [
     {
       "name": "Python",
@@ -98,7 +98,16 @@
       "kind": "Call graph",
       "detail": "Functions and methods (no classes)"
     },
-    { "name": "Rust", "kind": "Call graph", "detail": "Functions and calls" },
+    {
+      "name": "Rust",
+      "kind": "Call graph",
+      "detail": "Functions and calls"
+    },
+    {
+      "name": "Java",
+      "kind": "Call graph",
+      "detail": "Methods and classes"
+    },
     {
       "name": "SQL",
       "kind": "ER diagram",
@@ -190,5 +199,125 @@
     "testimonialAllRatings": "All",
     "testimonialLoadMore": "Load more",
     "testimonialNoResults": "No experiences match your filters."
+  },
+  "seo": {
+    "home": {
+      "title": "Call graph generator for Python, Go, Rust & SQL",
+      "description": "Paste source code and get an interactive call graph in seconds. Python, JavaScript, TypeScript, Go, Rust, Java and SQL. Free and open source."
+    },
+    "app": {
+      "title": "Paste code, get a call graph",
+      "description": "Paste a snippet or upload a folder, pick a language, and get an interactive call graph you can pan, zoom and export. No signup, nothing stored."
+    },
+    "graphs": {
+      "title": "My saved graphs",
+      "description": "Your saved call graphs and schema diagrams, ready to reopen, share or export whenever you need them. Sign in with GitHub to keep your analyses."
+    },
+    "docs.introduction": {
+      "title": "Introduction",
+      "description": "What Weftmap is, which problem it solves, and how a pluggable Tree-sitter backend makes call graph analysis work across many languages at once."
+    },
+    "docs.getting-started": {
+      "title": "Getting started",
+      "description": "Run Weftmap locally or use it in the browser: paste a snippet, choose a language, and read your first call graph in under a minute. Step by step."
+    },
+    "docs.reading-the-diagram": {
+      "title": "Reading the diagram",
+      "description": "How to read a Weftmap call graph: what nodes and arrows mean, why library calls are filtered out, and how the dagre layout orders the functions."
+    },
+    "docs.languages": {
+      "title": "Supported languages",
+      "description": "Every language Weftmap analyses today — Python, JavaScript, TypeScript, Go, Rust, Java and SQL — with what each analyzer extracts from your code."
+    },
+    "docs.how-it-works": {
+      "title": "How it works",
+      "description": "Inside the pipeline: input validation, Tree-sitter WASM parsing, syntax tree traversal, and the normalized nodes-and-edges graph sent to React Flow."
+    },
+    "docs.api": {
+      "title": "API reference",
+      "description": "The POST /api/analyze endpoint: request shape, supported language values, the graph JSON it returns, size limits, and the errors you can get back."
+    },
+    "docs.adding-a-language": {
+      "title": "Adding a language",
+      "description": "Add a new language to Weftmap with one LangSpec and two Tree-sitter queries. The full walkthrough, from grammar WASM to a working call graph."
+    },
+    "docs.faq": {
+      "title": "Frequently asked questions",
+      "description": "Does your code leave your machine, what are the size limits, which languages are supported, and how Weftmap is licensed. The short answers."
+    },
+    "landing.python": {
+      "title": "Python call graph generator",
+      "description": "Paste Python code and see which function calls which, as an interactive diagram. Handles classes, imports and inheritance. Free, no install needed."
+    },
+    "landing.javascript": {
+      "title": "JavaScript call graph generator",
+      "description": "Turn JavaScript into an interactive call graph. Function declarations, arrow functions, classes and ES imports, parsed in the browser. Free to use."
+    },
+    "landing.typescript": {
+      "title": "TypeScript call graph generator",
+      "description": "Map the call flow of any TypeScript file into an interactive diagram. Uses the typed grammar, so generics and interfaces parse cleanly. Free to use."
+    },
+    "landing.go": {
+      "title": "Go call graph generator",
+      "description": "Paste Go source and get a diagram of which functions and methods call which. Standard library calls are filtered out to keep the graph readable."
+    },
+    "landing.rust": {
+      "title": "Rust call graph generator",
+      "description": "See how your Rust functions call each other as an interactive diagram. Paste a module or a whole file and trace the flow without leaving the browser."
+    },
+    "landing.java": {
+      "title": "Java call graph generator",
+      "description": "Paste Java code and get an interactive call graph of your methods and classes. Useful for reviewing unfamiliar services before you read them fully."
+    },
+    "landing.sql": {
+      "title": "SQL schema diagram generator",
+      "description": "Paste SQL DDL and get an entity-relationship diagram: tables as nodes, foreign keys as edges. Read an unfamiliar schema without opening a database."
+    }
+  },
+  "landing": {
+    "exampleHeading": "Example",
+    "showsHeading": "What the graph shows",
+    "ctaTitle": "Now try it with your own code",
+    "ctaDesc": "Paste a file, pick the language, hit Analyze. Nothing is stored.",
+    "ctaButton": "Open the editor",
+    "docsReadDiagram": "How to read the diagram",
+    "docsLanguages": "All supported languages",
+    "pages": {
+      "python": {
+        "h1": "Python call graph generator",
+        "intro": "Paste a Python file and Weftmap draws which function calls which. Useful when you inherit a module with no docstrings and need the shape of it before reading top to bottom.",
+        "shows": "The Python analyzer picks up functions, classes, imports and inheritance, so a subclass shows up connected to the base it extends. Calls into the standard library and third-party packages are left out — they would swamp the diagram without telling you anything about your own code."
+      },
+      "javascript": {
+        "h1": "JavaScript call graph generator",
+        "intro": "Drop in a JavaScript file and get a diagram of its call flow. Handy for the utility module that grew for three years and now nobody is sure which half is still reachable.",
+        "shows": "Function declarations, arrow functions and class methods all become nodes, and ES imports link the files they come from. Callbacks passed inline resolve to the function they name, so a handler wired through an event emitter still appears connected."
+      },
+      "typescript": {
+        "h1": "TypeScript call graph generator",
+        "intro": "See the call structure of any TypeScript file without setting up a language server. Paste it, pick TypeScript, and read the diagram.",
+        "shows": "Weftmap parses TypeScript with its own grammar rather than stripping types first, so generics, interfaces and type annotations never derail the parse. What you get is the same call graph as the JavaScript analyzer, on code that plain JS parsers choke on."
+      },
+      "go": {
+        "h1": "Go call graph generator",
+        "intro": "Paste Go source and see which functions and methods call which. A quick way to size up a package you are about to change.",
+        "shows": "Go has no classes, so the graph is flatter than the Python or Java equivalent: functions and methods are nodes, calls are arrows. Receivers are kept with their methods, so it stays clear which type a method hangs off. Standard library calls are filtered out."
+      },
+      "rust": {
+        "h1": "Rust call graph generator",
+        "intro": "Trace how the functions in a Rust module reach each other, without waiting on a full cargo check. Paste a file and the diagram appears.",
+        "shows": "Free functions and their calls become the graph. Because the parse is purely syntactic, the file does not need to compile — you can point Weftmap at a module mid-refactor, while the borrow checker is still unhappy with it, and still get a readable picture."
+      },
+      "java": {
+        "h1": "Java call graph generator",
+        "intro": "Paste a Java class and get a diagram of how its methods call one another. Built for the moment you open an unfamiliar service and want the outline before the detail.",
+        "shows": "Methods become nodes and classes group them, so the diagram reflects the structure you already see in the file. Calls to the JDK and to libraries are dropped, leaving only the paths that belong to the code you pasted."
+      },
+      "sql": {
+        "h1": "SQL schema diagram generator",
+        "intro": "Paste SQL DDL and get an entity-relationship diagram. No connection string, no client, no read access to anything — just the CREATE TABLE statements.",
+        "shows": "This is the one language where Weftmap does not draw a call graph. Tables become nodes carrying their columns, primary and foreign keys are marked, and each foreign key becomes an arrow to the table it references, labelled with its cardinality."
+      }
+    }
   }
 }

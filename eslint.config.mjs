@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Playwright output. Gitignored, but eslint doesn't read .gitignore, so
+    // running the e2e suite before lint would otherwise flood it with errors
+    // from bundled report assets.
+    "playwright-report/**",
+    "test-results/**",
   ]),
 ]);
 

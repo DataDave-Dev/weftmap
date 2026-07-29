@@ -11,6 +11,12 @@ import Faq from "@/components/sections/Faq";
 import Testimonials from "@/components/sections/Testimonials";
 import CallToAction from "@/components/sections/CallToAction";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import JsonLd from "@/components/seo/JsonLd";
+import {
+  buildFaqSchema,
+  buildOrganization,
+  buildSoftwareApplication,
+} from "@/lib/structured-data";
 
 export default async function Home({
   params,
@@ -23,6 +29,15 @@ export default async function Home({
 
   return (
     <>
+      <JsonLd
+        data={[
+          buildSoftwareApplication(lang),
+          buildOrganization(),
+          // Generated from the same t.faqs array the <Faq /> section below
+          // renders, so the markup can never describe absent content.
+          buildFaqSchema(lang),
+        ]}
+      />
       <ScrollReveal />
       <Hero
         badge={t.badge}
@@ -50,6 +65,7 @@ export default async function Home({
         title={t.languagesTitle}
         subtitle={t.languagesSubtitle}
         rows={t.languageRows}
+        lang={lang}
       />
       <UseCases title={t.useCasesTitle} items={t.useCases} />
       <Faq title={t.faqTitle} items={t.faqs} />

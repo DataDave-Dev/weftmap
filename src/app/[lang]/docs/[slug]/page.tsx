@@ -5,12 +5,15 @@ import { isLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { DOC_NAV, DOC_SLUGS, type DocSlug } from "@/lib/docs";
 import { DOC_COMPONENTS } from "@/components/docs/registry";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildBreadcrumbs, buildTechArticle } from "@/lib/structured-data";
+import { getSeoEntry } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.flatMap((lang) => DOC_SLUGS.map((slug) => ({ lang, slug })));
 }
 
-import { getAlternates } from "@/lib/seo";
+import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -18,13 +21,14 @@ export async function generateMetadata({
   params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
   const { lang, slug } = await params;
-  const item = DOC_NAV.find((d) => d.slug === slug);
   const locale: Locale = isLocale(lang) ? lang : "en";
-  const title = item ? (item.title[locale] ?? item.title["en"]) : "Docs";
-  return {
-    title: `${title} — Weftmap`,
-    alternates: getAlternates(`docs/${slug}`, lang),
-  };
+  if (!DOC_SLUGS.includes(slug as DocSlug)) return {};
+
+  return buildMetadata({
+    lang: locale,
+    path: `docs/${slug}`,
+    seoKey: `docs.${slug as DocSlug}`,
+  });
 }
 
 export default async function DocPage({
@@ -45,6 +49,16 @@ export default async function DocPage({
 
   return (
     <article>
+      <JsonLd
+        data={[
+          buildTechArticle(lang, slug as DocSlug),
+          buildBreadcrumbs(lang, [
+            { name: "Weftmap", path: "" },
+            { name: t.documentation, path: "docs/introduction" },
+            { name: getSeoEntry(lang, `docs.${slug as DocSlug}`).title, path: `docs/${slug}` },
+          ]),
+        ]}
+      />
       <Content lang={lang} />
 
       <nav className="mt-16 grid grid-cols-1 gap-4 border-t border-[#e2e8f0] pt-8 sm:grid-cols-2">
