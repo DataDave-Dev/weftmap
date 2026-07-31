@@ -25,7 +25,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "@auth/drizzle-adapter": "^1.11.2",
+    "@auth/drizzle-adapter": "^1.11.3",
     "@dagrejs/dagre": "^3.0.0",
     "@fontsource-variable/lexend": "^5.2.11",
     "@gsap/react": "^2.1.2",
