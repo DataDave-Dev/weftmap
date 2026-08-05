@@ -31,7 +31,7 @@ export default async function AppPage({
   const session = await auth();
 
   return (
-    <>
+    <main id="main">
       <CodeWorkspace
         languageLabel={t.languageLabel}
         analyzeLabel={t.analyze}
@@ -50,6 +50,6 @@ export default async function AppPage({
         savedLabel={t.auth.saved}
         signInToSaveLabel={t.auth.signInToSave}
       />
-    </>
+    </main>
   );
 }
