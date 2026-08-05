@@ -28,7 +28,7 @@ export default async function Home({
   const t = getDictionary(lang);
 
   return (
-    <>
+    <main id="main">
       <JsonLd
         data={[
           buildSoftwareApplication(lang),
@@ -80,6 +80,6 @@ export default async function Home({
         star={t.ctaStar}
         contribute={t.ctaContribute}
       />
-    </>
+    </main>
   );
 }
