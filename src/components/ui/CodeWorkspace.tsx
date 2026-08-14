@@ -5,6 +5,7 @@ import Diagram from "./Diagram";
 import { saveGraph } from "@/lib/graphs";
 import type { Graph } from "@/lib/analysis/types";
 import { graphSchema } from "@/lib/validation";
+import { clearAnalysisResult } from "./codeWorkspaceState";
 
 const LANGUAGES = ["python", "javascript", "typescript", "go", "rust", "sql", "java"];
 
@@ -375,11 +376,18 @@ export default function CodeWorkspace({
   function onLanguageChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const next = e.target.value;
     setLanguage(next);
+    clearAnalysisResult(setGraph, setError);
     // Swap the demo snippet only while the editor still holds an untouched sample.
     setCode((cur) =>
       SAMPLE_VALUES.includes(cur) ? (SAMPLES[next] ?? cur) : cur,
     );
     setFiles(null); // file extensions differ per language
+  }
+
+  function onModeChange(next: "snippet" | "project") {
+    if (next === mode) return;
+    setMode(next);
+    clearAnalysisResult(setGraph, setError);
   }
 
   function syncScroll(e: React.UIEvent<HTMLTextAreaElement>) {
@@ -408,7 +416,7 @@ export default function CodeWorkspace({
 
   const tab = (value: "snippet" | "project", label: string) => (
     <button
-      onClick={() => setMode(value)}
+      onClick={() => onModeChange(value)}
       className={`px-3 py-1 rounded-md text-[12px] font-medium transition-colors ${
         mode === value
           ? "bg-[#eef2ff] dark:bg-[#1b1f3a] text-brand dark:text-[#e6e9ef]"
