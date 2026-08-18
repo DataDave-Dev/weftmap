@@ -12,6 +12,9 @@ function initRuntime(): Promise<void> {
   if (!initPromise) {
     initPromise = Parser.init({
       locateFile: (name: string) => path.join(WASM_DIR, name),
+    }).catch((error: unknown) => {
+      initPromise = null;
+      throw error;
     });
   }
   return initPromise;
